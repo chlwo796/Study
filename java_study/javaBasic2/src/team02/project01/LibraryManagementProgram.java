@@ -2,18 +2,15 @@ package team02.project01;
 
 import java.util.Scanner;
 
+
 public class LibraryManagementProgram {
 
-	static Scanner sc = new Scanner(System.in);
-	static int count;
-	static String[][] bookList;
-
 	public static void main(String[] args) {
-		
+		Scanner sc = new Scanner(System.in);
 		Library lb = new Library();
 
 		boolean flage = true;
-		
+
 		while (flage) {
 			System.out.println("------------------------------------------------------");
 			System.out.println("1.도서입력\t2.도서대출\t3.도서반납\t4.도서검색\t5.도서현황\t6.종료");
@@ -28,13 +25,13 @@ public class LibraryManagementProgram {
 				break;
 
 			case "2":
-
+				lb.rentalBook();
 				break;
 			case "3":
-
+				lb.returnBook();
 				break;
 			case "4":
-
+				lb.bookSearch();
 				break;
 			case "5":
 				lb.bookStatus();
@@ -48,45 +45,13 @@ public class LibraryManagementProgram {
 			}
 		}
 	}
-
-//	private static void bookStatus() {
-//		// TODO Auto-generated method stub
-//
-//		System.out.println("도서이름\t대출가능");
-//		for (int i = 0; i < bookList.length; i++) {
-//			System.out.print(bookList[i][0] + "\t" + bookList[i][1]);
-//			System.out.println();
-//		}
-//	}
-
-//	private static void insertBook(boolean x) {
-//		if (x) {
-//			System.out.println("입력할 개수를 입력하세요. 이곳은 도서관의 책목록을 만드는 곳입니다.(초기값)");
-//			count = sc.nextInt();
-//			sc.nextLine();
-//			bookList = new String[count][2];
-//			for (int i = 0; i < bookList.length; i++) {
-//				System.out.print((i + 1) + "번째 책>");
-//				bookList[i][0] = sc.nextLine();
-//			}
-//			x = false;
-//		}
-//		System.out.println("추가입력>");
-//		count = sc.nextInt();
-//		sc.nextLine();
-//		String[][] newArray = new String[count + bookList.length][2];
-//		for (int i = bookList.length; i < newArray.length; i++) {
-//			System.out.print("추가할 " + (i - bookList.length + 1) + "번째 책>");
-//			newArray[i][0] = sc.nextLine(); // 여기서 기존 길이의 배열에 추가할 책 수만큼의 길이의 배열을 만들었다. newArray배열에 값 복사 후
-//		}
-//		System.arraycopy(bookList, 0, newArray, 0, bookList.length);
-//	}
 }
 
 class Library {
 	int count;
 	String[][] bookList;
 	String[][] newArray;
+	boolean containbookName;
 	Scanner sc = new Scanner(System.in);
 
 	String[][] firstTime() {
@@ -97,7 +62,7 @@ class Library {
 		for (int i = 0; i < bookList.length; i++) {
 			System.out.print((i + 1) + "번째 책>");
 			bookList[i][0] = sc.nextLine();
-			bookList[i][1] = "대출가능";
+			bookList[i][1] = "Y";
 		}
 		return bookList;
 	}
@@ -108,7 +73,7 @@ class Library {
 		String answer = sc.nextLine();
 		if (answer.equals("y")) {
 			firstTime();
-			}
+		}
 		System.out.println("추가입력하시겠습니까?(y/n)");
 		String yesNo = sc.nextLine();
 		if (yesNo.equals("y")) {
@@ -118,8 +83,8 @@ class Library {
 			String[][] newArray = new String[count + bookList.length][2];
 			for (int i = bookList.length; i < newArray.length; i++) {
 				System.out.print("추가할 " + (i - bookList.length + 1) + "번째 책>");
-				newArray[i][0] = sc.nextLine(); // 여기서 기존 길이의 배열에 추가할 책 수만큼의 길이의 배열을 만들었다. newArray배열에 값 복사 후
-				newArray[i][1] = "대출가능";
+				newArray[i][0] = sc.nextLine();
+				newArray[i][1] = "Y";
 			}
 			System.arraycopy(bookList, 0, newArray, 0, bookList.length);
 
@@ -128,12 +93,72 @@ class Library {
 			return bookList;
 	}
 
+	String[][] rentalBook() {
+
+		System.out.println("대여할 책 이름 > ");
+		String bookName = sc.nextLine();
+
+		for (int i = 0; i < bookList.length; i++) {
+			if (bookName.equals(bookList[i][0]) && bookList[i][1].equals("Y")) {
+				bookList[i][1] = "N";
+				System.out.println(bookName + " 대여되었습니다.");
+				containbookName = false;
+				break;
+			} else
+				containbookName = true;
+
+		}
+		if (containbookName) {
+			System.out.println(bookName + "은(는) 대여가 불가능한 책입니다. 대출여부 및 리스트를 확인해주세요.");
+			containbookName = false;
+		}
+		return bookList;
+	}
+
+	String[][] returnBook() {
+
+		System.out.println("반납할 책 이름 > ");
+		String bookName = sc.nextLine();
+
+		for (int i = 0; i < bookList.length; i++) {
+			if (bookName.equals(bookList[i][0]) && bookList[i][1].equals("N")) {
+				bookList[i][1] = "Y";
+				System.out.println(bookName + " 반납되었습니다.");
+				containbookName = false;
+				break;
+			} else {
+				containbookName = true;
+			}
+		}
+		if (containbookName) {
+			System.out.println(bookName + "은(는) 반납이 불가능한 책입니다. 대출여부 및 리스트를 확인해주세요.");
+			containbookName = false;
+		}
+		return bookList;
+	}
+
+	void bookSearch() {
+
+		System.out.println("책 제목을 입력해주세요");
+		String bs = sc.nextLine();
+
+		for (int i = 0; i < bookList.length; i++) {
+			if (bookList[i][0].contains(bs)) {
+
+			}
+			System.out.println("도서이름\t대출가능여부");
+			System.out.println(bookList[i][0] + "\t" + bookList[i][1]);
+		}
+
+	}
+
 	void bookStatus() {
-		System.out.println("도서이름\t대출가능");
+		System.out.println("도서이름\t대출가능여부");
 		for (int i = 0; i < bookList.length; i++) {
 			System.out.print(bookList[i][0] + "\t" + bookList[i][1]);
 			System.out.println();
 		}
 
 	}
+
 }
