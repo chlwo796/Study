@@ -22,7 +22,9 @@
   - Web Application Server
   - web system에서 전달된 Request를 처리하기 위해 transaction 관리, session 유지, 부하분산 등의 역할을 하는 서버의 소프트웨어
 - p.33 [그림 2-4] 웹 어플리케이션 서버 처리 흐름 예시
-- 데이터베이스 관리 시스템(DBMS : Database Management System) : 다수의 응용소프트웨어 및 사용자가 데이터베이스에 접근하여 원활하게 사용할 수 있도록 중간에서 관리해주는 시스템
+- 데이터베이스 관리 시스템(DBMS : Database Management System) : 다수의 응용소프트웨어 및 사용자가 데이터베이스에 접근하여 원활하게 사용할 수 있도록 중간에서 관리해주는 시스템, 오라클 등
+- [표 3-3] 데이터베이스 종류
+  - 관계형 데이터베이스를 가장 많이 씀
 
 ---
 
@@ -48,3 +50,7 @@
   - Read : 읽는다. select 
   - Update : 수정한다(테이블 고친다 - alter, 자료고치는 것 - update)
   - Delete : 지운다(테이블 - drop, 자료 지운다 - delete)
+- 실기
+  - 키보드 데이터 입력하기(Scanner)
+  - 데이터 입력 -> 변수 -> 출력
+- java p.234~
