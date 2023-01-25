@@ -11,5 +11,4 @@ public class Student01 {
 
 		System.out.println(st1.dep + " " + st1.number);
 	}
-
 }
