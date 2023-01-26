@@ -12,7 +12,10 @@ public class ClassEx04 {
 		System.out.println(c1.cc("a", "b"));
 		System.out.println(c1.cc("a", "b", "c"));
 		System.out.println(c1.cc("a", "b", "c", "d"));
+		
 
+		int[] array = null;
+		System.out.println(array.length);
 	}
 }
 
