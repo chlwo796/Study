@@ -2,7 +2,6 @@ package team02.project01;
 
 import java.util.Scanner;
 
-
 public class LibraryManagementProgram {
 
 	public static void main(String[] args) {
@@ -10,11 +9,11 @@ public class LibraryManagementProgram {
 		Library lb = new Library();
 
 		boolean flage = true;
-
+		
 		while (flage) {
-			System.out.println("------------------------------------------------------");
-			System.out.println("1.도서입력\t2.도서대출\t3.도서반납\t4.도서검색\t5.도서현황\t6.종료");
-			System.out.println("-------------------------------------------------------");
+			System.out.println("--------------------------------------------------------");
+			System.out.println("1.도서입력 | 2.도서대출 | 3.도서반납 | 4.도서검색 | 5.도서현황 | 6.종료");
+			System.out.println("--------------------------------------------------------");
 			System.out.print("선택>");
 			String menu = sc.nextLine();
 
@@ -23,7 +22,6 @@ public class LibraryManagementProgram {
 			case "1":
 				lb.input();
 				break;
-
 			case "2":
 				lb.rentalBook();
 				break;
@@ -55,7 +53,7 @@ class Library {
 	Scanner sc = new Scanner(System.in);
 
 	String[][] firstTime() {
-		System.out.println("입력할 개수를 입력하세요. 이곳은 도서관의 책목록을 만드는 곳입니다.(초기값)");
+		System.out.println("도서 코드를 입력하세요.");
 		count = sc.nextInt();
 		sc.nextLine();
 		bookList = new String[count][2];
@@ -142,12 +140,17 @@ class Library {
 		System.out.println("책 제목을 입력해주세요");
 		String bs = sc.nextLine();
 
+		int a = 0;
 		for (int i = 0; i < bookList.length; i++) {
-			if (bookList[i][0].contains(bs)) {
 
+			if (bookList[i][0].contains(bs)) {
+				System.out.println("도서이름\t대출가능여부");
+				System.out.println(bookList[i][0] + "\t" + bookList[i][1]);
+				a++;
 			}
-			System.out.println("도서이름\t대출가능여부");
-			System.out.println(bookList[i][0] + "\t" + bookList[i][1]);
+		}
+		if (a == 0) {
+			System.out.println("존재하지 않는 책입니다.");
 		}
 
 	}

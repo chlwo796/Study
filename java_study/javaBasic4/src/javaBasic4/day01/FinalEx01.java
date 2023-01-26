@@ -13,8 +13,7 @@ public class FinalEx01 {
 
 		final int b = 100; // b변수는 100 고정
 //		b = b + 200;	// 다른 값 대입 시 에러발생
-		
+
 		System.out.println(Math.PI);
 	}
-
 }
