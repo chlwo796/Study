@@ -1,4 +1,4 @@
-package Project01;
+package library;
 
 public class LibraryBook {
 
