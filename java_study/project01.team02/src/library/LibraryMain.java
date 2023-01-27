@@ -147,6 +147,7 @@ class Library {
 
 			}
 			System.arraycopy(bookList, 0, newArray, 0, bookList.length);
+//			ArrayList -> 사용해보기
 
 			return bookList = newArray;
 		}

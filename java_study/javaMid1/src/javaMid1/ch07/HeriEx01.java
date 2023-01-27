@@ -9,8 +9,8 @@ public class HeriEx01 {
 //		D클래스 객체생성 -> heap memory D 생성
 //		D d = new D();
 		
-		DD dd = new DD();	// D,DD가 같이 올라가지만, 부모클래스 D를 먼저 memory에 올린다
+//		DD dd = new DD();	// D,DD가 같이 올라가지만, 부모클래스 D를 먼저 memory에 올린다
 		
-//		DDD ddd = new DDD(); // D,DD,DDD가 같이 올라가지만, 부모클래스 D를 먼저 memory에 올린 후, DD, DDD 순서
+		DDD ddd = new DDD(); // D,DD,DDD가 같이 올라가지만, 부모클래스 D를 먼저 memory에 올린 후, DD, DDD 순서
 	}
 }
