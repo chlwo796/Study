@@ -99,30 +99,83 @@ public class LibraryMain {
 }
 
 class Library {
+	protected static final int MIN_COUNT = 0; // bookList를 처음에 입력받은 정수값으로 배열을 미리 만들어두기때문에
+	protected static final int MAX_COUNT = 10; // 오타, 0의 오기입을 방지하고자 범위에 제한을 걸어두었다.
+
 	int count;
+	int codeCheck; // 초기값 0이 아닐 시 코드중복 실행, 반복입력 실행
+	String tempCode; // 초기 배열값에 입력받은 코드를 바로 넣지 않고 임시데이터로 조건문 수행, 이후 배열에 값을 넣는다.
+	String check; // 초기 입력시 많은 양의 배열데이터를 일일이 다 입력하기때문에, 입력한내용이 맞는지 확인하는 용도
 
 	String[][] bookList;
-
 	boolean containbookName;
 	Scanner sc = new Scanner(System.in);
 
 	String[][] firstTime() {
 
-		System.out.println("도서가 몇권입니까?");
+		System.out.println("도서가 몇권입니까?(1~10)");
 		count = sc.nextInt();
 		sc.nextLine();
+		if (count <= MIN_COUNT || count > MAX_COUNT) {
+			System.out.println("수량이 잘못 입력되었습니다. 다시입력해주세요(1~10)");
+			firstTime();
+		}
 		bookList = new String[count][5];
+
 		for (int i = 0; i < bookList.length; i++) {
+			while (true) {
+				System.out.print((i + 1) + "번째 도서 코드>");
+				tempCode = sc.nextLine();
+				for (int j = 0; j < bookList.length; j++) {
+					if (bookList[j][0] != null && bookList[j][0].equals(tempCode)) {
+						codeCheck++;
+						break;
+					}
+				}
+				if (codeCheck == 0) {
+					bookList[i][0] = tempCode;
+				} else {
+					System.out.println("중복된 코드입니다. 다시입력해주세요.");
+					codeCheck = 0;
+					continue;
+				}
+				break;
+			}
+
 			System.out.print((i + 1) + "번째 도서 제목>");
-			bookList[i][0] = sc.nextLine();
-			System.out.print((i + 1) + "번째 도서 코드>");
 			bookList[i][1] = sc.nextLine();
 			System.out.print((i + 1) + "번째 도서 카테고리>");
 			bookList[i][2] = sc.nextLine();
 			System.out.print((i + 1) + "번째 도서 작가>");
 			bookList[i][3] = sc.nextLine();
 			bookList[i][4] = "Y";
+
 		}
+
+		System.out.printf("%-8s\t%s\t%s\t%s\t%s \n", "도서코드", "도서제목", "카테고리", "도서작가", "대출가능여부");
+		for (
+
+				int i = 0; i < bookList.length; i++) {
+			System.out.printf("%-8s\t%s\t%s\t%s\t%s\n", bookList[i][0], bookList[i][1], bookList[i][2], bookList[i][3],
+					bookList[i][4]);
+		}
+		while (true) {
+			System.out.println("입력하신정보가 맞습니까?(y/n)");
+			check = (sc.nextLine()).toLowerCase(); // 입력값을 다 소문자로 치환
+			if (check.equals("n")) {
+				System.out.println("초기화면으로 이동합니다.");
+				firstTime();
+			} else if (check.equals("y")) {
+				break;
+			} else {
+				System.out.println("잘못입력하셨습니다.");
+				continue;
+			}
+			break;
+
+		}
+
+		System.out.println("데이터 입력 완료");
 		return bookList;
 	}
 
@@ -130,14 +183,40 @@ class Library {
 		if (bookList == null) {
 			firstTime();
 		} else {
-			System.out.println("도서가 몇권입니까?");
+			System.out.println("도서가 몇권입니까?(1~10)");
 			count = sc.nextInt();
 			sc.nextLine();
+			if (count <= MIN_COUNT || count > MAX_COUNT) {
+				System.out.println("수량이 잘못 입력되었습니다. 다시입력해주세요(1~10)");
+				input();
+			}
 			String[][] newArray = new String[count + bookList.length][5];
 			for (int i = bookList.length; i < newArray.length; i++) {
+				while (true) {
+					System.out.print("추가할 " + (i - bookList.length + 1) + "번째 도서 코드>");
+					tempCode = sc.nextLine();
+					for (int j = 0; j < bookList.length; j++) {
+						if (bookList[j][0] != null && bookList[j][0].equals(tempCode)) {
+							codeCheck++;
+							break;
+						}
+						if (newArray[j + bookList.length - 1][0] != null
+								&& newArray[j + bookList.length - 1][0].equals(tempCode)) {
+							codeCheck++;
+							break;
+						}
+					}
+					if (codeCheck == 0) {
+						newArray[i][0] = tempCode;
+					} else {
+						System.out.println("중복된 코드입니다. 다시입력해주세요.");
+						codeCheck = 0;
+						continue;
+					}
+					break;
+				}
+
 				System.out.print("추가할 " + (i - bookList.length + 1) + "번째 도서 제목>");
-				newArray[i][0] = sc.nextLine();
-				System.out.print("추가할 " + (i - bookList.length + 1) + "번째 도서 코드>");
 				newArray[i][1] = sc.nextLine();
 				System.out.print("추가할 " + (i - bookList.length + 1) + "번째 도서 카테고리>");
 				newArray[i][2] = sc.nextLine();
@@ -146,132 +225,173 @@ class Library {
 				newArray[i][4] = "Y";
 
 			}
+
+			System.out.printf("%-8s\t%s\t%s\t%s\t%s \n", "도서코드", "도서제목", "카테고리", "도서작가", "대출가능여부");
+			for (int i = bookList.length; i < newArray.length; i++) {
+				System.out.printf("%-8s\t%s\t%s\t%s\t%s\n", newArray[i][0], newArray[i][1], newArray[i][2],
+						newArray[i][3], newArray[i][4]);
+			}
+			while (true) {
+				System.out.println("입력하신정보가 맞습니까?(y/n)");
+				check = (sc.nextLine()).toLowerCase(); // 입력값을 다 소문자로 치환
+				if (check.equals("n")) {
+					System.out.println("초기화면으로 이동합니다.");
+					input();
+				} else if (check.equals("y")) {
+					break;
+				} else {
+					System.out.println("잘못입력하셨습니다.");
+					continue;
+				}
+				break;
+
+			}
+
 			System.arraycopy(bookList, 0, newArray, 0, bookList.length);
 //			ArrayList -> 사용해보기
 
-			return bookList = newArray;
+			bookList = newArray;
+			System.out.println("데이터 입력 완료");
 		}
-		return null;
+
+		return bookList;
 	}
 
 	String[][] rentalBook() {
+		if (bookList != null) {
+			System.out.println("대여할 책 이름 > ");
+			String bookName = sc.nextLine();
+			for (int i = 0; i < bookList.length; i++) {
+				if (bookName.equals(bookList[i][1]) && bookList[i][4].equals("Y")) {
+					bookList[i][4] = "N";
+					System.out.println(bookName + " 대여되었습니다.");
+					containbookName = false;
+					break;
+				} else
+					containbookName = true;
 
-		System.out.println("대여할 책 이름 > ");
-		String bookName = sc.nextLine();
-
-		for (int i = 0; i < bookList.length; i++) {
-			if (bookName.equals(bookList[i][0]) && bookList[i][4].equals("Y")) {
-				bookList[i][4] = "N";
-				System.out.println(bookName + " 대여되었습니다.");
+			}
+			if (containbookName) {
+				System.out.println(bookName + "은(는) 대여가 불가능한 도서입니다. 대출여부 및 리스트를 확인해주세요.");
 				containbookName = false;
-				break;
-			} else
-				containbookName = true;
-
+			}
+			return bookList;
+		} else {
+			System.out.println("도서목록이 없습니다. 목록을 입력해주세요.");
+			return null;
 		}
-		if (containbookName) {
-			System.out.println(bookName + "은(는) 대여가 불가능한 도서입니다. 대출여부 및 리스트를 확인해주세요.");
-			containbookName = false;
-		}
-		return bookList;
 	}
 
 	String[][] returnBook() {
+		if (bookList != null) {
 
-		System.out.println("반납할 도서 이름 > ");
-		String bookName = sc.nextLine();
+			System.out.println("반납할 도서 이름 > ");
+			String bookName = sc.nextLine();
 
-		for (int i = 0; i < bookList.length; i++) {
-			if (bookName.equals(bookList[i][0]) && bookList[i][4].equals("N")) {
-				bookList[i][4] = "Y";
-				System.out.println(bookName + " 반납되었습니다.");
-				containbookName = false;
-				break;
-			} else {
-				containbookName = true;
+			for (int i = 0; i < bookList.length; i++) {
+				if (bookName.equals(bookList[i][1]) && bookList[i][4].equals("N")) {
+					bookList[i][4] = "Y";
+					System.out.println(bookName + " 반납되었습니다.");
+					containbookName = false;
+					break;
+				} else {
+					containbookName = true;
+				}
 			}
+			if (containbookName) {
+				System.out.println(bookName + "은(는) 반납이 불가능한 도서입니다. 대출여부 및 리스트를 확인해주세요.");
+				containbookName = false;
+			}
+			return bookList;
+		} else {
+			System.out.println("도서목록이 없습니다. 목록을 입력해주세요");
+			return null;
 		}
-		if (containbookName) {
-			System.out.println(bookName + "은(는) 반납이 불가능한 도서입니다. 대출여부 및 리스트를 확인해주세요.");
-			containbookName = false;
-		}
-		return bookList;
 	}
 
 	void bookSearch() {
+		if (bookList != null) {
+			System.out.println("1. 도서제목" + "\t" + "2. 작가/지은이" + "\t" + "3. 카테고리" + "\t" + "4. 메인화면");
+			String search = sc.nextLine();
 
-		System.out.println("1. 도서제목" + "\t" + "2번 작가/지은이" + "\t" + "3번 카테고리");
-		String search = sc.nextLine();
+			switch (search) {
 
-		switch (search) {
+			case "1":
+				System.out.println("도서 제목을(를) 입력해주세요");
+				String bs = sc.nextLine();
 
-		case "1":
-			System.out.println("도서 제목을(를) 입력해주세요");
-			String bs = sc.nextLine();
+				int a = 0;
+				System.out.printf("%s\t%s\t%s\t%s \n", "도서이름", "카테고리", "도서작가", "대출가능여부");
+				for (int i = 0; i < bookList.length; i++) {
 
-			int a = 0;
-			System.out.printf("%s\t%s\t%s\t%s \n", "도서이름", "카테고리", "도서작가", "대출가능여부");
-			for (int i = 0; i < bookList.length; i++) {
-
-				if (bookList[i][0].contains(bs)) {
-					System.out.printf("%s\t%s\t%s\t%s \n", bookList[i][0], bookList[i][2], bookList[i][3],
-							bookList[i][4]);
-					a++;
+					if (bookList[i][1].contains(bs)) {
+						System.out.printf("%s\t%s\t%s\t%s \n", bookList[i][1], bookList[i][2], bookList[i][3],
+								bookList[i][4]);
+						a++;
+					}
 				}
-			}
-			if (a == 0) {
-				System.out.println("존재하지 않는 도서입니다.");
-			}
-			break;
-
-		case "2":
-			System.out.println("작가/지은이 를(을) 입력해주세요");
-			String bs1 = sc.nextLine();
-
-			int a1 = 0;
-			System.out.printf("%s\t%s\t%s\t%s \n", "도서이름", "카테고리", "도서작가", "대출가능여부");
-			for (int i = 0; i < bookList.length; i++) {
-
-				if (bookList[i][3].contains(bs1)) {
-					System.out.printf("%s\t%s\t%s\t%s \n", bookList[i][0], bookList[i][2], bookList[i][3],
-							bookList[i][4]);
-					a1++;
+				if (a == 0) {
+					System.out.println("존재하지 않는 도서입니다.");
 				}
-			}
-			if (a1 == 0) {
-				System.out.println("존재하지 않는 작가/지은이 입니다.");
-			}
-			break;
+				break;
 
-		case "3":
+			case "2":
+				System.out.println("작가/지은이 를(을) 입력해주세요");
+				String bs1 = sc.nextLine();
 
-			System.out.println("카테고리를 입력해주세요");
-			String bs2 = sc.nextLine();
+				int a1 = 0;
+				System.out.printf("%s\t%s\t%s\t%s \n", "도서이름", "카테고리", "도서작가", "대출가능여부");
+				for (int i = 0; i < bookList.length; i++) {
 
-			int a2 = 0;
-			System.out.printf("%s\t%s\t%s\t%s \n", "도서이름", "카테고리", "도서작가", "대출가능여부");
-			for (int i = 0; i < bookList.length; i++) {
-				if (bookList[i][2].contains(bs2)) {
-					System.out.printf("%s\t%s\t%s\t%s \n", bookList[i][0], bookList[i][2], bookList[i][3],
-							bookList[i][4]);
-					a2++;
+					if (bookList[i][3].contains(bs1)) {
+						System.out.printf("%s\t%s\t%s\t%s \n", bookList[i][1], bookList[i][2], bookList[i][3],
+								bookList[i][4]);
+						a1++;
+					}
 				}
-			}
-			if (a2 == 0) {
-				System.out.println("존재하지않은 카테고리 입니다.");
-			}
-			break;
+				if (a1 == 0) {
+					System.out.println("존재하지 않는 작가/지은이 입니다.");
+				}
+				break;
 
-		default:
-			System.out.println("잘못입력하셨습니다.(1~3)");
+			case "3":
+
+				System.out.println("카테고리를 입력해주세요");
+				String bs2 = sc.nextLine();
+
+				int a2 = 0;
+				System.out.printf("%s\t%s\t%s\t%s \n", "도서이름", "카테고리", "도서작가", "대출가능여부");
+				for (int i = 0; i < bookList.length; i++) {
+					if (bookList[i][2].contains(bs2)) {
+						System.out.printf("%s\t%s\t%s\t%s \n", bookList[i][1], bookList[i][2], bookList[i][3],
+								bookList[i][4]);
+						a2++;
+					}
+				}
+				if (a2 == 0) {
+					System.out.println("존재하지않은 카테고리 입니다.");
+				}
+				break;
+			case "4": {
+				System.out.println("메인화면으로 이동합니다.");
+				break;
+			}
+			default: {
+				System.out.println("잘못입력하셨습니다.(1~4)");
+				bookSearch();
+			}
+			}
+
+		} else {
+			System.out.println("검색할 목록이 없습니다. 도서를 입력해주세요.");
 		}
 	}
 
 	void bookStatus() {
 		if (bookList != null) {
-			System.out.printf("%s\t%-10s\t%s\t%s\t%s \n", "도서이름", "도서코드", "카테고리", "도서작가", "대출가능여부");
+			System.out.printf("%-8s\t%s\t%s\t%s\t%s \n", "도서코드", "도서제목", "카테고리", "도서작가", "대출가능여부");
 			for (int i = 0; i < bookList.length; i++) {
-				System.out.printf("%s\t%-10s\t%s\t%s\t%s \n", bookList[i][0], bookList[i][1], bookList[i][2],
+				System.out.printf("%-8s\t%s\t%s\t%s\t%s \n", bookList[i][0], bookList[i][1], bookList[i][2],
 						bookList[i][3], bookList[i][4]);
 			}
 			System.out.println("현재 총 " + bookList.length + "권 관리중입니다.");
