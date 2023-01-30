@@ -1,4 +1,4 @@
-package book.management;
+package library;
 
 public class Main {
 	public static void main(String[] args) {
@@ -10,8 +10,8 @@ public class Main {
 		BookManager bookManager = new BookManager(); 
 		int managerIndex = bookManager.login(); 
 		if(managerIndex>=0) { 			
-			bookManager.init();
-			bookManager.run(managerIndex);
+			bookManager.init(); 
+			bookManager.run(managerIndex);	
 		} else {
 			System.out.println("로그인 실패"); 
 		}

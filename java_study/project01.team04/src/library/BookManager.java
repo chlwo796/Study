@@ -1,4 +1,4 @@
-package book.management;
+package library;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -61,7 +61,7 @@ public class BookManager {
 
 	}
 
-	private int getBookCount(String bookName) { // 같은이름 책 고르기
+	private int getBookCount(String bookName) {
 		int count = 0;
 		for (int i = 0; i < bookSize; ++i)
 			if (books[i].name.equals(bookName))
@@ -69,9 +69,9 @@ public class BookManager {
 		return count;
 	}
 
-	public Book[] findBook(String bookName) { // 1. 검색했을때 같은이름의 책 인덱스넣기(자동으로)
+	public Book[] findBook(String bookName) {
 		int count = getBookCount(bookName);
-		Book[] books = new Book[count]; // 배열을 새로만든다
+		Book[] books = new Book[count];
 
 		int index = 0;
 		for (int i = 0; i < bookSize; ++i) {
