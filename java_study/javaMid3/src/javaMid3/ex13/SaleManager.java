@@ -15,7 +15,7 @@ public class SaleManager {
 			System.out.println("선택?");
 			String choice = sc.nextLine();
 			switch (choice) {
-			case "1": // 강원도 객체생성 한 후 별도의 인풋메소드 실행
+			case "1": // 서울 객체생성 한 후 생성자로 바로 company값 들어간다.
 				data = new Seoul();
 				break;
 			case "2":
