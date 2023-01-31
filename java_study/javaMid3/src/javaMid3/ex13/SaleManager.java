@@ -4,56 +4,54 @@ import java.util.Scanner;
 
 public class SaleManager {
 	Scanner sc = new Scanner(System.in);
-	Data data;
-	String company;
-	String product;
-	int sale;
-	Data[] dataArray = new Data[10];
+	Data data = new Data();
+	Data[] dataArray = new Data[100];
+	int i = 0;
 
-	public SaleManager() {
-//		1이면 서울지사주소를 참조해야하고, 2면 경인지사 주소를 참조해야한다.
-//		그것들은 부모인 Data를 객체화 하고, 오버라이딩 하면 모두 가져올 수 있다.
-	}
-
-	void input(Data data) {
-		System.out.println("-----------------");
-		System.out.println("판매량관리 프로젝트");
-		System.out.println("-----------------");
+// 	차근차근...String choice 에 따라 객체생성을 따로 해야한다
+	void input() {
 		while (true) {
-			System.out.println("1. 입력  2. 출력 3. 종료");
+			System.out.println("1. 서울지사, 2. 경인지사, 3. 강원지사 4. 제주지사");
+			System.out.println("선택?");
 			String choice = sc.nextLine();
 			switch (choice) {
-			case "1": {
-				while (true) {
-					System.out.println("1. 서울지사, 2. 경인지사, 3. 강원지사 4. 제주지사");
-					System.out.println("선택?");
-					data.company = sc.nextLine();
-					System.out.println("제품은?");
-					data.product = sc.nextLine();
-					System.out.println(company + product + "판매량은?");
-					data.sale = sc.nextInt();
-					sc.nextLine();
-					System.out.println("계속 입력하시겠습니까?(y/n)");
-					String yn = sc.nextLine();
-					if (yn.equals("y")) {
-						continue;
-
-					} else
-						break;
-				}
-			}
+			case "1": // 강원도 객체생성 한 후 별도의 인풋메소드 실행
+				data = new Seoul();
+				break;
 			case "2":
+				data = new Gyeongin();
 				break;
 			case "3":
+				data = new Gangwon();
+				break;
+			case "4":
+				data = new Jeju();
 				break;
 			default:
-				break;
 			}
+			System.out.println("제품은?");
+			data.product = sc.nextLine();
+
+			System.out.println("판매량은?");
+			data.count = sc.nextInt();
+			sc.nextLine();
+			System.out.println("계속 입력하시겠습니까?(y/n)");
+			String yn = sc.nextLine();
+
+			data.Price(data.product);
+			data.Calculator();
+			dataArray[i++] = data;
+
+			if (yn.equals("y")) {
+				continue;
+
+			} else
+				break;
 		}
 
 	}
 
-	void output(Data data) {
+	void output() {
 //		계산값 받아와서 출력만 한다. 배열사용?
 //		data.sale;
 
@@ -64,11 +62,10 @@ public class SaleManager {
 		System.out.println("-----------------");
 		for (int i = 0; i < dataArray.length; i++) {
 			if (dataArray[i] == null) {
-				System.out.println(dataArray[i]);
 				break;
 			}
 			System.out.println(dataArray[i].company + " " + dataArray[i].product + " " + dataArray[i].price + " "
-					+ dataArray[i].sale);
+					+ dataArray[i].count + " " + +dataArray[i].sale);
 		}
 
 	}

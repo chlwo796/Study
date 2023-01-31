@@ -15,7 +15,7 @@ public class Buyer {
 		money -= p.price;
 		bonusPoint += p.bonusPoint;
 		item[i++] = p; // 주소를 대입한다!! 이후 i 값을 하나 올린다.
-//		외부에서 값을 받아오는 것이 아니기 때문에 this.i = i;가 필요가 없다. 
+//		외부에서 값을 받아오는 것이 아니기 때문에 this.i = i;가 필요가 없다.
 		System.out.println("구입완료");
 
 	}
