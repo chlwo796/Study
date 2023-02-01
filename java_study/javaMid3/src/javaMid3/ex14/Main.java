@@ -18,17 +18,22 @@ public class Main {
 			System.out.println("¼±ÅÃ>");
 			choice = sc.nextLine();
 			switch (choice) {
-			case "1": sm.input();
+			case "1":
+				sm.input();
 				break;
-			case "2": sm.output();
+			case "2":
+				sm.output();
 				break;
-			case "3": run = false;
+			case "3":
+				run = false;
 				break;
 			default:
 				continue;
-			}if(run == false) {
+			}
+			if (run == false) {
 				break;
-			}else continue;
+			} else
+				continue;
 
 		}
 	}
