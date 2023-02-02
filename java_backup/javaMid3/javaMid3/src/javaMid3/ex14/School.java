@@ -34,16 +34,15 @@ public class School { // 고등학교데이터까지 전부 관리한다. // 입력시 부모타입으�
 		System.out.println("--------------");
 	}
 
+	public School() {
+		// TODO Auto-generated constructor stub
+	}
+
 	void cal() {
 		System.out.println("부모의 계산기입니다. 데이터가 없습니다.");
 	}
 
 	void print(School[] scoreArray) {
-		System.out.println("부모 메소드입니다. 출력할 내용이 없습니다.");
-
-	}
-
-	final void printAll(School[] scoreArray) {
 		System.out.println("과목명\t담당교사\t중간\t기말\t수행평가\t출석점수\t봉사점수\t표준편차\t총점");
 		for (int i = 0; i < scoreArray.length; i++) {
 			if (scoreArray[i] == null) {
