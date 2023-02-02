@@ -15,7 +15,6 @@ public class Middle extends School {
 
 	@Override
 	void print(School[] scoreArray) {
-		int a = 0;
 		System.out.println("과목명\t담당교사\t중간\t기말\t수행평가\t출석점수\t봉사점수\t총점");
 		for (int i = 0; i < scoreArray.length; i++) {
 			if (scoreArray[i] == null) {

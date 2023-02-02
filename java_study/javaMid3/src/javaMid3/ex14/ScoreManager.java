@@ -114,7 +114,8 @@ public class ScoreManager {
 				break;
 			}
 			case "4": {
-				school.printAll(scoreArray);
+				school = new School();
+				school.print(scoreArray);
 				break;
 			}
 			case "5": {
