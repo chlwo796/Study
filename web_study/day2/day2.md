@@ -8,5 +8,5 @@
 
 - viewport 기능 : 화면 배율조정
 - scale = 1.0 : 1:1비율, 3.0 : 3:1비율, 3배커진다.
-- input
+- input type
 - [w3schools html forms](https://www.w3schools.com/html/html_forms.asp)

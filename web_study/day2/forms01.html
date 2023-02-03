@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Example</title>
+    <title>day2</title>
   </head>
-  <h3>example1</h3>
+  <h2>day2</h2>
   <body>
     <form>
       First name:
@@ -51,12 +51,33 @@
     </form>
     <h3>checkboxes</h3>
     <form>
+      <!--label for = label작업으로 추적.id와 연결하여 한 덩어리로 인식한다.
+추후 프로그래밍작업시 유용하다. 권장하는 프로그래밍-->
+      <!--id = 유일한 태그의 이름, name = 서버로 넘길 때에 파라미터 이름(매개변수)-->
       <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+      <label for="vehicle1"> I have a bike</label><br />
+      <input type="checkbox" id="vehicle2" name="vehicle2" value="Car" />
+      <label for="vehicle2">I have a car</label><br />
+      <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat" />
+      <label for="vehicle3">I have a Boat</label><br />
     </form>
     <h3>the submit button</h3>
-    <form><!--form action, target 서버의 파일로 전달--></form>
+    <!--form action, target 서버의 파일로 입력받은 데이터전달-->
+    <form action="/action_page.jsp">
+      <label for="fname">First name:</label><br />
+      <input type="text" id="fname" name="fname" value="John" /> <br />
+      <label for="lname">Last name:</label><br />
+      <input type="text" id="lname" name="lname" value="Jae" /> <br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <h3>the name attribute for input</h3>
+    <form action="/action_page.jsp">
+      <label for="ID">ID:</label><br />
+      <input type="text" id="ID" /><br /><br />
+      <label for="Password">Password:</label><br />
+      <!--input type에 password는 입력시 화면에 노출되지 않게 된다.-->
+      <input type="password" id="Password" /><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
   </body>
 </html>
-<!--label for = label작업으로 추적.id와 연결하여 한 덩어리로 인식한다.
-추후 프로그래밍작업시 유용하다. 권장하는 프로그래밍-->
-<!--id = 유일한 태그의 이름, name = 서버로 넘길 때에 파라미터 이름(매개변수)-->
