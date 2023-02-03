@@ -1,7 +1,7 @@
 package javaMid5.ex06;
 
 public class Parent {
-//	예제6번
+//	chap06. ex06
 //	public String name;
 //
 //	public Parent(String name) {
@@ -13,7 +13,7 @@ public class Parent {
 ////		부모의 기본생성자를 만들어 놓아도 에러 수정 가능
 //	}
 
-//	예제7번
+//	chap06.ex07
 	public String nation;
 
 	public Parent() {

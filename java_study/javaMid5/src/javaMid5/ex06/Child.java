@@ -1,7 +1,7 @@
 package javaMid5.ex06;
 
 public class Child extends Parent {
-//	예제6번
+//	chap06. ex06
 //	public int studentNo;
 //
 //	public Child(String name, int studentNo) {
@@ -19,7 +19,7 @@ public class Child extends Parent {
 //	2. 자식생성자에 super(name);을 명시해둔다.
 //	3. 부모에 생성자를 모두 없애준다.
 
-//	예제7번
+//	chap06.ex07
 	public String name;
 
 	public Child() {

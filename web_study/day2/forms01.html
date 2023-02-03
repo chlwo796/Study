@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example</title>
+  </head>
+  <h3>example1</h3>
+  <body>
+    <form>
+      First name:
+      <br />
+      <input type="text" />
+      <br />
+      Last name:
+      <br />
+      <input type="text" />
+      <br />
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+    <h3>input element</h3>
+    <form>
+      <input type="text" /><br />
+      <input type="radio" /><br />
+      <input type="checkbox" /><br />
+      <input type="submit" /><br />
+      <input type="button" /><br />
+    </form>
+    <h3>text fields</h3>
+    <form>
+      <label for="fname">First name:</label><br />
+      <input type="text" id="fname" name="fname" /><br />
+      <lable for="lname">Last name:</lable><br />
+      <input type="text" id="lname" name="lname" />
+    </form>
+    <h3>radio buttons</h3>
+    <form>
+      <input type="radio" id="html" name="fav_language" value="HTML" />
+      <label for="html">HTML</label><br />
+      <input type="radio" id="css" name="fav_language" value="CSS" />
+      <label for="css">CSS</label><br />
+      <input
+        type="radio"
+        id="javascript"
+        name="fav_language"
+        value="JavaScript"
+      />
+      <label for="javascript">JavaScript</label>
+    </form>
+    <h3>checkboxes</h3>
+    <form>
+      <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+    </form>
+    <h3>the submit button</h3>
+    <form><!--form action, target 서버의 파일로 전달--></form>
+  </body>
+</html>
+<!--label for = label작업으로 추적.id와 연결하여 한 덩어리로 인식한다.
+추후 프로그래밍작업시 유용하다. 권장하는 프로그래밍-->
+<!--id = 유일한 태그의 이름, name = 서버로 넘길 때에 파라미터 이름(매개변수)-->
