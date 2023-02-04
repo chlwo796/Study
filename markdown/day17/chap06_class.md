@@ -2,7 +2,7 @@
 
 ---
 
-## chap.06 class
+## chap.06 class01
 
 ### 1. 객체지향 언어
 
@@ -27,11 +27,11 @@
 
 3. 리턴값 = 전자계산기객체, 메소드(매개값1, 매개값2 등)
 
-   - `int result = Calculator.add(10,20);`
+   `int result = Calculator.add(10,20);`
 
 ![]([](https://cafeptthumb-phinf.pstatic.net/MjAyMDAxMDJfNzUg/MDAxNTc3OTcxMzgwMzU0.mEyI9k-QgQXG-_jeKBjfCUJze4iYJZaZ9NBXiRKG694g.Jto428lJgrD-AR-F-VASuu-8NCXpL00GuK2jhMHFQUYg.PNG/c7.png?type=w800)
 
-4. 객체 간의 관계
+1. 객체 간의 관계
 
    - 객제 지향 프로그램에서 객체는 다른 객체와 관계를 맺음
    - 관계의 종류
@@ -45,7 +45,7 @@
 
    1. 캡슐화
       - 객체의 필드, 메소드를 하나로 묶고, 실제 구현 내용을 감추는 것
-      - 외부객체는 객체 내부 구조를 알지 못하며, 객체가 노출해 제족ㅇ하는 필드와 메소드만 이용 가능
+      - 외부객체는 객체 내부 구조를 알지 못하며, 객체가 노출해 제공하는 필드와 메소드만 이용 가능
       - 외부의 잘못된 사용으로 인해 객체가 손상되지 않도록 필드와 메소드를 캡슐화하여 보호한다.
       - 자바는 캡슐회된 멤버를 노출시킬 것인지 숨길 것인지 결정하기 위해 접근제한자(Access Modifier)를 사용
 
@@ -141,7 +141,9 @@ A a = new A();
 - 필드 선언은 클래스 블록 {} 어디서든 존재할 수 있다.
 
 1. 필드 선언
-   ` Type fieldName; [= initial value;]` : [생략가능]
+
+   ` Type name; [= initial value;]` : [생략가능]
+
 2. 필드 사용
 
    - 필드를 사용한다는 것은 필드값을 읽고, 변경하는 작업
@@ -247,12 +249,12 @@ A a = new A();
 
    ```java
    returnType methodName(Type1 name1){
-    return field;
-   }
-   returnType methodName(Type2 name2){
    return field;
    }
-   returnType methodName(Type1 name1, Type2 name2){
+   returnType2 methodName(Type2 name2){
+   return field;
+   }
+   returnType3 methodName(Type1 name1, Type2 name2){
    return field;
    }
    ```
