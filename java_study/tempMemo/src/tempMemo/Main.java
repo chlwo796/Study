@@ -2,17 +2,8 @@ package tempMemo;
 
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("지구의 반지름 = " + Earth.EARTH_RADIUS + "km");
-		System.out.println("지구의 표면적 = " + Earth.EARTH_SURFACE_AREA + "km^2");
-
-	}
-}
-
-class Earth {
-	static final double EARTH_RADIUS = 6400;
-	static final double EARTH_SURFACE_AREA;
-
-	static {
-		EARTH_SURFACE_AREA = 4 * Math.PI * EARTH_RADIUS * EARTH_RADIUS;
+//		A a = new A(); 		// private 생성자로 인해 객체생성 불가.
+		A.getInstance(); // 메소드로 접근한다.
+							// static method 로 자신을 객체생성 했을 때에 메모리에 바로 올라간다.
 	}
 }
