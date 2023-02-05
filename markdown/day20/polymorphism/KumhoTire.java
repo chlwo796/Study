@@ -1,4 +1,4 @@
-package tempMemo;
+package polymorphism;
 
 public class KumhoTire extends Tire {
 	public KumhoTire(String location, int accumulatedRotation) {

@@ -1,4 +1,4 @@
-package tempMemo;
+package polymorphism;
 
 public class Tire {
 	int maxRotation;
@@ -16,10 +16,10 @@ public class Tire {
 	boolean roll() {
 		++accumulatedRotation;
 		if (accumulatedRotation < maxRotation) {
-			System.out.println(location + "Tire ¼ö¸í: " + (maxRotation-accumulatedRotation) + "È¸");
+			System.out.println(location + "Tire ï¿½ï¿½ï¿½ï¿½: " + (maxRotation-accumulatedRotation) + "È¸");
 			return true;
 		} else {
-			System.out.println(location + "Tire ÆãÅ©");
+			System.out.println(location + "Tire ï¿½ï¿½Å©");
 			return false;
 		}
 	}

@@ -60,7 +60,7 @@
 
 2. 클래스에 abstract와 final을 동시에 사용할 수 없다.
 
-   - 클래스에 사용되는 final은 클래스를 확장할 수 없다는 의미이고 abstract는 상속(implements)을 통해서 완성되어야 한다는 의미로 서로 모순된다.
+   - 클래스에 사용되는 final은 클래스를 확장할 수 없다는 의미이고 abstract는 상속(extends)을 통해서 완성되어야 한다는 의미로 서로 모순된다.
 
 3. abstract 메소드의 접근제어자가 private일 수 없다.
 

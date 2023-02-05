@@ -1,4 +1,4 @@
-package tempMemo;
+package polymorphism;
 
 public class HankookTire extends Tire {
 	@Override

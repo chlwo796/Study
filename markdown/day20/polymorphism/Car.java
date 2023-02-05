@@ -1,4 +1,4 @@
-package tempMemo;
+package polymorphism;
 
 public class Car {
 	Tire tire1 = new Tire("¾Õ¿ŞÂÊ", 6);
