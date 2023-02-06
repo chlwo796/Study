@@ -6,7 +6,7 @@ public class Main {
 		A.B ab = a.new B();
 
 		ab.print();
-
+		
 		C.D.print();
 
 		C.D.printA();
