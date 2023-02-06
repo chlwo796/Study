@@ -4,8 +4,8 @@
 
 - eclipse import 할 때 참고사항
   - 동일한 프로젝트의 내용을 추가수정했다면, `file-import-general-project from folder or archive`
-  - folder에서 src 폴더를 같은 프로젝트에 임포트한다.
-  - 같은이름의 프로젝트가 있다면 import되지 않는다.
+  - 같은 프로젝트 폴더를 임포트한다
+  - 이 외에 새로운 프로젝트를 불러올 때 같은이름의 프로젝트가 있다면 import되지 않는다.
 
 image.png
 

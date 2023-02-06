@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>회원가입</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <h2>day3</h2>
+  <body>
+    <form action="member.jsp" method="get">
+        <table border="1" bordercolor = "grey" align="center">
+            <tbody><!--table내용-->
+                <tr><!--tr = 줄-->
+                    <!--<td>월</td>td = 칸
+                    <td>화</td>
+                    <td>수</td>
+                    <td>목</td>
+                    <td>금</td>-->
+                    <td colspan="2", bgcolor="lightblue" align="center">
+                        회원 기본정보
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="lighgray" align="center">아이디</td>   
+                    <td><input type="text" size="15" id="id">4~12자 영문 대소문자와 숫자로만 입력</td>              
+                    <!---
+                    <td>국어</td>
+                    <td>영어</td>
+                    <td>수학</td>
+                    <td>음악</td>
+                    <td>체육</td>
+                -->
+                </tr>
+                <tr>
+                    <td bgcolor= "lightgray" align="center">비밀번호</td>
+                    <td><input type="password" size="15" id="password">4~12자의 영문 대소문자와 숫자로만 입력</td>
+                </tr>
+                <tr>
+                    <td bgcolor = "lightgray" align="center">비밀번호 확인</td>
+                    <td><input type="password" size="15" id="password check"></td>
+                </tr>
+                <tr>
+                    <td bgcolor= "lighgray" align="center">메일 주소</td>
+                    <td><input type="text" size="20" id="email">예)id@domain.com</td>
+                </tr>
+                <tr>
+                    <td bgcolor="lightgray" align="center">이름</td>
+                    <td><input type="text" size="20" id="name"></td>
+                </tr>
+                <tr>
+                    <td colspan="2", bgcolor="lightblue" align="center">
+                        개인 신상 정보</td>
+                </tr>
+                <tr>
+                    <td bgcolor="lighgray" align="center">주민등록번호</td>
+                    <td><input type="text" size = "8" id="birthday">-<input type="password" size = "9" id="number">예)123456-1234567</td>
+                </tr>
+                <tr>
+                    <td bgcolor="lighgray" align="center">생일</td>
+                    <td><input type="text" size="6" id="year">년<select name = "months" id="month-select">
+                        <option value="">month</option>
+                    </select></td>
+                </tr>
+            </tbody>
+
+    </form>
+  </body>
+</html>
