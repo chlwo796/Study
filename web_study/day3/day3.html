@@ -6,7 +6,9 @@
     <title>회원가입</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="day3_calendar.js">
+    </script>
   </head>
   <h2>day3</h2>
   <body>
@@ -24,7 +26,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td bgcolor="lighgray" align="center">아이디</td>   
+                    <td bgcolor="lightgray" align="center">아이디</td>   
                     <td><input type="text" size="15" id="id">4~12자 영문 대소문자와 숫자로만 입력</td>              
                     <!---
                     <td>국어</td>
@@ -43,7 +45,7 @@
                     <td><input type="password" size="15" id="password check"></td>
                 </tr>
                 <tr>
-                    <td bgcolor= "lighgray" align="center">메일 주소</td>
+                    <td bgcolor= "lightgray" align="center">메일 주소</td>
                     <td><input type="text" size="20" id="email">예)id@domain.com</td>
                 </tr>
                 <tr>
@@ -55,17 +57,37 @@
                         개인 신상 정보</td>
                 </tr>
                 <tr>
-                    <td bgcolor="lighgray" align="center">주민등록번호</td>
+                    <td bgcolor="lightgray" align="center">주민등록번호</td>
                     <td><input type="text" size = "8" id="birthday">-<input type="password" size = "9" id="number">예)123456-1234567</td>
                 </tr>
                 <tr>
-                    <td bgcolor="lighgray" align="center">생일</td>
-                    <td><input type="text" size="6" id="year">년<select name = "months" id="month-select">
-                        <option value="">month</option>
-                    </select></td>
+                    <td bgcolor="lightgray" align="center">생일</td>
+                    <td><select id="year">
+                        <option>선택하세요</option>
+                    </select>년
+                    <select id="month">
+                        <option>선택하세요</option>
+                    </select>월
+                    <select id="day">
+                        <option>선택하세요</option>
+                    </select>일</td>
+                </tr>
+                <tr>
+                    <td bgcolor="lightgray" align="center">관심분야</td>
+                    <td><input type="checkbox" id="computer" name="choice1">컴퓨터
+                    <input type="checkbox" id="인터넷" name="choice2" /> 인터넷
+                    <input type="checkbox" id="여행" name="choice3" /> 여행
+                    <input type="checkbox" id="영화감상" name="choice4" /> 영화감상
+                    <input type="checkbox" id="음악감상" name="choice5" /> 음악감상
+                </td>
+                </tr>
+                <tr>
+                    <td bgcolor="lightgray" align="center">기타</td>
+                    <td><textarea name="message" id="message" cols="60" rows="20">
+                    </textarea>
+                </td>
                 </tr>
             </tbody>
-
     </form>
   </body>
 </html>
