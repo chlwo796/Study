@@ -9,22 +9,168 @@
   <h2>day4</h2>
   <body>
     <form action="list.jsp" method="get">
-      <table border="1" bordercolor="grey" align="center" width = "50%" height = "500">
+      <table
+        border="1"
+        bordercolor="lightgray"
+        style="border-color: beige"
+        width="800"
+        height="400"
+      >
         <tbody>
           <tr>
-            <td bgcolor="lightgray" align="center">아이디</td>
-            <td>
+            <td align="center" bgcolor="lightgray">
+              <label for="id">아이디</label>
+            </td>
+            <td colspan="2">
+              <input type="text" id="id" name="id" size="7" />
+              <input type="submit" id="check" name="check" value="중복검사" />
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="name">이름</label>
+            </td>
+            <td colspan="2">
+              <input type="text" id="name" name="name" size="7" />
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="number">주민번호</label>
+            </td>
+            <td colspan="2">
+              <input type="text" size="18" id="number" name="number" />
+              예)000000-0000000
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="email">이메일</label>
+            </td>
+            <td colspan="2">
+              <input type="text" size="25" id="email" name="email" />
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="phoneNumber">집전화</label>
+            </td>
+            <td colspan="2">
+              <label for="fnumber"></label>
+              <input type="text" id="fnumber" name="fnumber" size="4" /> -
+              <label for="mnumber"></label>
+              <input type="text" id="mnumber" name="mnumber" size="4" /> -
+              <label for="lnumber"></label>
+              <input type="text" id="lnumber" name="lnumber" size="4" />
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="adress">주소검색</label>
+            </td>
+            <td colspan="2">
+              <input type="text" id="address" name="address" size="10" />
+              <input type="submit" id="search" name="search" value="검색하기" />
+              (주소입력 : 송파동, 당산동..)
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="address1">주소</label>
+            </td>
+            <td colspan="2">
+              <select id="address1" name="address1" style="width: 95%">
+                <option></option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="adress2">상세주소</label>
+            </td>
+            <td colspan="2">
               <input
                 type="text"
-                id="id"
-                name="id"
-                size="15"
-                style="border: 1px lightskyblue"
-              /><td><input type="submit" id="check" name="check" value="중복검사" /></td>
+                id="address2"
+                name="address2"
+                style="width: 95%"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="education">학력</label>
+            </td>
+            <td colspan="2">
+              <select id="education" name="education" style="width: 25%">
+                <option value="">선택하세요</option>
+                <option value="중졸">중졸</option>
+                <option value="중졸">고졸</option>
+                <option value="중졸">대졸</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="prMedia">홍보매체</label>
+            </td>
+            <td colspan="2">
+              <select id="prMedia" name="prMedia" style="width: 40%">
+                <option value="">어떻게 알게 되었나요?</option>
+                <option value="뉴스">뉴스</option>
+                <option value="신문">신문</option>
+                <option value="잡지">잡지</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="agreement">메일수신</label>
+            </td>
+            <td colspan="2">
+              <input type="checkbox" id="agreement" name="agreement" />
+              <label for="agreement"></label>
+              네. KH정보교육원에서 제공하는 정보메일 수신에 동의합니다.
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="place">교육장소</label>
+            </td>
+            <td colspan="2">
+              <select id="place" name="place" style="width: 60%">
+                <option value="">선택하세요</option>
+                <option value="뉴스">서울</option>
+                <option value="신문">경기</option>
+                <option value="잡지">수원</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="lightgray">
+              <label for="password">비밀번호</label>
+            </td>
+            <td colspan="2">
+              <input type="password" id="pw" name="pw" style="width: 20%" />
+              <label for="pw"></label>
+              확인
+              <input
+                type="password"
+                id="pwCheck"
+                name="pwCheck"
+                style="width: 20%"
+              /><label for="pwCheck"></label>
             </td>
           </tr>
         </tbody>
       </table>
+      <br />
+      <div>
+        <input type="submit" id="submit" name="submit" value="회원가입" />
+        <label for="submit"></label>
+        <input type="reset" id="reset" name="reset" value="가입안함" />
+        <label for="reset"></label>
+      </div>
     </form>
   </body>
 </html>
