@@ -12,6 +12,10 @@ public class Car {
 		}
 	}; // }; 익명클래스 종료
 	private Tire tire3 = new Tire() {
+		{
+			System.out.println("미쉐린타이어1");
+		}
+		
 		@Override
 		public void roll() {
 			System.out.println("미쉐린타이어");
