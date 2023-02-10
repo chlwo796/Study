@@ -14,7 +14,7 @@ public class Chatting {
 	}
 
 	void startChat(String chatId) {
-		String nickName;
+		String nickName = null;
 		nickName = chatId;
 
 		Chat chat = new Chat() {
