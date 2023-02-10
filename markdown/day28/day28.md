@@ -66,6 +66,8 @@
   }
   ```
 
+---
+
 ### 2. class
 
 - toeic program(javaMid10.toeic)
@@ -256,6 +258,8 @@ public class CollectionEx01 {
 	}
 }
 ```
+
+---
 
 ### 3. memo
 
