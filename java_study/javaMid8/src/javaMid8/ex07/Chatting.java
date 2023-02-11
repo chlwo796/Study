@@ -13,8 +13,10 @@ public class Chatting {
 		}
 	}
 
+	String nickName = null;
+
 	void startChat(String chatId) {
-		String nickName = null;
+
 		nickName = chatId;
 
 		Chat chat = new Chat() {
