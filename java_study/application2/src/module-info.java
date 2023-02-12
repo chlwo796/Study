@@ -1,5 +1,6 @@
 module application2 {
-	requires moduleA;
-	requires moduleB;
+	requires module;
+//	requires moduleA;
+//	requires moduleB;
 
 }

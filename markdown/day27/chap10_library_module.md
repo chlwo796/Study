@@ -1,4 +1,4 @@
-2023년 2월 11일
+2023년 2월 11일 토요일
 
 ---
 
@@ -214,5 +214,94 @@
           D d = new D();
           d.methodD();
       }
+  }
+  ```
+
+### 6. 전이 의존
+
+- application2 -> moduleA -> moduleB
+- moduleA에서 moduleB를 `requires` 한 후 application2에서 moduleA만 직접적 의존관계를 선언하는 경우, 결과적으로 application2에서는 moduleB를 의존 및 사용하기 때문에, 컴파일오류가 발생한다.
+- moduleA소속의 A클래스에서 moduleB소속의 C타입 객체를 리턴하는 경우, application2에서는 moduleA만 사용하고 싶었음에도 불구하고 `requires moduleB;`를 반드시 추가하여야 한다.
+- 이와 같은 경우 moduleA에서 `requires transitive moduleB;` 선언해주면 moduleA에 의존 설정이 전이되어 application2에서는 moduleA만 의존받아 사용이 가능하다.
+- moduleA -> BuildPath -> Projects -> Modulepath -> Add moduleB
+- moduleA.package1.A
+
+  ```java
+  module moduleA {
+    exports package1;
+  //	exports package2;
+    requires transitive moduleB;
+  }
+  package package1;
+
+  import package2.B;
+  import package3.C;
+
+  public class A {
+    public void methodA() {
+      B b = new B();
+      b.methodB();
+    }
+
+    public C getC() { // C타입 객체를 리턴하는 메소드 선언
+      C c = new C();
+      return c;
+    }
+  }
+  ```
+
+- application2.app.Main
+
+```java
+module application2 {
+	requires moduleA;
+//	requires moduleB; // moduleB 의존설정 해제
+
+}
+package app;
+
+import package1.A;
+//import package2.B;
+import package3.C;
+import package4.D;
+
+public class Main {
+	public static void main(String[] args) {
+		A a = new A();
+		a.methodA();
+//		B b = new B();
+//		b.methodB();
+		C c = new C();
+		c.methodC();
+		D d = new D();
+		d.methodD();
+
+		C result = a.getC();  // A타입변수로 C타입객체 접근
+		result.methodC(); // C타입 변수로 메소드 호출
+	}
+}
+```
+
+### 7. 집합모듈
+
+- 집합모듈 : 여러 모듈을 모아놓은 모듈이며, 자주 사용되는 모듈들을 일일이 `requires` 하는 번거로움을 피하고 싶을 때 집합 모듈을 생성하면 편리하다.
+- 자체적인 패키지를 가지지 않고, 모듈 기술자에 전의 의존 설정만 한다.
+- module -> Build Path -> Projects -> Modulepath -> Add moduleA, moduleB
+
+  ```java
+  module module {
+    requires transitive moduleA;
+    requires transitive moduleB;
+  }
+  ```
+
+- application2 -> Build Path -> Projects -> Modulepath ->Add module
+
+  ```java
+  module application2 {
+    requires module;
+  //	requires moduleA;
+  //	requires moduleB;
+
   }
   ```

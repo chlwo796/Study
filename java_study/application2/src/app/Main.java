@@ -15,5 +15,8 @@ public class Main {
 		c.methodC();
 		D d = new D();
 		d.methodD();
+		
+		C result = a.getC();
+		result.methodC();
 	}
 }
