@@ -28,7 +28,7 @@
 
 ---
 
-### 2. class
+### 2. java
 
 - generic : `<E>` 데이터의 타입을 일반화하는 것을 의미하며, 클래스나 메소드에서 사용할 내부 데이터 타입을 컴파일 시에 미리 지정하는 방법
   `ArrayList<E> list1 = new ArrayList<E>();`

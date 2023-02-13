@@ -4,6 +4,8 @@
 
 ## day26
 
+### 1. java
+
 - 수업 외 공부매체 참고(인프런, 생활코딩)
 - [자바스크립트](https://ko.javascript.info/)
 - [git search](https://github.com/search)
@@ -33,7 +35,7 @@
 
 ---
 
-### 정리
+### 2. 정리
 
 - chap.09 중첩클래스 마무리
 - chap.09 확인문제

@@ -68,7 +68,7 @@
 
 ---
 
-### 2. class
+### 2. java
 
 - toeic program(javaMid10.toeic)
 
