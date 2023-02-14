@@ -20,7 +20,7 @@
   2. `equals()` : 주소가 같다면 값이 같은 조건으로 동등한 객체로 판단
 - RAM(Random Access Memory)
 - ROM(Read Only Memory)
-- private 변수와 생성자, getter,setter 선언
+- private 변수와 생성자, getter, setter 선언
 
   - javaHigh03.example02.Member
 
@@ -29,14 +29,14 @@
 
     public class Member {
 
+        private String name;
+        private int age;
+
         public Member(String name, int age) {
             super();
             this.name = name;
             this.age = age;
         }
-
-        private String name;
-        private int age;
 
         public String getName() {
             return name;
