@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>입력양식</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <form action="board.jsp" method="get">
+      <fieldset>
+        <legend>Shipping Address</legend>
+        <p>
+          <label name="name">이름</label>
+          <input type="text" name="name" for="name" />
+        </p>
+        <p>
+          <label name="address">주소</label>
+          <input type="text" name="address" for="address" />
+        </p>
+        <p>
+          <label name="city">도시명</label>
+          <input type="text" name="city" for="city" />
+        </p>
+        <p>
+          <label name="status">배송상태</label>
+          <!-- 인풋타입 radio에서 name이 동일해야 중복선택이 되지 않는다. -->
+          <input type="radio" name="status" for="status" />준비중
+          <input type="radio" name="status" for="status" />배송중
+          <input type="radio" name="status" for="status" />배송완료
+        </p>
+        <p>
+          <label name="checkbox">수정사항</label>
+          <!-- checkbox는 중복선택 가능, name이 각각 달라야 한다. 서로 다른 주소 전달 -->
+          <input type="checkbox" name="checkbox1" for="checkbox" />이름
+          <input type="checkbox" name="checkbox2" for="checkbox" />주소
+          <input type="checkbox" name="checkbox3" for="checkbox" />도시명
+        </p>
+      </fieldset>
+    </form>
+  </body>
+</html>
