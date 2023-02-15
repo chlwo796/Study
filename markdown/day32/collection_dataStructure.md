@@ -223,3 +223,185 @@
   ```
 
 ### 3. Set 컬렉션
+
+- List 컬렉션은 저장순서를 유지하지만, Set 컬렉션은 저장 순서가 유지되지 않는다.
+- 객체를 중복해서 저장할 수 없고, 하나의 null만 저장한다.
+- Set 컬렉션에는 HashSet, LinkedHashSet, TreeSet 등이 있으며, 인덱스로 관리하지 않기 때문에 인덱스를 매개값으로 갖는 메소드가 없다.
+- 객체추가
+  - `boolean add(E e)` : 주어진 객체를 성공적으로 저장하면 true를 리턴하고, 중복 객체면 false를 리턴
+- 객체검색
+
+  - `boolean contains(Object o)` : 주어진 객체가 저장되어 있는지 여부
+  - `isEmpty()` : 컬렉션이 비어 있는지 조사
+  - `Iterator<E> iterator()` : 저장된 객체를 한번씩 가져오는 반복자 리턴
+  - `int size()` : 저장되어 있는 전체 객체 수 리턴
+
+- 객체 삭제
+  - `void clear()` : 저장된 모든 객체를 삭제
+  - `boolean remove(Object o)` : 주어진 객체를 삭제
+
+1. HashSet
+
+- HashSet은 동일한 객체는 중복 저장하지 않는다.
+- 다른 객체라도 hashCode() 메소드의 리턴값이 같고, equals() 메소드가 true를 리턴하면 동일한 객체라고 판단하고 중복 저장하지 않는다.
+- javaChap15.example02.HashSetExample
+
+  ```java
+  package javaChap15.example02;
+
+  import java.util.HashSet;
+  import java.util.Set;
+
+  public class HashSetExample {
+    public static void main(String[] args) {
+      Set<String> set = new HashSet<String>();
+
+      set.add("Java1");
+      set.add("Java2");
+      set.add("Java3");
+      set.add("Java1");
+      set.add("Java5");
+
+      System.out.println("데이터 수 : " + set.size());
+    }
+  }
+  ```
+
+- 객체타입으로 HashSet 데이터를 선언하였다면, Object의 `hashCode()`와 `equals()`를 오버라이딩함으로서 상황에 맞게 데이터 중복저장 조건을 설정할 수 있다.
+- javaChap15.example02.Member
+
+  ```java
+  package javaChap15.example02;
+
+  public class Member {
+    private String name;
+    private int age;
+
+    public Member(String name, int age) {
+      super();
+      this.name = name;
+      this.age = age;
+    }
+
+    public String getName() {
+      return name;
+    }
+
+    public void setName(String name) {
+      this.name = name;
+    }
+
+    public int getAge() {
+      return age;
+    }
+
+    public void setAge(int age) {
+      this.age = age;
+    }
+
+    @Override
+    public int hashCode() {
+      return name.hashCode() + age;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if(obj instanceof Member) {
+        Member member = (Member) obj;
+        return member.name.equals(name) && member.age == age;
+      }
+      return false;
+    }
+  }
+  ```
+
+- javaChap15.example02.HashSetExample
+
+  ```java
+  package javaChap15.example02;
+
+  import java.util.HashSet;
+  import java.util.Set;
+
+  public class HashSetExample {
+    public static void main(String[] args) {
+      Set<String> set = new HashSet<String>();
+
+      set.add("Java1");
+      set.add("Java2");
+      set.add("Java3");
+      set.add("Java1");
+      set.add("Java5");
+
+      System.out.println("데이터 수 : " + set.size());
+
+      Set<Member> set1 = new HashSet<Member>();
+
+      set1.add(new Member("홍길동", 30));
+      set1.add(new Member("홍길동", 30));
+
+      System.out.println("데이터 수 : " + set1.size());
+    }
+  }
+  ```
+
+- Set 컬렉션은 인덱스로 객체를 검색해서 가져오는 메소드가 없으므로, `향상for문`과 `iterator()` 메소드로 반복자를 얻어 객체를 하나씩 가져온다.
+
+  - 향상된 for 문
+
+    ```java
+    for(E e : setName) {
+    }
+    ```
+
+  - iterator()
+
+    ```java
+    while(iterator.hasNext()){
+      E e = iterator.next();
+    }
+    ```
+
+- iterator는 Set 컬렉션의 객체를 가져오거나 제거하기 위해 다음 메소드를 제공한다.
+  - `boolean hasNext()` : 가져올 객체가 있으면 true or false
+  - `E next()` : 컬렉션에서 하나의 객체를 가져온다.
+  - `void remove()` : next()로 가져온 객체를 Set 컬렉션에서 제거한다.
+- javaChap15.example03.HashSetExample
+
+  ```java
+  package javaChap15.example03;
+
+  import java.util.HashSet;
+  import java.util.Iterator;
+  import java.util.Set;
+
+  public class HashSetExample {
+    public static void main(String[] args) {
+      Set<String> set1 = new HashSet<String>();
+
+      set1.add("java1");
+      set1.add("java2");
+      set1.add("java2");
+      set1.add("java3");
+      set1.add("java4");
+      set1.add("java4");
+      set1.add("java5");
+
+      Iterator<String> iterator = set1.iterator();
+
+      while (iterator.hasNext()) {
+        String str = iterator.next();
+        System.out.println(str);
+        if (str.equals("java1")) {
+          iterator.remove();
+        }
+      }
+      set1.remove("java3");
+      System.out.println();
+      for (String str : set1) {
+        System.out.println(str);
+      }
+
+    }
+  }
+  ```
