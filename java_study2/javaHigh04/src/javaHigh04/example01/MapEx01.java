@@ -3,6 +3,7 @@ package javaHigh04.example01;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 public class MapEx01 {
@@ -31,8 +32,6 @@ public class MapEx01 {
 		while (it.hasNext()) {
 			System.out.println(it.next());
 		}
-		System.out.println(map1.values()); // .values()로 가능할거같으넫..
-
 		it = set.iterator();
 		while (it.hasNext()) {
 			String key = it.next();
