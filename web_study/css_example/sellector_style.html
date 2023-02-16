@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>sellector</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+      div p {
+        /* 보라색->브라운, 궁서체->고딕체 */
+        color: brown;
+        font-family: 고딕체;
+      }
+      p {
+        color: blueviolet;
+        font-family: 궁서체;
+      }
+      #lable1 {
+        color: chartreuse;
+      }
+      #국어 {
+        color: blue;
+      }
+      #수학 {
+        color: red;
+      }
+      #영어 {
+        /* #id{} */
+        color: green;
+      }
+      .a {
+        /* .className{} */
+        background-color: aqua;
+      }
+      .b {
+        background-image: url(../image/2.jpg);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>셀렉터 개요</h1>
+    <img src="../image/sellector_개요.png" alt="셀렉터개요" />
+    <div>
+      <p>태그셀렉터1</p>
+    </div>
+    <p>태그셀렉터2</p>
+    <form>
+      <label id="lable1" for="name">이름</label>
+      <input type="text" id="lable1" />
+    </form>
+    <!-- id와 class 선택적으로 사용 -->
+    <table border="1" class="a">
+      <tr>
+        <td>월</td>
+        <td>화</td>
+        <td>수</td>
+        <td>목</td>
+        <td>금</td>
+      </tr>
+      <tr>
+        <td id="국어">국어</td>
+        <td id="영어">영어</td>
+        <td id="수학">수학</td>
+        <td id="영어">영어</td>
+        <td id="수학">수학</td>
+      </tr>
+    </table>
+    <br />
+    <table border="1" class="b">
+      <tr>
+        <td>월</td>
+        <td>화</td>
+        <td>수</td>
+        <td>목</td>
+        <td>금</td>
+      </tr>
+      <tr>
+        <td id="국어">국어</td>
+        <td id="영어">영어</td>
+        <td id="수학">수학</td>
+        <td id="영어">영어</td>
+        <td id="수학">수학</td>
+      </tr>
+    </table>
+  </body>
+</html>

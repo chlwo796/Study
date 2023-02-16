@@ -44,3 +44,4 @@
 
 - [개발자 소양 5가지](https://yozm.wishket.com/magazine/detail/1896/)
 - 사용자 정의 정렬과 중복데이터 처리 합쳐보기
+- 2.22 ncs test
