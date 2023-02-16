@@ -405,3 +405,169 @@
     }
   }
   ```
+
+### 4. Map 컬렉션
+
+- Map 컬렉션은 Key(키)와 Value(값)으로 구성된 Entry(엔트리)객체를 저장한다.
+- Key와 Value는 모두 객체이며 Key는 중복저장할 수 없다.
+- Map 컬렉션에는 HashMap, Hashtable, LinkedHashMap, Properties, TreeMap 등이 있으며, Key로 객체들을 관리하기 때문에 Key를 매개값으로 갖는 메소드가 많다.
+- 객체 추가
+  - `V put(K key, V value)` : 주어진 키와 값을 추가, 저장이 되면 값을 리턴
+- 객체 검색
+  - `boolean containsKey(Object key)` : 주어진 키가 있는지 여부
+  - `boolean containsValue(Object value)` : 주어진 값이 있는지 여부
+  - `Set<Map.Entry<k,V>> entrySet()` : 키와 값의 쌍으로 구성된 모든 Map.Entry 객체를 Set에 담아서 리턴
+  - `V get(Object key)` : 주어진 키의 값을 리턴
+  - `boolean isEmpty()` : 컬렉션이 비어있는지 여부
+  - `Set<K> keySet()` : 모든 key를 Set 객체에 담아서 리턴
+  - `int size()` : 저장된 키의 총 수를 리턴
+  - `Collection<V> values()` : 저장된 모든 값 Collection에 담아서 리턴
+- 객체 삭제
+  - `void clear()` : 모든 Map.Entry(key, value)를 삭제
+  - `V remove(Object o)` : 주어진 key와 일치하는 Map.Entry 삭제, 삭제가 되면 값을 리턴
+
+1. HashMap
+
+- HashMap은 키로 사용할 객체가 `hashCode()` 메소드의 리턴값이 같고, `equals()` 메소드가 true를 리턴할 경우, 동일 키로 보고 중복 저장을 허용하지 않는다.
+- HashMapExample 예제
+
+  ```java
+  package javaChap15.example04;
+
+  import java.util.HashMap;
+  import java.util.Iterator;
+  import java.util.Map;
+  import java.util.Map.Entry;
+  import java.util.Set;
+
+  public class HashMapExample {
+    public static void main(String[] args) {
+      Map<String, Integer> map = new HashMap<String, Integer>();
+
+      map.put("홍길동0", 30);
+      map.put("홍길동1", 90);
+      map.put("홍길동2", 30);
+      map.put("홍길동3", 30);
+      map.put("홍길동2", 40);
+      // 동일한 key가 있을경우 마지막 value만 저장
+      System.out.println(map.size());
+      // key 지정하여 value 출력
+      System.out.println(map.get("홍길동2"));
+
+      // keySet()으로 반복자 선언하여 전체출력(key->value)
+      Set<String> keySet = map.keySet();
+
+      Iterator<String> iterator = keySet.iterator();
+
+      while(iterator.hasNext()) {
+        String key = iterator.next();
+        System.out.println(key + " " + map.get(key));
+      }
+
+      // entrySet()으로 entry 전체출력(entry = (key,value))
+      Set<Entry<String, Integer>> entrySet = map.entrySet();
+
+      Iterator<Entry<String, Integer>> iterator1 = entrySet.iterator();
+
+      while(iterator1.hasNext()) {
+        System.out.println(iterator1.next());
+      }
+      // key로 map에서 제거
+      map.remove("홍길동1");
+      System.out.println(map.size());
+      // 반복자 재호출 후 출력
+      iterator1 = entrySet.iterator();
+      while(iterator1.hasNext()) {
+        System.out.println(iterator1.next());
+      }
+    }
+  }
+  ```
+
+2. Hashtable
+
+- Hashtable은 HashMap과 동일한 내부 구조를 가지고 있지만, 동기화된 메소드로 구성되어 있기 때문에 멀티 스레드가 동시에 Hashtable의 메소드들을 실행할 수 없다.
+- 멀티스레드 환경에서도 안전하게 객체를 추가, 삭제할 수 있다.
+- HashtableExample 예제
+
+  ```java
+  package javaChap15.example04;
+
+  import java.util.Hashtable;
+  import java.util.Map;
+
+  public class HashtableExample {
+    public static void main(String[] args) {
+      // Hashtable -> HashMap 으로 변경 후 실행하면 다른 출력결과를 확인할 수 있다.
+      Map<String, Integer> map1 = new Hashtable<String, Integer>();
+
+      Thread threadA = new Thread() {
+        @Override
+        public void run() {
+          for(int i = 1;i<=1000;i++) {
+            map1.put(String.valueOf(i), i);
+          }
+        }
+      };
+      Thread threadB = new Thread() {
+        @Override
+        public void run() {
+          for(int i = 1001;i<=2000;i++) {
+            map1.put(String.valueOf(i), i);
+          }
+        }
+      };
+
+      threadA.start();
+      threadB.start();
+
+      try {
+        threadA.join();
+        threadB.join();
+      } catch (Exception e) {
+        // TODO: handle exception
+      }
+      System.out.println(map1.size());
+    }
+  }
+  ```
+
+- HashMap은 두 스레드가 동시에 put()메소드를 호출할 수 있어서 경합이 발생하고, 결국은 하나만 저장된다.
+- Hashtable의 put()은 동기화 메소드이므로 한번에 하나의 스레드만 실행할 수 있어 경합이 발생하지 않는다.
+
+3. Properties
+
+- Properties는 Hashtable의 자식 클래스이기 때문에 Hashtable의 특징을 그대로 가지고 있으며, key와 value를 String 타입으로 제한한 컬렉션이다.
+- Properties는 주로 확장자가 `.properties`인 프로퍼티 파일을 읽을 때 사용하며, 프로퍼티 파일은 key와 value가 `=` 기호로 연결되어 있는 텍스트 파일이다.
+- 일반적으로 프로퍼티 파일은 클래스파일(`.class`)들과 함께 저장되므로, 클래스 파일을 기준으로 상대 경로를 이용해서 읽는 것이 편리하다.
+- database.properties 파일을 클래스 패키지 속에 생성
+  ![](properties%EC%83%9D%EC%84%B1.png)
+- Properties 객체를 생성하고, `.load()` 메소드로 프로퍼티 파일의 내용을 메모리로 로드한다.
+- Class 객체의 `getResourceAsStream()` 메소드는 주어진 상대 경로의 리소스 파일을 읽는 InputStream을 리턴한다.
+- PropertiesExample 예제
+
+```java
+package javaChap15.example04;
+
+import java.io.IOException;
+import java.util.Properties;
+
+public class PropertiesExample {
+	public static void main(String[] args) {
+		Properties properties = new Properties();
+		try {
+      // 이클립스에서는 .load() 와 같은 메소드처럼 외부파일을 가져올 경우 반드시 예외처리를 해주도록 되어있다.
+			properties.load(PropertiesExample.class.getResourceAsStream("database.properties"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println(properties.getProperty("driver"));
+		System.out.println(properties.getProperty("url"));
+		System.out.println(properties.getProperty("username"));
+		System.out.println(properties.getProperty("password"));
+		System.out.println(properties.getProperty("admin"));
+	}
+}
+```

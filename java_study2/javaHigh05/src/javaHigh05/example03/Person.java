@@ -4,7 +4,7 @@ public class Person implements Comparable<Person> {
 	private String name;
 	private int age;
 	private Double score;
-	
+
 	public Person(String name, int age, Double score) {
 		super();
 		this.name = name;
@@ -71,14 +71,5 @@ public class Person implements Comparable<Person> {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
-	}
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
-	}
+
 }

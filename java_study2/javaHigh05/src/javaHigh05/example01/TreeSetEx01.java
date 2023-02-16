@@ -23,7 +23,7 @@ public class TreeSetEx01 {
 		System.out.println("7ÀÇ ¹Ù·Î ¾Æ·¡ °´Ã¼ ->" + tree1.lower(7));
 		System.out.println("7ÀÇ ¹Ù·Î À§ °´Ã¼ ->" + tree1.higher(7));
 		System.out.println("5¿Í °°Àº °´Ã¼ ->(¾øÀ¸¸é ¹Ù·Î ¾Æ·¡ °´Ã¼)" + tree1.floor(5));
-		System.out.println("3¿Í °°Àº °´Ã¼ ->(¾øÀ¸¸é ¹Ù·Î À§ °´Ã¼)" + tree1.floor(3));
+		System.out.println("3¿Í °°Àº °´Ã¼ ->(¾øÀ¸¸é ¹Ù·Î À§ °´Ã¼)" + tree1.ceiling(3));
 		System.out.println("Á¦ÀÏ ³·Àº °´Ã¼ ²¨³»¿Â ÈÄ Á¦°Å " + tree1.pollFirst());
 		System.out.println("Á¦ÀÏ ³ôÀº °´Ã¼ ²¨³»¿Â ÈÄ Á¦°Å " + tree1.pollLast());
 		System.out.println("Á¦ÀÏ ³·Àº °´Ã¼ ->" + tree1.first());
