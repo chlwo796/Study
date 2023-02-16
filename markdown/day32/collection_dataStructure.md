@@ -1,4 +1,4 @@
-2023년 2월 15일 수요일
+2023년 2월 16일 목요일
 
 ---
 
@@ -571,3 +571,87 @@ public class PropertiesExample {
 	}
 }
 ```
+
+### 5. 검색 기능을 강화시킨 컬렉션
+
+- 컬렉션 프레임워크는 검색기능을 강화시킨 TreeSet과 TreeMap을 제공한다.
+
+1. TreeSet
+
+- TreeSet은 이진트리(Binary Tree)를 기반으로 한 Set 컬렉션이며, 이진 트리는 여러개의 노드(Node)가 트리 형태로 연결된 구조로, 루트 노드(Root Node)라고 불리는 하나의 노드에서 시작해 각 노드에 최대 2개의 노드를 연결할 수 있는 구조를 가지고 있다.
+- Set 타입 변수에 대입해도 되지만 TreeSet 타입으로 대입한 이유는 검색 관련 메소드가 TreeSet에만 정의되어 있기 때문이다.
+- TreeSet Method
+  - `E first()` : 제일 낮은 객체 리턴
+  - `E last()` : 제일 높은 객체 리턴
+  - `E lower(E e)` : 주어진 객체보다 바로 아래 객체를 리턴
+  - `E higher(E e)` : 주어진 객체보다 바로 위 객체를 리턴
+  - `E floor(E e)` : 주어진 객체와 동등한 객체가 있으면 리턴, 없다면 바로 아래 객체를 리턴
+  - `E ceiling(E e)` : 주어진 객체와 동등한 객체가 있으면 리턴, 없다면 바로 위 객체를 리턴
+  - `Iterator<E> iterator()` : 오름차순 반복자 리턴
+  - `Iterator<E> descendingIterator()` : 내림차순 반복자 리턴
+  - `NavigableSet<E> descendingSet()` : 내림차순으로 정렬된 NavigableSet 리턴
+  - `NavigableSet<E> headSet(E toElement, boolean inclusive)` : 주어진 객체보다 낮은 객체들을 NavigableSet으로 리턴, 객체 포함여부 = true or false
+  - `NavigableSet<E> tailSet(E toElement, boolean inclusive)` : 주어진 객체보다 높은 객체들을 NavigableSet으로 리턴, 객체 포함여부 = true or false
+  - `NavigableSet<E> subSet(E fromElement, boolean fromInclusive, E toElement, boolean toinclusive)` : 시작과 끝으로 주어진 객체 사이의 객체들을 NavigableSet으로 리턴, 시작과 끝 객체 포함여부 = true or false
+- TreeSetExample 예제
+
+  ```java
+  package javaChap15.example05;
+
+  import java.util.Iterator;
+  import java.util.NavigableSet;
+  import java.util.TreeSet;
+
+  public class TreeSetExample {
+
+    public static void main(String[] args) {
+      TreeSet<Integer> treeSet = new TreeSet<Integer>();
+
+      treeSet.add(87);
+      treeSet.add(98);
+      treeSet.add(77);
+      treeSet.add(39);
+      treeSet.add(90);
+      treeSet.add(100);
+
+      for(Integer i : treeSet) {
+        System.out.println(i);
+      }
+      System.out.println();
+      System.out.println("가장 낮은 점수 : " + treeSet.first());
+      System.out.println("가장 높은 점수 : " + treeSet.last());
+      System.out.println("80점 바로 위 점수 : " + treeSet.ceiling(80));
+      System.out.println("80점 바로 아래 점수 : " + treeSet.floor(80));
+      System.out.println("70점 바로 아래 점수 : " + treeSet.lower(70));
+      System.out.println("50점 바로 위 점수 : " + treeSet.higher(50));
+
+      NavigableSet<Integer> navigableSet = treeSet.descendingSet();
+      System.out.println("descendingSet()로 내림차순으로 변경");
+      for(Integer i : navigableSet) {
+        System.out.println(i);
+      }
+      Iterator<Integer> iterator = treeSet.descendingIterator();
+      System.out.println("descendingIterator()로 내림차순 변경");
+      while(iterator.hasNext()) {
+        System.out.println(iterator.next());
+      }
+      System.out.println("범위검색 : 70점 미만 점수");
+      NavigableSet<Integer> navigableSet1 = treeSet.headSet(70, false);
+      for(Integer i : navigableSet1) {
+        System.out.println(i);
+      }
+      System.out.println("범위검색 : 80점 이상 점수");
+      NavigableSet<Integer> navigableSet2 = treeSet.tailSet(80, true);
+      for(Integer i : navigableSet2) {
+        System.out.println(i);
+      }
+      System.out.println("범위검색 : 80점 초과, 90점 이하 점수");
+      NavigableSet<Integer> navigableSet3 = treeSet.subSet(80, false, 90, true);
+      for(Integer i : navigableSet3) {
+        System.out.println(i);
+      }
+
+    }
+
+  }
+  ```
