@@ -1,9 +1,0 @@
-package javaHigh05.example06;
-
-import java.util.TreeMap;
-
-public class ComparatorEx03 {
-	public static void main(String[] args) {
-		TreeMap<TeamName, Values> treeMap1 = new TreeMap<TeamName,Values>();
-	}
-}

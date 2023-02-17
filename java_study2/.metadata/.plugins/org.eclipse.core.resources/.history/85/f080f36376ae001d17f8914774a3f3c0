@@ -1,7 +1,0 @@
-package student.Management;
-
-public class Score {
-	// 성적 검색, 전체 성적, 반별 성적
-	// 검색 -> 이름
-	
-}

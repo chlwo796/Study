@@ -6,7 +6,7 @@ public class Comparator {
 	public static void main(String[] args) {
 		TreeSet<Fruit> treeSet1 = new TreeSet<Fruit>(new FruitComparator());
 		
-		treeSet1.add(new Fruit("포도", 3000));
+		treeSet1.add(new Fruit("포도", 11100));
 		treeSet1.add(new Fruit("수박", 10000));
 		treeSet1.add(new Fruit("딸기", 6000));
 		treeSet1.add(new Fruit("사과", 6000));
@@ -28,4 +28,5 @@ public class Comparator {
 		}
 		
 	}
+
 }
