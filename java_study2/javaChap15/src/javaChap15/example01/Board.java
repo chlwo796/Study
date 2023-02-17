@@ -1,10 +1,14 @@
 package javaChap15.example01;
 
-public class Board {
+public class Board implements Comparable<Board>{
 	private String subject;
 	private String content;
 	private String writer;
-
+	@Override
+	public int compareTo(Board o) {
+		// TODO Auto-generated method stub
+		return this.subject.compareTo(o.subject);
+	}
 	public Board(String subject, String content, String writer) {
 		super();
 		this.subject = subject;
