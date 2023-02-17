@@ -1,0 +1,8 @@
+package javaHigh04.example03;
+
+public class School {
+	private String teacher;
+	private String grade;
+	private int stNumber;
+	
+}

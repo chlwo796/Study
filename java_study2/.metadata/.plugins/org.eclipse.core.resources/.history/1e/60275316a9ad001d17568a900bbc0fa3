@@ -1,0 +1,14 @@
+package javaHigh05.example03;
+
+import java.util.TreeSet;
+
+public class ComparableEx01 {
+	public static void main(String[] args) {
+		TreeSet<Person> treeSet1 = new TreeSet<Person>();
+		
+		treeSet1.add(new Person("È«±æµ¿", 45));
+		treeSet1.add(new Person("±èÀÚ¹Ù", 25));
+		treeSet1.add(new Person("¹ÚÁö¿ø", 31));
+		
+	}
+}

@@ -1,0 +1,16 @@
+package javaHigh05.example03;
+
+import java.util.TreeSet;
+
+public class ComparableEx01 {
+	public static void main(String[] args) {
+		TreeSet<Person> treeSet1 = new TreeSet<Person>();
+		
+		treeSet1.add(new Person("홍길동", 45));
+		treeSet1.add(new Person("김자바", 25));
+		treeSet1.add(new Person("박지원", 31));
+		
+		// 사용자 정의 객체를 비교하지 않으면 ClassCastException 발생
+		
+	}
+}

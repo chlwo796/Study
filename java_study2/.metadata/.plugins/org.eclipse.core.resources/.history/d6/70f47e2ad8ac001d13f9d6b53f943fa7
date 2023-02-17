@@ -1,0 +1,11 @@
+package javaHigh04.example04;
+
+import java.io.IOException;
+import java.util.Properties;
+
+public class PropertiesEx01 {
+	public static void main(String[] args) throws IOException {
+		Properties properties = new Properties();
+		properties.load(PropertiesEx01.class.getResourceAsStream("database.properties"));
+	}
+}

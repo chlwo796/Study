@@ -1,0 +1,12 @@
+package javaHigh03.example03;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class SetEx02 {
+	public static void main(String[] args) {
+		// °­¾ÆÁö 15, °í¾çÀÌ 10, Åä³¢ 7, ´ß 3
+
+		Set<Animal> animalSet = new HashSet<Animal>();
+	}
+}

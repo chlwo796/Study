@@ -1,0 +1,13 @@
+package javaHigh05.example02;
+
+import java.util.TreeMap;
+
+public class TreeMapEx02 {
+	public static void main(String[] args) {
+		TreeMap<String, String> treeMap1 = new TreeMap<String, String>();
+		
+		treeMap1.put("¿µ¾÷ºÎ", "°­Á¤È£");
+		treeMap1.put("È«º¸ºÎ", "±è°­ÀÎ");
+		treeMap1.put("±âÈ¹ºÎ", "±è¿µÀÚ");
+	}
+}

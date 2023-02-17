@@ -1,0 +1,11 @@
+package javaHigh05.example05;
+
+import java.util.Comparator;
+
+public class BusinessComparator implements Comparator<BusinessSale>{
+@Override
+public int compare(BusinessSale o1, BusinessSale o2) {
+	// TODO Auto-generated method stub
+	return o1.getTeamName().compareTo(o2.getTeamName())
+}
+}

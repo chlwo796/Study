@@ -1,0 +1,9 @@
+package javaHigh05.example04;
+
+import java.util.TreeSet;
+
+public class Comparator {
+	public static void main(String[] args) {
+		TreeSet<Fruit> treeSet1 = new TreeSet<Fruit>();
+	}
+}

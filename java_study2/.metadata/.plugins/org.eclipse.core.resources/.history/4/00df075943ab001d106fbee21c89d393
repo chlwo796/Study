@@ -1,0 +1,17 @@
+package tempMemo;
+
+import java.util.Scanner;
+
+public class Score {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int[] score = new int[4];
+		System.out.print("국어점수입력>");
+		System.out.print("영어점수입력>");
+		System.out.print("수학점수입력>");
+		System.out.print("과학점수입력>");
+
+	}
+
+}

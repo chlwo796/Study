@@ -1,0 +1,23 @@
+package javaHigh03.example04;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class SetEx03 {
+	public static void main(String[] args) {
+		Set<Shop> shopSet = new HashSet<Shop>();
+		shopSet.add(new Shop("이기쁨", "1234", 100));
+		shopSet.add(new Shop("김행복", "2345", 90));
+		shopSet.add(new Shop("박수진", "1566", 300));
+		shopSet.add(new Shop("정기쁨", "1234", 100));
+		shopSet.add(new Shop("최기쁨", "1324", 80));
+		shopSet.add(new Shop("최재환", "1234", 100));
+		
+		Iterator<Shop> it = shopSet.iterator();
+		
+		while(it.hasNext()) {
+			Shop shop = it.next();
+		}
+	}
+}

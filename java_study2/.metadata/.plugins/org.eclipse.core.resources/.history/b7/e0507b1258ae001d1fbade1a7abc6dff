@@ -1,0 +1,7 @@
+package javaHigh05.example04;
+
+public class Comparator {
+	public Comparator() {
+		// TODO Auto-generated constructor stub
+	}
+}

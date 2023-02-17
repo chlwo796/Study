@@ -1,0 +1,25 @@
+package javaHigh05.example01;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+public class TreeSetEx01 {
+	public static void main(String[] args) {
+		TreeSet<Integer> tree1 = new TreeSet<Integer>();
+		
+		tree1.add(4);
+		tree1.add(7);
+		tree1.add(4);		
+		tree1.add(0);
+		tree1.add(8);
+		tree1.add(9);
+		tree1.add(2);
+		
+		System.out.println("제일 낮은 객체 ->" + tree1.first());
+		System.out.println("제일 높은 객체 ->" + tree1.last());
+		System.out.println("7의 바로 아래 객체 ->" + tree1.lower(7));
+		System.out.println("7의 바로 위 객체 ->" + tree1.higher(7));
+		System.out.println("5와 같은 객체 ->(없으면 바로 아래 객체)" + tree1.floor(5));
+		System.out.println("3와 같은 객체 ->(없으면 바로 위 객체)" + tree1.floor(3));
+	}
+}

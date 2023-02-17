@@ -1,0 +1,8 @@
+package javaHigh04.example02;
+
+public class Shop {
+
+	private Data data;
+	private String phone;
+
+}

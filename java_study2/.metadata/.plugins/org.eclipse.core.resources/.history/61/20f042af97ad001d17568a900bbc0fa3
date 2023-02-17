@@ -1,0 +1,9 @@
+package javaHigh05.example01;
+
+import java.util.TreeSet;
+
+public class TreeSetEx02 {
+	public static void main(String[] args) {
+		TreeSet<Integer> treeSet1 = new TreeSet<Integer>();
+	}
+}

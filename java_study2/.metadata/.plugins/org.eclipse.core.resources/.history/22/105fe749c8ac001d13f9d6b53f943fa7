@@ -1,0 +1,30 @@
+package javaHigh04.example02;
+
+public class Shop {
+
+	private Data data;
+	private String phone;
+
+	public Shop(Data data, String phone) {
+		super();
+		this.data = data;
+		this.phone = phone;
+	}
+
+	public Data getData() {
+		return data;
+	}
+
+	public void setData(Data data) {
+		this.data = data;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+}

@@ -1,0 +1,32 @@
+.header {
+  color: red;
+}
+h2 {
+  color: green;
+  /* 소문자를 대문자로 */
+  font-variant: small-caps;
+}
+#font1 {
+  font-family: 궁서체;
+  font-style: italic;
+  font-size: 120%;
+}
+h3 {
+  text-align: center;
+}
+a:link {
+  color: brown;
+  text-decoration: none;
+  font-size: larger;
+}
+a:visited {
+  color: rgb(80, 50, 100);
+  font-size: smaller;
+}
+a:hover {
+  /* alpha = 채도 */
+  color: rgba(10, 30, 80, 0.1);
+}
+a:active {
+  font-size: smaller;
+}

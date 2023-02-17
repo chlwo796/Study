@@ -1,0 +1,9 @@
+package javaHigh04.example04;
+
+import java.util.Properties;
+
+public class PropertiesEx01 {
+	public static void main(String[] args) {
+		Properties properties = new Properties();
+	}
+}

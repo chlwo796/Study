@@ -1,0 +1,14 @@
+package javaHigh03.example01;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class SetExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Set<Double> set1 = new HashSet<Double>();
+
+	}
+
+}

@@ -1,0 +1,7 @@
+package javaHigh05.example05;
+
+import java.util.Comparator;
+
+public class BusComparator implements Comparator<T>{
+
+}

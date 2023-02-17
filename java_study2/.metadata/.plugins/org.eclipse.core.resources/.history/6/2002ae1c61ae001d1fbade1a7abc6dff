@@ -1,0 +1,9 @@
+package javaHigh05.example05;
+
+import java.util.TreeMap;
+
+public class ComparatorEx02 {
+	public static void main(String[] args) {
+		TreeMap<String, BusinessSale> treeMap1 = new TreeMap<String, BusinessSale>();
+	}
+}

@@ -1,0 +1,79 @@
+package javaHigh03.example05;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
+
+public class SetEx04 {
+	public static void main(String[] args) {
+		Set<Fare> fareSet = new HashSet<Fare>();
+
+		fareSet.add(new Fare("502", 1, 423, 25000));
+		fareSet.add(new Fare("303", 7, 724, 35000));
+		fareSet.add(new Fare("403", 2, 222, 40000));
+		fareSet.add(new Fare("503", 2, 438, 25000));
+		fareSet.add(new Fare("503", 3, 417, 35000));
+		fareSet.add(new Fare("504", 4, 248, 45000));
+		fareSet.add(new Fare("504", 4, 248, 45000));
+
+		Iterator<Fare> it = fareSet.iterator();
+		System.out.println("호수\t가족수\t전기사용량\t공동요금");
+		while (it.hasNext()) {
+			Fare fare = it.next();
+			System.out.println(fare.getNumber() + "\t" + fare.getFamilyNumber() + "\t" + fare.getElectricity() + "\t"
+					+ fare.getFee());
+		}
+
+		Scanner sc = new Scanner(System.in);
+		boolean check = true;
+		System.out.print("호수를 입력하세요>");
+		String searchNumber = sc.nextLine();
+
+		it = fareSet.iterator();
+		while (it.hasNext()) {
+			Fare fare = it.next();
+			if (fare.getNumber().equals(searchNumber)) {
+				System.out.println("호수 : " + searchNumber + ", 전기사용량 : " + fare.getElectricity());
+				check = false;
+			}
+		}
+		if (check) {
+			System.out.println("찾으시는 호수 " + searchNumber + "은/는 없습니다.");
+		}
+		int maxElectricity = 0;
+		it = fareSet.iterator();
+		while (it.hasNext()) {
+			Fare fare = it.next();
+			if (maxElectricity < fare.getElectricity()) {
+				maxElectricity = fare.getElectricity();
+			}
+		}
+		System.out.println("최대 전기 사용량 : " + maxElectricity);
+		it = fareSet.iterator();
+		while (it.hasNext()) {
+			Fare fare = it.next();
+			if (maxElectricity == fare.getElectricity()) {
+				System.out.println("최대전기사용량의 가구는 : " + fare.getNumber() + "호, 가족수 : " + fare.getFamilyNumber());
+			}
+		}
+		int minElectricity = Integer.MAX_VALUE;
+		System.out.println(minElectricity);
+		it = fareSet.iterator();
+		while(it.hasNext()) {
+			Fare fare = it.next();
+			if(minElectricity>fare.getElectricity()) {
+				minElectricity = fare.getElectricity();
+			}
+		}
+		System.out.println("최소 전기 사용량 : " + minElectricity);
+		it = fareSet.iterator();
+		while (it.hasNext()) {
+			Fare fare = it.next();
+			if (maxElectricity == fare.getElectricity()) {
+				System.out.println("최대전기사용량의 가구는 : " + fare.getNumber() + "호, 가족수 : " + fare.getFamilyNumber());
+			}
+		}
+
+	}
+}

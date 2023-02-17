@@ -1,0 +1,33 @@
+package javaHigh05.example03;
+
+import java.util.Iterator;
+import java.util.TreeSet;
+
+public class ComparableEx01 {
+	public static void main(String[] args) {
+		TreeSet<Person> treeSet1 = new TreeSet<Person>();
+		// 사용자 정의 객체를 비교하지 않으면 ClassCastException 발생
+		treeSet1.add(new Person("홍길동", 45));
+		treeSet1.add(new Person("김자바", 25));
+		treeSet1.add(new Person("박지원", 11));
+		treeSet1.add(new Person("박지원1", 19));
+		treeSet1.add(new Person("박지원2", 18));
+		treeSet1.add(new Person("박지원3", 15));
+		treeSet1.add(new Person("박지원4", 17));
+		treeSet1.add(new Person("박지원5", 11));
+		
+		Iterator<Person> iterator = treeSet1.iterator();
+		
+		while(iterator.hasNext()) {
+			Person person = iterator.next();
+			System.out.println(person.getName() + " " + person.getAge());
+			
+		}
+		System.out.println();
+		for(Person p : treeSet1) {
+			System.out.println(p.getName() + " " + p.getAge());
+		}
+		
+		
+	}
+}

@@ -1,0 +1,24 @@
+package javaHigh03.example04;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class SetEx03 {
+	public static void main(String[] args) {
+		Set<Shop> shopSet = new HashSet<Shop>();
+		shopSet.add(new Shop("ÀÌ±â»Ý", "1234", 100));
+		shopSet.add(new Shop("±èÇàº¹", "2345", 90));
+		shopSet.add(new Shop("¹Ú¼öÁø", "1566", 300));
+		shopSet.add(new Shop("Á¤±â»Ý", "1234", 100));
+		shopSet.add(new Shop("ÃÖ±â»Ý", "1324", 80));
+		shopSet.add(new Shop("ÃÖ±â»Ý", "1234", 100));
+		
+		Iterator<Shop> it = shopSet.iterator();
+		
+		while(it.hasNext()) {
+			Shop shop = it.next();
+			System.out.println(shop.getCustname() + " " + shop.getCustPhone() + " " + shop.getPoint());
+		}
+	}
+}

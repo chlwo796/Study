@@ -1,0 +1,10 @@
+package javaHigh05.example03;
+
+import java.util.TreeSet;
+
+public class ComparableEx01 {
+	public static void main(String[] args) {
+		TreeSet<Person> treeSet1 = new TreeSet<Person>();
+		
+	}
+}

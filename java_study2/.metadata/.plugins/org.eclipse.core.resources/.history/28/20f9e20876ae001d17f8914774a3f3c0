@@ -1,0 +1,4 @@
+package student.Management;
+
+public class Score {
+	// 

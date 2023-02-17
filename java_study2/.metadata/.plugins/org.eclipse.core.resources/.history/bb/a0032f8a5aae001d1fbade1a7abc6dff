@@ -1,0 +1,20 @@
+package javaHigh05.example04;
+
+import java.util.Comparator;
+
+public class FruitComparator implements Comparator<Fruit> {
+@Override
+public int compare(Fruit o1, Fruit o2) {
+	// o1 = 기준 주소, 02 = 비교할 주소
+	System.out.println(o1.getPrice());
+	System.out.println(o2.getPrice());
+	System.out.println(o1.getPrice().compareTo(o2.getPrice()));
+	return o1.getPrice().compareTo(o2.getPrice());
+}
+@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
+}

@@ -1,0 +1,11 @@
+package javaHigh03.example04;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class SetEx03 {
+	public static void main(String[] args) {
+		Set<Shop> shopSet = new HashSet<Shop>();
+		shopSet.add("¿Ã±‚ª›", "1234", 100);
+	}
+}

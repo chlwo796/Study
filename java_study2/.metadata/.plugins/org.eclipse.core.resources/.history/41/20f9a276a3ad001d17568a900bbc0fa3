@@ -1,0 +1,9 @@
+package javaHigh05.example02;
+
+import java.util.TreeMap;
+
+public class TreeMapEx02 {
+	public static void main(String[] args) {
+		TreeMap<String, Integer> treeMap1 = new TreeMap<String, Integer>();
+	}
+}

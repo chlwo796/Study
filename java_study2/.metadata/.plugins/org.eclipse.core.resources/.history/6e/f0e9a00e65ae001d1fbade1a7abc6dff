@@ -1,0 +1,6 @@
+package javaHigh05.example06;
+
+public class Values {
+	private String store;
+	private Integer sale;
+}

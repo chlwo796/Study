@@ -1,0 +1,25 @@
+package javaHigh05.example01;
+
+import java.util.TreeSet;
+
+public class TreeSetEx02 {
+	public static void main(String[] args) {
+		TreeSet<Integer> treeSet1 = new TreeSet<Integer>();
+		
+		treeSet1.add(3500000);
+		treeSet1.add(2150000);
+		treeSet1.add(2200000);
+		treeSet1.add(2700000);
+		treeSet1.add(2750000);
+		
+		// 가장 높은 기본급은?
+		System.out.println(treeSet1.last());
+		// 가장 낮은 기본급은?
+		System.out.println(treeSet1.first());
+		// 기본급 오름차순
+		for(Integer i : treeSet1) {
+			System.out.println(i);
+		}
+		// 기본급 내림차순
+	}
+}

@@ -1,0 +1,41 @@
+package javaHigh03.example01;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class SetEx02 {
+
+	public static void main(String[] args) {
+//		"사과", "배", "바나나", "귤", "배", "배"
+//		1. Set 데이터 넣기
+//		2. 전체출력
+//		3. 크기출력
+//		4. "참외"가 있는지 검색하기
+		
+		Set<String> fruitSet = new HashSet<String>();
+		
+		fruitSet.add("사과");
+		fruitSet.add("배");
+		fruitSet.add("바나나");
+		fruitSet.add("귤");
+		fruitSet.add("배");
+		fruitSet.add("배");
+		
+		Iterator<String> it = fruitSet.iterator();
+		while(it.hasNext()) {
+			String fruits = it.next();
+			System.out.println(fruits);
+		}
+		System.out.println(fruitSet.size());
+		it = fruitSet.iterator();
+		while(it.hasNext()) {
+			String fruits = it.next();
+			if(fruits.equals("참외")) {
+				System.out.println(fruits);
+			}
+		}
+
+	}
+
+}

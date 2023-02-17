@@ -1,0 +1,8 @@
+package javaHigh03.example02;
+
+public class SetEx01 {
+	public static void main(String[] args) {
+		Set<Member> member = new HashSet<Member>();
+		memberSet.add(new Member("ȫ�浿", 30));
+	}
+}

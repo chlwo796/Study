@@ -1,0 +1,26 @@
+package javaHigh04.example02;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapEx02 {
+
+	public static void main(String[] args) {
+		// 전화번호 -> 포인트, 주소 조회
+
+		Map<String, Integer> shopMap = new HashMap<String, Integer>();
+		Shop shop1 = new Shop("1111", new Data(100, "미사1동"));
+		Shop shop2 = new Shop("1234", 90, "미사2동");
+		Shop shop3 = new Shop("2222", 90, "미사3동");
+		Shop shop4 = new Shop("2345", 80, "미사4동");
+		Shop shop5 = new Shop("3333", 90, "미사5동");
+		shopMap.put(shop1.getPhone(), shop1.getPoint());
+		shopMap.put(shop2.getPhone(), shop2.getPoint());
+		shopMap.put(shop3.getPhone(), shop3.getPoint());
+		shopMap.put(shop4.getPhone(), shop4.getPoint());
+		shopMap.put(shop5.getPhone(), shop5.getPoint());
+		
+		System.out.println(shopMap.get(shop1.getPhone()));
+	}
+
+}
