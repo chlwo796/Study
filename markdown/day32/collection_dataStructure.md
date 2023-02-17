@@ -655,3 +655,91 @@ public class PropertiesExample {
 
   }
   ```
+
+2. TreeMap
+
+- TreeMap은 이진 트리를 기반으로 한 Map 컬렉션이며, TreeSet과의 차이점은 키와 값이 저장된 Entry를 저장한다는 점이다.
+- TreeMap에 엔트리를 저장하면 키를 기준으로 자동 정렬되는데, 부모 키 값과 비교해서 낮은 것은 왼쪽, 옾은 것은 오른쪽 자식 노드에 Entry 객체를 저장한다.
+- Map 타입 변수에 대입해도 되지만 TreeMap 타입으로 대입한 이유는 검색 관련 메소드가 TreeMap에만 정의되어 있기 때문이다.
+- TreeMap Method
+
+  - `Map.Entry<K, V> firstEntry()` : 제일 낮은 Map.Entry를 리턴
+  - `Map.Entry<K, V> lastEntry()` : 제일 높은 Map.Entry를 리턴
+  - `Map.Entry<K, V> lowerEntry(K key)` : 주어진 키보다 바로 아래 Map.Entry를 리턴
+  - `Map.Entry<K, V> higherEntry(K key)` : 주어진 키보다 바로 뒤 Map.Entry를 리턴
+  - `Map.Entry<K, V> floorEntry(K key)` : 주어진 키와 동등한 키가 있으면 해당 Map.Entry를 리턴, 없다면 주어진 키 바로 아래의 Map.Entry를 리턴
+  - `Map.Entry<K, V> ceilingEntry(K key)` : 주어진 키와 동등한 키가 있으면 해당 Map.Entry를 리턴, 없다면 주어진 키 바로 위의 Map.Entry를 리턴
+  - `Map.Entry<K, V> pollFirstEntry()` : 제일 낮은 Map.Entry를 꺼내오고 컬렉션에서 제거함
+  - `Map.Entry<K, V> pollLastEntry()` : 제일 높은 Map.Entry를 꺼내오고 컬렉션에서 제거함
+  - `NavigableSet<K> descendingKeySet()` : 내림차순으로 정렬된 키의 NavigableSet을 리턴
+  - `NavigableMap<K, V> descendingMap()` : 내림차순으로 정렬된 Map.Entry의 NavigableMap을 리턴
+  - `NavigableSet<K, V> headMap(K toKey, boolean inclusive)` : 주어진 키보다 낮은 Map.Entry들을 NavigableMap으로 리턴, 객체 포함 여부 = trur or false
+  - `NavigableSet<K, V> tailMap(K toKey, boolean inclusive)` : 주어진 키보다 높은 Map.Entry들을 NavigableMap으로 리턴, 객체 포함 여부 = trur or false
+  - `NavigableSet<K, V> subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)` : 시작과 끝으로 주어진 키 사이의 Map.Entry들을 NavigableMap 컬렉션으로 반환, 시작과 끝 객체 포함 여부 = true or false
+
+- TreeMap 예제
+
+  ```java
+  package javaChap15.example05;
+
+  import java.util.Map.Entry;
+  import java.util.NavigableMap;
+  import java.util.Set;
+  import java.util.SortedMap;
+  import java.util.TreeMap;
+
+  public class TreeMapExample {
+    public static void main(String[] args) {
+      TreeMap<String, Integer> treeMap1 = new TreeMap<String, Integer>();
+
+      treeMap1.put("apple", 10);
+      treeMap1.put("forever", 10);
+      treeMap1.put("description", 10);
+      treeMap1.put("ever", 10);
+      treeMap1.put("zoo", 10);
+      treeMap1.put("base", 10);
+      treeMap1.put("guess", 10);
+      treeMap1.put("cherry", 10);
+
+      Set<Entry<String, Integer>> entrySet = treeMap1.entrySet();
+      for(Entry<String, Integer> entry : entrySet) {
+        System.out.println(entry.getKey() + " " + entry.getValue());
+      }
+
+      SortedMap<String, Integer> sortedMap = null;
+      Entry<String, Integer> entry = null;
+      System.out.println("제일 앞 단어");
+      entry = treeMap1.firstEntry();
+      System.out.println(entry.getKey() + " " + entry.getValue());
+
+      System.out.println("제일 뒤 단어");
+      entry = treeMap1.lastEntry();
+      System.out.println(entry.getKey() + " " + entry.getValue());
+      System.out.println("ever 앞 단어");
+      entry = treeMap1.lowerEntry("ever");
+      System.out.println(entry.getKey() + " " + entry.getValue());
+
+      System.out.println("description 뒤 단어");
+      entry = treeMap1.higherEntry("description");
+      System.out.println(entry.getKey() + " " + entry.getValue());
+
+      System.out.println("d 뒤(높은) 단어들");
+      sortedMap = treeMap1.tailMap("d");
+      Set<Entry<String, Integer>> sortedSet = sortedMap.entrySet();
+      for(Entry<String, Integer> sortedEntry : sortedSet) {
+        System.out.println(sortedEntry.getKey() + " " + sortedEntry.getValue());
+      }
+      System.out.println("내림차순정렬");
+      NavigableMap<String, Integer> navigableMap = treeMap1.descendingMap();
+      for(Entry<String, Integer> entry1 : navigableMap.entrySet()) {
+        System.out.println(entry1.getKey() + " " + entry1.getValue());
+      }
+      System.out.println("b(포함)~i 검색");
+      NavigableMap<String, Integer> rangeMap = treeMap1.subMap("b", true, "i", false);
+      for(Entry<String, Integer> entry2 : rangeMap.entrySet()) {
+        System.out.println(entry2.getKey() + " " + entry2.getValue());
+      }
+
+    }
+  }
+  ```
