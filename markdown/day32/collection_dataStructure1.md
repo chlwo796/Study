@@ -1,8 +1,8 @@
-2023년 2월 16일 목요일
+2023년 2월 18일 토요일
 
 ---
 
-## chap.15 collection data structure
+## chap.15 collection data structure1
 
 ### 1. 컬렉션 프레임워크
 
@@ -740,6 +740,133 @@ public class PropertiesExample {
         System.out.println(entry2.getKey() + " " + entry2.getValue());
       }
 
+    }
+  }
+  ```
+
+3. Comparable과 Comparator
+
+- TreeSet에 저장되는 객체와 TreeMap에 저장되는 키 객체는 저장과 동시에 오름차순으로 정렬되며, 객체가 `interface Comparable`을 구현하고 있어야 가능하다.
+- Integer, Double, String 타입은 모두 `Comparable`을 기본적으로 구현하고 있기 때문에 상관없지만, 사용자 정의 객체를 저장할 때에는 반드시 `Comparable`을 구현하고 있어야 한다.
+
+- `int compareTo(T o)` : 주어진 객체와 같으면 0, 적으면 음수, 크면 양수를 리턴
+- 해당 객체에 `implements Comparable<E>` 후 메소드 오버라이딩
+
+  ```java
+  package javaChap15.example06;
+
+  public class Person implements Comparable<Person> {
+    public String name;
+    public int age;
+
+    public Person(String name, int age) {
+      super();
+      this.name = name;
+      this.age = age;
+    }
+
+    @Override
+    public int compareTo(Person o) {
+  //		이름으로정렬
+  //		return this.name.compareTo(o.name);
+      // 나이로 정렬
+      if (this.age > o.age) {
+        return 1;
+      } else if (this.age == o.age) {
+        return 0;
+      } else
+        return -1;
+    }
+
+  }
+  ```
+
+- ComparableExample 예제
+
+  ```java
+  package javaChap15.example06;
+
+  import java.util.TreeSet;
+
+  public class ComparableExample {
+    public static void main(String[] args) {
+      TreeSet<Person> treeSet1 = new TreeSet<Person>();
+      treeSet1.add(new Person("홍길동", 45));
+      treeSet1.add(new Person("김자바", 35));
+      treeSet1.add(new Person("박자바", 36));
+      treeSet1.add(new Person("이자바", 35));
+
+      for(Person p : treeSet1) {
+        System.out.println(p.name + " " + p.age);
+      }
+    }
+  }
+  ```
+
+- 비교 기능이 없는 Comparable 비구현 객체를 저장하고 싶다면(별도의 클래스로 저장), TreeSet과 TreeMap을 생성할 때 비교자(Comparator)를 제공하면 된다.
+- `TreeMap<K, V> treeMap = new TreeMap<K, V>(new ComparatorImpl());`
+- 비교자는 Comparator 인터페이스를 구현한 객체를 말하며, Comparator 인터페이스에는 compare() 메소드가 정의되어 있다.
+- `int compare(T o1, T o2)` : o1과 o2가 동등하다면 0을 리턴, o1이 o2보다 앞에 오게 하려면 음수를 리턴, o1이 o2보다 뒤에 오게하려면 양수를 리턴
+- 별도 Comparator 객체(비교자)에서 `implements Comparator<E>` 후 메소드 오버라이딩
+
+  ```java
+  package javaChap15.example06;
+
+  import java.util.Comparator;
+
+  public class FruitComparator implements Comparator<Fruit> {
+    @Override
+    public int compare(Fruit o1, Fruit o2) {
+      // TODO Auto-generated method stub
+      if (o1.price > o2.price) {
+        return 1;
+      } else if (o1.price == o2.price) {
+
+        return 0;
+      } else
+
+        return -1;
+    }
+
+  }
+  ```
+
+- TreeSet 객체
+
+  ```java
+  package javaChap15.example06;
+
+  public class Fruit {
+    public String name;
+    public int price;
+
+    public Fruit(String name, int price) {
+      super();
+      this.name = name;
+      this.price = price;
+    }
+
+  }
+  ```
+
+- `TreeSet<E> treeSet = new TreeSet<E>(new ComparatorImpl());`
+
+  ```java
+  package javaChap15.example06;
+
+  import java.util.TreeSet;
+
+  public class ComparatorExample {
+    public static void main(String[] args) {
+      TreeSet<Fruit> treeSet1 = new TreeSet<Fruit>(new FruitComparator());
+      treeSet1.add(new Fruit("사과", 1000));
+      treeSet1.add(new Fruit("포도", 1500));
+      treeSet1.add(new Fruit("바나나", 2000));
+      treeSet1.add(new Fruit("배", 3000));
+
+      for (Fruit f : treeSet1) {
+        System.out.println(f.name + " " + f.price);
+      }
     }
   }
   ```
