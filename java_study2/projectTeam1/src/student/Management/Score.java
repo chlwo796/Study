@@ -1,18 +1,28 @@
 package student.Management;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
-public class Score {
+public class Score extends StudentManager {
 	// 성적 검색, 전체 성적, 반별 성적
 	// 검색 -> 이름
 	// 이름 -> 과목 > 점수
 	// Map -> <Student,value = 점수
-	private int score;
+	private Integer scoreA;
+	private Integer scoreB;
+
+	int[] scoreArray = { 80, 70, 100 };
 	Scanner sc = new Scanner(System.in);
 	String choice;
 	boolean run = true;
+	Map<StudentManager, Integer> scoreMap = new HashMap<StudentManager, Integer>();
 
 	public Score() {
+
 		while (run) {
 			System.out.println("---------------------------------------");
 			System.out.printf("%-8s%-8s%-8s%-8s\n", "1. 성적검색", "2. 전체성적", "3. 반별 성적", "4. 이전화면");
@@ -43,6 +53,10 @@ public class Score {
 			}
 			}
 		}
+	}
+
+	private List<Student> input() {
+		return null;
 	}
 
 	private void printAll() {
