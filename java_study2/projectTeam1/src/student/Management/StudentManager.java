@@ -22,8 +22,6 @@ public class StudentManager {
 		boolean flag = true;
 		String searchName;
 		
-		
-		
 		System.out.println("------------------------------------------------------");
 		System.out.println("1.학생검색 2.학생등록 3.학생 정보수정 4.학생삭제 5.이전화면으로");
 		System.out.println("------------------------------------------------------");
