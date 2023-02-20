@@ -1,6 +1,0 @@
-package tempMemo;
-
-public class IfMain {
-	public static void main(String[] args){
-		int[] score = new int[3]{40.50.60};   
-}
