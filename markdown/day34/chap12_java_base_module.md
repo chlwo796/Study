@@ -7,3 +7,306 @@
 ### 1. API 도큐먼트
 
 - API(Application Programming Interface) 도큐먼트 : 자바 표준 모듈에서 제공하는 라이브러리는 너무 방대하기 때문에, 라이브러리를 쉽게 찾아서 사용할 수 있도록 방법을 기술한 것
+  [java api docoments](https://docs.oracle.com/en/java/javase/index.html)
+
+### 2. java.base module
+
+- java.base module : 모든 모듈이 의존하는 기본 모듈, requires하지 않아도 사용할 수 있으며, 이 모듈에 포함되어 있는 패키지는 대부분의 자바 프로그램에서 많이 사용하는 것들이다.
+- 주요 패키지와 용도
+  - `java.lang` : 자바 언어의 기본 클래스를 제공
+  - `java.util` : 자료 구조와 관련된 컬렉션 클래스를 제공
+  - `java.text` : 날짜 및 숫자를 원하는 형태의 문자열로 만들어 주는 포맷 클래스를 제공
+  - `java.time` : 날짜 및 시간을 조작하거나 연산하는 클래스를 제공
+  - `java.io` : 입출력 스트림 클래스를 제공
+  - `java.net` : 네트워크 통신과 관련된 클래스를 제공
+  - `java.nio` : 데이터 저장을 위한 Buffer 및 새로운 입출력 클래스 제공
+- `java.lang` : import 없이 사용할 수 있다.
+- `java.lang` 패키지의 주요 클래스와 용도
+  - `Object` : 자바 클래스의 최상위 클래스
+  - `System`
+    - 키보드로부터 데이터를 입력받을 때 사용
+    - 모니터(콘솔)로 출력하기 위해 사용
+    - 프로세스를 종료시킬 때 사용
+    - 진행 시간을 읽을 때 사용
+    - 시스템 속성(프로퍼티)을 읽을 떄 사용
+  - `String` : 문자열을 저장하고 조작할 때 사용
+  - `StringBuilder` : 효율적인 문자열 조작 기능이 필요할 때 사용(메모리 효율)
+  - `java.util.StringTokenizer` : 구분자로 연결된 문자열을 분리할 떄 사용
+  - `Byte`, `Short`, `Charactoer`, `Integer`, `Float`, `Double`, `Boolean`
+    - 기본형(int, char, double 등)의 값을 포장할 때 사용
+    - 문자열을 기본 타입으로 변환할 때 사용
+  - `Math` : 수학 계산이 필요할 때 사용
+  - `Class` : 클래스의 메타 정보(이름, 구성멤버) 등을 조사할 때 사용
+
+### 3. Object 클래스
+
+- 클래스를 선언할 때 extends 키워드로 다른 클래스를 상속하지 않으면 암시적으로 `java.lang.Object` 클래스를 상속한다.
+- Object 클래스의 주요 메소드
+  - `boolean equals(Object obj)` : 객체의 번지를 비교하고 결과를 리턴
+  - `int hashCode()` : 객체의 해시코드를 리턴
+  - `String toString()` : 객체 문자 정보를 리턴
+
+1. 객체 동등 비교
+
+- Object의 equals() 메소드는 객체의 번지를 비교하고 boolean 값을 리턴한다.
+  `public boolean equals(Object obj)`
+- equals() 메소드의 매개변수 타입이 Object이므로 자동 타입 변환에 의해 모든 객체가 매개값으로 대입될 수 있다.
+- EqualsExample 예제
+
+  ```java
+  package javaChap12.example01;
+
+  public class Member {
+      private String id;
+
+      public Member(String id) {
+          super();
+          this.id = id;
+      }
+    // 동등비교 작업을 생략하면 1,2는 다른객체로 분류된다.
+      @Override
+      public boolean equals(Object obj) {
+          if (obj instanceof Member) {
+              Member target = (Member) obj;
+              return id.equals(target.id);
+          }
+          return false;
+      }
+  }
+  ```
+
+  ```java
+  package javaChap12.example01;
+
+
+  public class EqualsExample {
+  public static void main(String[] args) {
+  Member member1 = new Member("1");
+  Member member2 = new Member("1");
+  Member member3 = new Member("3");
+
+          if (member1.equals(member2)) {
+              System.out.println("1과 2는 동등");
+          } else {
+              System.out.println("1과 2는 다름");
+          }
+          if (member1.equals(member3)) {
+              System.out.println("1과 3은 동등");
+          } else {
+              System.out.println("1과 3은 다름");
+          }
+      }
+
+  }
+  ```
+
+2. 객체 해시코드
+
+- HashCode : 객체를 식별하는 정수
+- Object의 `hashCode()` 메소드는 객체의 메모리 번지를 이용해서 해시코드를 생성하기 때문에 객체마다 다른 정수값을 리턴한다.
+  `public int hashCode()`
+- `eqauls()` 메소드와 마찬가지로 `hashCode()`는 객체의 데이터를 기준으로 재정의해서 새로운 정수값을 리턴하도록 하는 것이 일반적이다.(객체가 다르다 할지라도 내부 데이터가 동일하다면 같은 정수값을 리턴)
+- 자바의 동등비교 : `hashCode()`가 리턴하는 정수값이 같은지 확인하고, 그 다음 `equals()`가 true를 리턴하는지 확인
+- HashCodeExample 예제
+
+  ```java
+  package javaChap12.example01;
+
+  public class Student {
+      private int no;
+      private String name;
+
+      public Student(int no, String name) {
+          super();
+          this.no = no;
+          this.name = name;
+      }
+
+      @Override
+      public int hashCode() {
+          // TODO Auto-generated method stub
+          return name.hashCode() + no;
+      }
+
+      @Override
+      public boolean equals(Object obj) {
+          // TODO Auto-generated method stub
+          if (obj instanceof Student) {
+              Student target = (Student) obj;
+              return no == target.no && name.equals(target.name);
+          }
+          return false;
+      }
+  }
+  ```
+
+  ```java
+  package javaChap12.example01;
+
+  public class HashCodeExample {
+      public static void main(String[] args) {
+          Student student1 = new Student(1, "홍길동");
+          Student student2 = new Student(1, "홍길동");
+
+          if (student1.hashCode() == student2.hashCode()) {
+              if (student1.equals(student2)) {
+                  System.out.println("동등");
+              } else {
+                  System.out.println("데이터가 달라서 다름");
+              }
+          } else {
+              System.out.println("해시코드값이 달라서 다름");
+          }
+      }
+  }
+  ```
+
+- HashSetExample 예제
+
+  ```java
+  package javaChap12.example01;
+
+  import java.util.HashSet;
+
+  public class HashSetExample {
+      public static void main(String[] args) {
+          HashSet<Student> hashSet = new HashSet<Student>();
+
+          hashSet.add(new Student(1, "홍길동"));
+          System.out.println(hashSet.size());
+          // Student 클래스에서 동등비교과정을 생략하면 값이 같아도 저장된다.
+          hashSet.add(new Student(1, "홍길동"));
+          System.out.println(hashSet.size());
+          hashSet.add(new Student(2, "홍길동"));
+          System.out.println(hashSet.size());
+      }
+  }
+  ```
+
+3. 객체 문자 정보
+
+- 객체 문자 정보 : 객체를 문자열로 표현한 값
+- Object의 `toString()` 메소드는 객체의 문자 정보를 리턴하며, 기본적으로 '클래스명@16진수해시코드'로 구성된 문자열을 리턴한다.
+
+  ```java
+  Object obj = new Object();
+  System.out.println(obj.toString());
+  ```
+
+  `java.lang.Object@de6ced`
+
+- 객체의 문자 정보가 중요한 경우에는 Object의 `toString()`메소드를 재정의해서 간결하고 유익한 정보를 리턴하도록 한다.
+- ToStringExample 예제
+
+  ```java
+  package javaChap12.example01;
+
+  public class SmartPhone {
+      private String company;
+      private String os;
+
+      public SmartPhone(String company, String os) {
+          super();
+          this.company = company;
+          this.os = os;
+      }
+
+      @Override
+      public String toString() {
+          // toString() 메소드를 해당 객체의 변수를 담도록 재정의
+          return company + " " + os;
+      }
+  }
+  ```
+
+  ```java
+  package javaChap12.example01;
+
+  public class ToStringExample {
+      public static void main(String[] args) {
+          SmartPhone smartPhone = new SmartPhone("삼성전자", "안드로이드");
+
+          String str = smartPhone.toString();
+
+          System.out.println(str);
+          System.out.println(smartPhone);
+      }
+  }
+  ```
+
+- `System.out.println()` 메소드는 매개값이 기본형(int, long, double 등)이거나 문자열일 경우 해당 값을 그대로 출력하며, 객체를 참조하는 변수라면 해당객체의 `toString()` 메소드를 자동호출하여 리턴값을 출력한다.
+
+### 4. System 클래스
+
+- 자바 프로그램은 운영체제상에서 바로 실행되는 것이 아니라 자바 가상 머신(JVM)위에서 실행되기 때문에, 운영체제의 모든 기능을 자바 코드로 직접 접근하기 어렵다.
+- `java.lang` 패키지에 속하는 System 클래스를 이용하여 운영체제의 일부 기능을 이용할 수 있다.
+- System 클래스의 정적 필드와 메소드
+  - `out` : 콘솔에 문자 출력
+  - `err` : 콘솔에 에러 내용 출력
+  - `in` : 키보드 입력
+  - `exit(int status)` : 프로세스 종료
+  - `currentTimeMills()` : 현재 시간을 밀리초 단위의 long 값으로 전환
+  - `nanoTime()` : 현재 시간을 나노초 단위의 long 값으로 리턴
+  - `getProperty()` : 운영체제와 사용자 정보 제공
+  - `getenv()` : 운영체제의 환경 변수 정보 제공
+
+1. 콘솔 출력
+
+- `out` : 콘솔에 원하는 문자열 출력
+- `err` : 콘솔 종류에 따라 에러 내용이 빨간색으로 출력
+- ErrExample 예제
+
+  ```java
+  package javaChap12.example02;
+
+  public class ErrExample {
+      public static void main(String[] args) {
+          try {
+              int value = Integer.parseInt("1oo");
+          } catch (NumberFormatException e) {
+              // TODO Auto-generated catch block
+              System.err.println("에러내용");
+              System.err.println(e.getMessage());
+          }
+      }
+  }
+  ```
+
+2. 키보드 입력
+
+- `in` : 키보드로부터 입력된 키를 읽음
+  `int a = System.in.read();`
+- `read()` 메소드는 호출과 동시에 입력키를 읽는 것이 아니라, Enter 키를 누르면 입력했던 키들을 하나씩 읽으며, IOException을 발생할 수 있는 코드이므로 예외처리가 필요하다.
+- InExample 예제
+
+  ```java
+  package javaChap12.example02;
+
+  import java.io.IOException;
+
+  public class InExample {
+      public static void main(String[] args) throws IOException {
+          int speed = 0;
+          int keyCode = 0;
+
+          while (true) {
+              if (keyCode != 13 && keyCode != 10) {
+                  if (keyCode == 49) {
+                      speed++;
+                  } else if (keyCode == 50) {
+                      speed--;
+                  } else if (keyCode == 51) {
+                      break;
+                  }
+                  System.out.println("-----------------------");
+                  System.out.println("1. 증속 | 2. 감속 | 3. 중지");
+                  System.out.println("------------------------");
+                  System.out.println("현재속도>" + speed);
+                  System.out.print("선택>");
+              }
+              keyCode = System.in.read();
+
+          }
+      }
+  }
+  ```
