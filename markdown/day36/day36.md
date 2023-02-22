@@ -17,9 +17,9 @@
 - `System` : 윈도우 기능 이용할 때 사용하는 클래스
   - 키보드로부터 데이터를 입력받을 때
 - 운영체제(operating system, os) : 하드웨어와 소프트웨어 사이에서 소프트웨어를 잘 실행할 수 있도록, 하드웨어를 컨트롤 해주는 일을 하는 소프트웨어
-- `System.exit()` : 프로세스 종료 매우 중요(정상 종료 = 0, 비정상 종료 = 1 or -1 관례)
+- **`System.exit()` : 프로세스 종료 매우 중요(정상 종료 = 0, 비정상 종료 = 1 or -1 관례)**
 - `System.nanoTime()`
-- `System.currentTimeMills()`클래
+- `System.currentTimeMills()`
 - `System.in.read()`
 - `System.out.println()`
 - `System.err.println()`
