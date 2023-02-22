@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>컨테이너</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+      * {
+        /* *태그는 전부를 의미 */
+        box-sizing: border-box;
+      }
+      nav ul {
+        list-style: none;
+      }
+      nav ul li {
+        /* inline-block : 한 라인에 여러 요소 */
+        display: inline-block;
+        padding: 20px;
+        margin: 0 20px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- nav : 네비게이션, 메뉴형성시 많이 사용 -->
+    <nav>
+      <ul>
+        <li>파일</li>
+        <li>편집</li>
+        <li>선택영역</li>
+        <li>보기</li>
+      </ul>
+    </nav>
+    <div class="container">
+      <div class="header"></div>
+      <div class="contents">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="footer"></div>
+    </div>
+  </body>
+</html>

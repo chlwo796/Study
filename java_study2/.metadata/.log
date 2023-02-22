@@ -8395,23 +8395,40 @@ java.lang.Error: SWT Resource was not properly disposed
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1461)
+<<<<<<< HEAD
 !SESSION 2023-02-21 15:26:21.712 -----------------------------------------------
+=======
+!SESSION 2023-02-22 08:52:30.072 -----------------------------------------------
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 eclipse.buildId=4.19.0.I20210303-1800
 java.version=15.0.2
 java.vendor=Oracle Corporation
 BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+<<<<<<< HEAD
 Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product -data C:\JHC\web_studyB\study\java_study2 -product org.eclipse.epp.package.jee.product
 
 !ENTRY org.eclipse.jface 2 0 2023-02-21 15:26:24.763
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2023-02-21 15:26:24.763
+=======
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.jface 2 0 2023-02-22 08:52:42.567
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2023-02-22 08:52:42.567
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 !MESSAGE A conflict occurred for CTRL+SHIFT+T:
 Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
 		Open a type in a Java editor,
 		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+<<<<<<< HEAD
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6dadcf58,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@bb1b872,
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
@@ -8419,11 +8436,16 @@ Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
 		,
 		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+<<<<<<< HEAD
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@467421cc,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@64245ca9,
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui 4 4 2023-02-21 15:26:30.460
 !MESSAGE Unable to create part
 !STACK 1
@@ -8699,11 +8721,20 @@ org.eclipse.core.runtime.CoreException: Cannot determine URI for '/javaHigh06/sr
 !ENTRY org.eclipse.egit.ui 2 0 2023-02-21 15:26:31.123
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\chlwo'. If this is
+=======
+!ENTRY org.eclipse.egit.ui 2 0 2023-02-22 08:52:53.415
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\USER'. If this is
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui.ide 4 4 2023-02-21 15:26:31.685
+=======
+!ENTRY org.eclipse.ui.ide 4 4 2023-02-22 08:52:54.469
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 !MESSAGE Not properly disposed SWT resource
 !STACK 0
 java.lang.Error: SWT Resource was not properly disposed
@@ -8752,7 +8783,11 @@ java.lang.Error: SWT Resource was not properly disposed
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1461)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui.ide 4 4 2023-02-21 15:26:31.686
+=======
+!ENTRY org.eclipse.ui.ide 4 4 2023-02-22 08:52:54.471
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 !MESSAGE Not properly disposed SWT resource
 !STACK 0
 java.lang.Error: SWT Resource was not properly disposed
@@ -8800,23 +8835,40 @@ java.lang.Error: SWT Resource was not properly disposed
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1461)
+<<<<<<< HEAD
 !SESSION 2023-02-21 22:13:28.682 -----------------------------------------------
+=======
+!SESSION 2023-02-22 10:20:35.584 -----------------------------------------------
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 eclipse.buildId=4.19.0.I20210303-1800
 java.version=15.0.2
 java.vendor=Oracle Corporation
 BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+<<<<<<< HEAD
 Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product -data C:\JHC\web_studyB\study\java_study2 -product org.eclipse.epp.package.jee.product
 
 !ENTRY org.eclipse.jface 2 0 2023-02-21 22:13:31.693
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2023-02-21 22:13:31.693
+=======
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -data C:\JHC\web_studyB\study\java_study2 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.jface 2 0 2023-02-22 10:20:39.082
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2023-02-22 10:20:39.082
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 !MESSAGE A conflict occurred for CTRL+SHIFT+T:
 Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
 		Open a type in a Java editor,
 		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+<<<<<<< HEAD
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5cb32140,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6a8ab98f,
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
@@ -8824,19 +8876,33 @@ Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
 		,
 		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+<<<<<<< HEAD
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@139b3a29,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4d529bc0,
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.egit.ui 2 0 2023-02-21 22:13:36.720
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\chlwo'. If this is
+=======
+!ENTRY org.eclipse.egit.ui 2 0 2023-02-22 10:20:43.625
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\USER'. If this is
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui.ide 4 4 2023-02-21 22:13:38.294
+=======
+!ENTRY org.eclipse.ui.ide 4 4 2023-02-22 10:20:44.711
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 !MESSAGE Not properly disposed SWT resource
 !STACK 0
 java.lang.Error: SWT Resource was not properly disposed
@@ -8885,7 +8951,11 @@ java.lang.Error: SWT Resource was not properly disposed
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1461)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui.ide 4 4 2023-02-21 22:13:38.296
+=======
+!ENTRY org.eclipse.ui.ide 4 4 2023-02-22 10:20:44.713
+>>>>>>> c0180eca3e12493e811ef6607280a13d7abaea1c
 !MESSAGE Not properly disposed SWT resource
 !STACK 0
 java.lang.Error: SWT Resource was not properly disposed

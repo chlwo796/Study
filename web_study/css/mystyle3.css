@@ -20,3 +20,9 @@ sapn {
   /* 패딩 전체 300 */
   padding: 300px;
 }
+div {
+  /* 단축형 */
+  border: 0.3125rem solid red;
+  border-left: 0.3125rem solid chocolate;
+  border-top: 0.625rem dashed green;
+}
