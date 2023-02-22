@@ -20,7 +20,7 @@ public class Member {
 	public boolean equals(Object obj) {
 		if (obj instanceof Member) {
 			Member member = (Member) obj;
-			if (id.equals(((Member) obj).getId())) {
+			if (id.equals(member.getId())) {
 				return true;
 			}
 		}
