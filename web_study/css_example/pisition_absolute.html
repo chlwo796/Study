@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>position absolute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+    <style>
+      body > div {
+        height: 100px;
+        z-index: 5;
+        position: relative;
+      }
+      /* 부모 */
+      .box {
+        width: 100px;
+        height: 100px;
+        /* 상위(현재 = body)가 기준이 되어 배치 */
+        position: absolute;
+        overflow-y: scroll;
+      }
+      /* 자식 */
+      .box:nth-child(1) {
+        background-color: red;
+        left: 10px;
+        top: 10px;
+        z-index: 100;
+      }
+      .box:nth-child(2) {
+        background-color: green;
+        left: 100px;
+        top: 100px;
+        z-index: 50;
+      }
+      .box:nth-child(3) {
+        background-color: blue;
+        left: 190px;
+        top: 190px;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      큰제목1 위치속성 공식1 - 문제1 : h1 태그 2개가 붙어 있어서 div 태그가
+      영역을 차지하지 않는다.<br />
+      해결방법 :<b
+        ><u
+          >자손이 position 속성에 absolute 키워드를 적용하려면 부모에 height
+          속성을 입력</u
+        ></b
+      >
+    </h1>
+    <div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <h1>
+      큰제목2 위치속성 공식2 - 문제2 : 색상이 적용된 상자가 자신의 부모를
+      기준으로 위치를 잡을 수 없다.<br />해결방법 :
+      <b
+        ><u
+          >자손의 position 속성에 absolute 키워드를 적용하려면 부모에 position
+          속성에 relative 키워드를 적용한다.</u
+        ></b
+      >
+      <!-- position 속성에 absulte 키워드를 적용하면 부모 태그가 영역을 차지하지 않는다. -->
+    </h1>
+  </body>
+</html>
