@@ -1,7 +1,5 @@
 package student.Management;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -152,14 +150,13 @@ public class Attendance {
 		}
 		if (!tempMap2.isEmpty()) { // 2반의 인원이 없으면 인원 0명, 출석률 0%
 			rate2 = ((double) sum2 / (double) tempMap2.size()) * 100; // 이게 바로 출석률
-
 		}
 		// (%-7s)첫번째 오는 문자열에 왼쪽기준 7칸
 		// 주고,(%d명)두번째정수옆에"명",(\s=공백),(%.2f%%\n)소수점두자리실수옆에"%"하고줄바꿈(%출력은%%입력해야함)
 //		System.out.printf("%-7s%d명\s\s\s%.2f%%\n", "1반", tempMap1.size(), rate1);
-		System.out.println("1반     " + tempMap1.size() + "명    " + Math.round(rate1*100.0)/100.0 + "%");
+		System.out.println("1반     " + tempMap1.size() + "명    " + Math.round(rate1 * 100.0) / 100.0 + "%");
 //		System.out.printf("%-7s%d명\s\s\s%.2f%%\n", "2반", tempMap2.size(), rate2);
-		System.out.println("2반     " + tempMap2.size() + "명    " + Math.round(rate2*100.0)/100.0 + "%");
+		System.out.println("2반     " + tempMap2.size() + "명    " + Math.round(rate2 * 100.0) / 100.0 + "%");
 
 	}
 

@@ -3,8 +3,8 @@ package student.Management;
 import java.util.Scanner;
 
 public class Login {
-	//로그인 관련 필드
-	
+	// 로그인 관련 필드
+
 	private static final String ID = "김원장";
 	private static final String PASSWORD = "123456";
 
@@ -15,7 +15,7 @@ public class Login {
 	public static String getPassword() {
 		return PASSWORD;
 	}
-	
+
 	void login() {
 		Scanner sc = new Scanner(System.in);
 		boolean run = true; // 로그인 성공시 boolean 값변동없이 메인화면ㄱㄱ

@@ -2,7 +2,6 @@ package student.Management;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -63,11 +62,12 @@ public class AttendanceManage {
 				if (answer.equals("n")) {
 					System.out.println("프로그램을 종료합니다");
 					flag = false;
-					break;	// break;로 while확실하게탈출, 안하면 와일밖에 flag가다시 true되거나 뭔가 좀 꼬이는거같아요ㅠ
+					break; // break;로 while확실하게탈출, 안하면 와일밖에 flag가다시 true되거나 뭔가 좀 꼬이는거같아요ㅠ
 				} else if (answer.equals("y")) {
-					studentArrive();	// y면 자기메소드 다시 시작(다시입력부터), 왜냐하면 입력자체를 반복문안에서가 아닌 메소드 시작할에 했습니다
+					studentArrive(); // y면 자기메소드 다시 시작(다시입력부터), 왜냐하면 입력자체를 반복문안에서가 아닌 메소드 시작할에 했습니다
 				}
-			}break;	// 한번 탈출하면 프로그램 종료입니다
+			}
+			break; // 한번 탈출하면 프로그램 종료입니다
 
 		}
 	}
