@@ -310,3 +310,107 @@
       }
   }
   ```
+
+3. 프로세스 종료
+
+- 운영체제는 실행중인 프로그램을 프로세스로 관리한다.
+- 자바 프로그램을 시작하면 JVM 프로세스가 생성되고, 이 프로세스가 main()메소드를 호출하며, 이 프로세스를 강제 종료하고 싶으면 System클래스의 `exit()` 메소드를 사용한다.
+
+  `System.exit(int status)`
+
+- `exit()` 메소드는 int 매개값이 필요하며, 종료 상태값이라고 한다.
+
+  - 정상종료 : 0
+  - 비정상종료 : -1 or 1
+
+- ExitExample 예제
+
+  ```java
+  package javaChap12.example02;
+
+  public class ExitExample {
+      public static void main(String[] args) {
+          for (int i = 0; i < 10; i++) {
+              System.out.println(i);
+              if (i == 5) {
+                  System.out.println("프로세스강제종료");
+                  System.exit(0);
+              }
+          }
+      }
+  }
+  ```
+
+4. 진행 시간 읽기
+
+- System 클래스의 `currentTimeMillis()` 메소드와 `nanoTime()` 메소드는 1970년 1월 1일 0시 부터 시작해서 현재까지 진행된 시간을 리턴한다.
+- 메소드
+
+  - `long currentTimeMillis()` : 1/1000초 단위로 진행된 시간을 리턴
+  - `long nanoTime()` : 1/10^9초 단위로 진행된 시간을 리턴
+
+- 프로그램 처리 시간을 측정하는데 주로 사용되며, 프로그램 처리를 시작할 때 한번, 끝날 때 한번 리턴된 값의 차이를 이용하여 프로그램 처리 시간을 구한다.
+- MesureRunTimeExample 예제
+
+  ```java
+  package javaChap12.example02;
+
+  public class MesureRunTimeExample {
+      public static void main(String[] args) {
+          long time1 = System.nanoTime();
+          int sum = 0;
+          for(int i = 0;i<100000000;i++) {
+              sum+=i;
+          }
+          long time2 = System.nanoTime();
+
+          System.out.println("총합 : " + sum);
+          System.out.println((time2 - time1) + "나노초 소요되었습니다.");
+      }
+  }
+  ```
+
+5. 시스템 프로퍼티 읽기
+
+- 시스템 프로퍼티(System Property) : 자바 프로그램이 시작될 때 자동 설정되는 시스템의 속성(운영체제 종류 및 사용자 정보, 자바 버전 등의 기본 사양정보)
+- 시스템 프로퍼티의 주요 속성 이름(key)과 값(value)
+
+  - `java.specification.version` : 자바 스펙 버전, 17
+  - `java.home` : JDK 디렉토리 경로, C:\Program Files\Java\jdk-17.03
+  - `os.name` : 운영체제, Windows 10
+  - `user.name` : 사용자 이름, xxx
+  - `user.home` : 사용자 홈 디렉토리 경로, C:\Users\xxx
+  - `user.dir` : 현재 디렉토리 경로, C:\ThisIsJavaSecondEdition\workspace\thisisjava
+
+- GetPropertyExample 예제
+
+  ```java
+  package javaChap12.example02;
+
+  import java.util.Properties;
+  import java.util.Set;
+
+  public class GetPropertyExample {
+      public static void main(String[] args) {
+          String osName = System.getProperty("os.name");
+          String userName = System.getProperty("user.name");
+          String userHome = System.getProperty("user.home");
+
+          System.out.println(osName);
+          System.out.println(userName);
+          System.out.println(userHome);
+
+          System.out.println("----------------------");
+          System.out.println("key: value");
+          System.out.println("----------------------");
+          Properties props = System.getProperties();
+          Set keys = props.keySet();
+
+          for(Object obKey : keys) {
+              String key = (String) obKey;
+              String value = System.getProperty(key);
+              System.out.printf("%-40s: %s\n", key, value);
+          }
+      }
+  }
+  ```
