@@ -414,3 +414,224 @@
       }
   }
   ```
+
+### 5. 문자열 클래스
+
+- `String` : 문자열을 저장하고 조작할 떄 사용
+- `StringBuilder` : 효율적인 문자열 조작 기능이 필요할 때 사용
+- `StringTokenizer` : 구분자로 연결된 문자열을 분리할 떄 사용
+
+1. String 클래스
+
+- 문자열 리터럴은 자동으로 String 객체로 생성되지만, String 클래스의 다양한 생정자를 이용해서 직접 객체를 생성할 수도 있다.
+- 네트워크 통신으로 얻은 byte 배열을 원래 문자열로 변환하는 경우
+
+  ```java
+  // byte 배열 -> String 디코딩
+  String str = new String(byte[] bytes);
+  String str = new String(byte[] bytes, String charsetName);
+  ```
+
+- BytesToStringExample 예제
+
+  ```java
+  package javaChap12.example03;
+
+  import java.io.UnsupportedEncodingException;
+  import java.util.Arrays;
+
+  public class BytesToStringExample {
+
+    public static void main(String[] args) throws UnsupportedEncodingException {
+      // TODO Auto-generated method stub
+      String data = "자바";
+      // 인코딩
+      byte[] arr1 = data.getBytes("UTF-8"); // 기본 = UTF-8, .getBytes("UTF-8");
+
+      System.out.println(Arrays.toString(arr1));
+      // 디코딩
+      String str1 = new String(arr1);
+      System.out.println(str1);
+
+      byte[] arr2 = data.getBytes("EUC-KR");
+      System.out.println(Arrays.toString(arr2));
+
+      String str2 = new String(arr2);
+      System.out.println(str2);
+      String korStr = "자바";
+
+      // 인코딩 변환시 문자열 깨짐이 발생하는 경우, 아래와 같은 방법으로 맞는 인코딩타입을 찾을 수 있다.
+      String charset[] = { "utf-8", "euc-kr", "ksc5601", "iso-8859-1", "8859_1", "ascii" };
+
+      for (String before : charset) {
+        for (String after : charset) {
+          if (!before.equals(after)) {
+            System.out.println(before + " -> " + after + " = " + new String("자바".getBytes(before), after));
+          }
+        }
+      }
+    }
+  }
+  ```
+
+2. StringBuilder 클래스
+
+- `String`은 내부 문자열을 수정할 수 없다.(변경한 것 처럼 보이지만 사실 새로운 String 객체를 생성한다.)
+- 문자열의 + 연산은 새로운 String 객체가 생성되고 이전 객체는 계속 버려지는 것이기 때문에 효율성이 좋지 않다.
+- 잦은 문자열 변경 작업을 해야 한다면, `StringBuilder` 클래스를 사용하는 것이 좋으며, 내부 버퍼(데이터를 저장하는 메모리)에 문자열을 저장해두고 그 안에서 추가, 수정, 삭제 작업을 하도록 설계되어 있다.
+- StringBuilder 메소드
+
+  - `StringBuilder append(기본값 | 문자열)` : 문자열을 끝에 추가
+  - `StringBuilder insert(위치, 기본값 | 문자열)` : 문자열을 지정 위치에 추가
+  - `StringBuilder delete(시작 위치, 끝 위치)` : 문자열 일부를 삭제
+  - `StringBuilder replace(시작 위치, 끝 위치, 문자열)` : 문자열을 일부를 대체
+  - `StringBuilder toString()` : 완성된 문자열을 리턴
+
+- StringBuilderExample 예제
+
+  ```java
+  package javaChap12.example03;
+
+  public class StringBuilderExample {
+    public static void main(String[] args) {
+      StringBuilder data = new StringBuilder();
+      data.append("DEF");
+      data.insert(0, "ABC");
+      data.delete(3, 4);
+      System.out.println(data);
+      data.toString();
+
+      System.out.println(data);
+    }
+  }
+  ```
+
+3. StringTokenizer 클래스
+
+- 문자열이 구분자(delimiter)로 연결되어 있을 경우, 구분자를 기준으로 문자열을 분리하려면 String의 `split()` 메소드를 이용하거나 java.util 패키지의 StringTokenizer 클래스를 이용할 수 있다.
+- `split()`은 정규 표현식으로 구분하고, `StringTokenizer`는 문자로 구분한다.
+
+  ```java
+  // 정규표현식 = split()
+  String data = "홍길동&이수홍,박연수,김자바-최명호";
+  String[] name = data.split("&|,|-");
+  // 어느 한 종류의 구분자만 있다면 StringTokenizer를 사용, 구분자 생략은 공백이 기본 구분자가 된다.
+  String data = "홍길동/이수홍/박연수";
+  StringTokenizer st = new StringTokenizer(data, "/");
+  ```
+
+- `StringTokenizer` 메소드
+
+  - `int countTokens()` : 분리할 수 있는 문자열의 총 수
+  - `boolean hasMoreTokens()` : 남아 있는 문자열이 있는지 여부
+  - `String nextToken()` : 문자열을 하나씩 가져옴()
+
+- `nextToken()` 메소드는 분리된 문자열을 하나씩 가져오고 더 이상 가져올 문자열이 없다면 예외를 발생시키기 때문에, `hasMOreTokens()` 메소드로 가져올 문자열이 있는지 먼저 조사하는 것이 좋은 방법이다.
+- StringTokenizerExample 예제
+
+  ```java
+  package javaChap12.example03;
+
+  import java.util.StringTokenizer;
+
+  public class StringTokenizerExample {
+    public static void main(String[] args) {
+      String str1 = "홍길동%이수홍,박연수";
+      String[] names = str1.split("%|,");
+
+      for (String str : names) {
+        System.out.println(str);
+      }
+      String str2 = "홍길동$,이수홍$**박연수";
+      StringTokenizer st = new StringTokenizer(str2, "$|,|*");
+      int count = st.countTokens(); // 남아있는 토큰의 개수
+      System.out.println(count);
+      while (st.hasMoreTokens()) {
+        String token = st.nextToken();
+        System.out.println(token);
+      }
+      System.out.println(st.countTokens()); // 토큰 사용후 남은 개수가 출력된다. count = 3, st.countTokens() = 0
+    }
+  }
+  ```
+
+### 6. 포장 클래스
+
+- 자바는 기본타입의 값을 갖는 객체를 생성할 수 있으며, 이런 객체를 포장(wrapper) 객체라고 한다.
+- 기본 타입 : byte, char, short, int, long, float, double, boolean
+- 포장클래스 : Byte, Character, Short, Integer, Long, Float, Double, Boolean
+- 포장 객체는 포장하고 있는 기본 타입의 값을 변경할 수 없고, 단지 객체로 생성하는데 목적이 있다.
+
+1. 박싱과 언박싱
+
+- 박싱(boxing) : 기본 타입의 값을 포장 객체로 만드는 과정, 포장클래스 변수에 기본 타입 값이 대입될 때 발생
+- 언박싱(unboxing) : 포장 객체에서 기본 타입의 값을 얻어내는 과정, 기본 타입 변수에 포장 객체가 대입될 때 발생
+
+  ```java
+  Integer a = 100;  // 박싱
+  int value = a;  // 언박싱
+  int value = a + 50; // a는 50과 연산되기 전에 언박싱된다.
+  ```
+
+- BoxingUnBoxingExample 예제
+
+  ```java
+  package javaChap12.example04;
+
+  public class BoxingUnBoxingExample {
+    public static void main(String[] args) {
+      Integer obj = 100;
+      System.out.println(obj.intValue());
+
+      int value = obj;
+      System.out.println(value);
+
+      int result = obj + 100;	// obj 가 먼저 언박싱 후 연산
+      System.out.println(result);
+    }
+  }
+  ```
+
+2. 문자열을 기본 타입 값으로 변환
+
+- 포장 클래스는 문자열을 기본 타입 값으로 변환할 때도 사용되며, 대부분의 포장 클래스에는 `parse+기본타입`명으로 되어있는 정적메소드가 있다.
+  ```java
+  String str = "3000000";
+  int value = Integer.parseInt(str);
+  ```
+
+3. 포장 값 비교
+
+- 포장 객체는 내부 값을 비교하기 위해 ==와 != 연산자를 사용할 수 없다.(객체의 주소를 비교하기 때문)
+
+  ```java
+  Integer obj1 = 300;
+  Integer obj2 = 300;
+  System.out.println(obj1 == obj2);
+  // 값은 같지만 주소값이 달라 false를 리턴한다.
+  ```
+
+- 예외적으로 해당 범위의 값을 갖는 포장 객체는 공유된다.
+  - `boolean` : true, false
+  - `char` : \u0000 ~ \u007f
+  - `byte`, `short`, `int` : -128 ~ 127
+- 포장 객체에 정확히 어떤 값이 저장될 지 모르는 상황이라면 `==`과 `!=`는 사용하지 않는 것이 좋으며, 대신 `equals()` 메소드로 내부 값을 비교할 수 있다.
+- ValueCompareExample 예제
+
+  ```java
+  package javaChap12.example04;
+
+  public class ValueCompareExample {
+    public static void main(String[] args) {
+      Integer obj1 = 300;
+      Integer obj2 = 300;
+      System.out.println(obj1==obj2);
+      System.out.println(obj1.equals(obj2));
+
+      Integer obj3 = 100;
+      Integer obj4 = 100;
+      System.out.println(obj3==obj4);	// -128~127의 범위에서의 결과를 확인해볼 수 있다.
+      System.out.println(obj3.equals(obj4));
+    }
+  }
+  ```
