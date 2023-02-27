@@ -24,6 +24,7 @@
 		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
 		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\JHC\web_studyB\study\java_backup\archive\2023_02_27.zip"/>
 			<item value="C:\JHC\web_studyB\study\java_backup\archive\projectTeam1.zip"/>
 		</list>
 	</section>

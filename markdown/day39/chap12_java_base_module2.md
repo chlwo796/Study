@@ -414,3 +414,140 @@
       }
   }
   ```
+
+### 9. 형식 클래스
+
+- Format(형식) 클래스는 숫자 또는 날짜를 원하는 형태의 문자열로 변환해주는 기능을 제공한다.
+- Format 주요 클래스
+  - `DecimalFormat` : 숫자를 형식화된 문자열로 변환
+  - `SimpleDateFormat` : 날짜를 형식화된 문자열로 변환
+
+1. DecimalFormat
+
+- DecimalFormat은 숫자를 형식화된 문자열로 변환하는 기능을 제공하며, 다음과 같은 패턴을 사용한다.
+
+  ![](https://mblogthumb-phinf.pstatic.net/20160107_271/rain483_1452157680736vtAjv_PNG/1.PNG?type=w2)
+
+- 패턴 정보와 함께 DecimalFormat 객체를 생성하고 `format()` 메소드로 숫자를 제공하면 패턴에 따른 형식화된 문자열을 얻을 수 있다.
+
+  ```java
+  DecimalFormat df = new DecimalFormat("#,###.0");
+  String result = df.format(1234567.89);
+  ```
+
+- DecimalFormatExample 예제
+
+  ```java
+  package javaChap12.example07;
+
+  import java.text.DecimalFormat;
+
+  public class DecimalFormatExample {
+    public static void main(String[] args) {
+      double num = 1234567.89;
+
+      DecimalFormat df;
+
+      df = new DecimalFormat("#,###");
+      System.out.println(df.format(num));
+
+      df = new DecimalFormat("#,###.00");
+      System.out.println(df.format(num));
+    }
+  }
+  ```
+
+1. SimpleDateFormat
+
+- SimpleDateFormat은 날짜를 형식화된 문자열로 변환하는 기능을 제공하며, 다음과 같은 패턴을 사용한다.
+
+  ![](https://mblogthumb-phinf.pstatic.net/20160107_61/rain483_14521583552198iIfo_PNG/3.PNG?type=w2)
+
+- 패턴에는 자리수에 맞게 기호를 반복해서 작성할 수 있으며, 패턴 정보와 함께 SimpleDateFormat 객체를 생성하고 `format()` 메소드로 날자를 제공하면 패턴과 동일한 문자열을 얻을 수 있다.
+
+  ```java
+  SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+  String strDate = sdf.format(new Date());
+  ```
+
+- SimpleDateFormatExample 예제
+
+  ```java
+  package javaChap12.example07;
+
+  import java.text.SimpleDateFormat;
+  import java.util.Date;
+
+  public class SimpleDateFormatExample {
+    public static void main(String[] args) {
+      Date now = new Date();
+
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+      System.out.println(sdf.format(now));
+
+      sdf = new SimpleDateFormat("yyyy.MM.dd a HH:mm:ss");
+      System.out.println(sdf.format(now));
+
+      sdf = new SimpleDateFormat("오늘은 E요일");
+      System.out.println(sdf.format(now));
+      // D = 월 구분이 없는 일(1~365)
+      sdf = new SimpleDateFormat("올해의 D번째 날");
+      System.out.println(sdf.format(now));
+
+      sdf = new SimpleDateFormat("오늘은 M월의 W번재 주");
+      System.out.println(sdf.format(now));
+    }
+  }
+  ```
+
+### 10. 정규 표현식 클래스
+
+- 정규표현식(Regular Expression)을 이용해서 문자열이 올바르게 구성되어 있는지 검증한다.
+
+1. 정규 표현식 작성 방법
+
+- 정규 표현식은 문자 또는 숫자와 관련된 표현과 반복 기호가 결합된 문자열이다.
+
+  ![](https://velog.velcdn.com/images%2Fcyhse7%2Fpost%2Fd0c4861d-d7e9-4080-ba17-6cee4738a424%2Fimage.png)
+
+- 02-123-1234, 010-1234-5678 의 정규표현식
+
+  `(02|010)-\d{3,4}-\d{4}`
+
+- white@naver.com 의 정규표현식
+
+  `\w+@\w+\.\w+(\.\w+)?`
+
+2. Pattern 클래스로 검증
+
+- java.util.regex 패키지의 Pattern 클래스는 정규 표현식으로 문자열을 검증하는 `matches()` 메소드를 제공한다.
+  `boolean result = Pattern.matches("정규식", "검증할 문자열");`
+
+- PatternExample 예제
+
+  ```java
+  package javaChap12.example08;
+
+  import java.util.regex.Pattern;
+
+  public class PatternExample {
+    public static void main(String[] args) {
+      String regExp = "(02|010)-\\d{3,4}-\\d{4}";
+      String data = "010-4116-0586";
+      boolean result = Pattern.matches(regExp, data);
+      if(result) {
+        System.out.println("일치");
+      }else {
+        System.out.println("불일치");
+      }
+      regExp = "\\w+@\\w+\\.\\w+(\\.\\w+)?";
+      data = "chlwo796@naver.com";
+      result = Pattern.matches(regExp, data);
+      if(result) {
+        System.out.println("이메일일치");
+      }else {
+        System.out.println("불일치");
+      }
+    }
+  }
+  ```

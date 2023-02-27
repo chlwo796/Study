@@ -30,7 +30,6 @@
     <fullyQualifiedTypeName name="jdk.tools.jaotc.collect.directory.DirectorySource"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="javaHigh06.example07.DecimalFormatEx"/>
-    <fullyQualifiedTypeName name="java.text.DecimalFormat"/>
     <fullyQualifiedTypeName name="javaHigh06.example10.AnnotationEx01"/>
     <fullyQualifiedTypeName name="java.lang.annotation.ElementType"/>
     <fullyQualifiedTypeName name="java.lang.annotation.Target"/>
@@ -52,6 +51,10 @@
     <fullyQualifiedTypeName name="java.time.temporal.ChronoUnit"/>
     <fullyQualifiedTypeName name="javaHigh06.exercise12.SimpleDateFormat"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.text.DecimalFormat"/>
+    <fullyQualifiedTypeName name="org.graalvm.compiler.bytecode.Bytes"/>
+    <fullyQualifiedTypeName name="java.text.NumberFormat"/>
+    <fullyQualifiedTypeName name="java.util.Locale"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
 </qualifiedTypeNameHistroy>

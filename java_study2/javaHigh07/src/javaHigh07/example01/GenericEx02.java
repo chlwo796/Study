@@ -45,7 +45,6 @@ class Product<K, M> {
 	public void setModel(M model) {
 		this.model = model;
 	}
-	
 }
 
 class Tv{
