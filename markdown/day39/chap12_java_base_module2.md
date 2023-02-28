@@ -711,3 +711,85 @@
 
   }
   ```
+
+### 12. 어노테이션
+
+- 어노테이션(Annotation) : 코드에서 `@`으로 작성되는 요소이며, 클래스 또는 인터페이스를 컴파일하거나 실행할 때 어떻게 처리해야 할 것인지를 알려주는 설정 정보이다.
+- 어노테이션의 세가지 용도
+  - 컴파일 시 사용하는 정보 전달
+  - 빌드 툴이 코드를 자동으로 생성할 때 사용하는 정보 전달
+  - 실행 시 특정 기능을 처리할 때 사용하는 정보 전달
+
+1. 어노테이션 타입 정의와 적용
+
+- 어노테이션도 하나의 타입이므로 어노테이션을 사용하기 위해서는 먼저 정의부터 해야 한다.
+
+  ```java
+  public @interface AnnotationName{
+      // 이렇게 정의한 어노테이션은 @AnnotationName 으로 사용된다.
+  }
+  ```
+
+- 어노테이션은 속성을 가질 수 있으며, 타입과 이름으로 구성, 이름 뒤에 괄호를 붙인다.
+
+  ```java
+  public @interface AnnotationName{
+    String prop1();
+    int prop2 default 1;  // 속성의 기본값은 default 키워드로 지정할 수 있다.
+
+    // 이렇게 선언된 어노테이션은 다음과 같이 사용한다.
+    // @AnnotationName(prop1 = "값"); // prop2는 기본값이 있기 때문에 생략 가능하다.
+    // @AnnotationName(prop1 = "값", prop2 = 3);
+  }
+  ```
+
+- 어노테이션은 기본 속성인 value를 가질 수 있다.
+
+  ```java
+  public @interface Annotation{
+    String value();
+    int prop2 default 1;
+
+    // value 속성을 가진 어노테이션은 코드에서 다음과 같이 값만 기술할 수 있다.
+    // @Annotation("값");
+    // value 속성과 다른 속성의 값을 동시에 주고 싶으면 value 속성 이름을 반드시 언급해야한다.
+    // @Annotation(value = "값", prop2 = 3);
+  }
+  ```
+
+2. 어노테이션 적용 대상
+
+- 어노테이션은 설정 정보이며, 어떤 대상에 설정 정보를 적용할 것인지 명시해야한다.
+- ElementType 열거상수로 정의되어있는 적용 대상의 종류
+
+  - `TYPE` : 클래스, 인터페이스, 열거타입
+  - `ANNOTATION_TYPE` : 어노테이션
+  - `FIELD` : 필드
+  - `CONSTRUCTOR` : 생성자
+  - `METHOD` : 메소드
+  - `LOCAL_VARIABLE` : 로컬 변수
+  - `PACKAGE` : 패키지
+
+- `@Target` : 적용 대상을 지정할 때 사용, 기본 속성인 value는 ElementType 배열을 값으로 가진다.
+
+```java
+@Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD})
+// 클래스, 필드, 메소드 적용대상
+public @interface AnnotationName{
+
+}
+@AnnotationName
+public class ClassName{
+  @AnnotationName
+  private String fieldName;
+
+  @AnnotationName
+  public void methodName(){
+
+  }
+  @AnnotationName
+  public ClassName(){
+    // 생성자에는 적용할 수 없다. @Target에서 지정하지 않았다.
+  }
+}
+```
