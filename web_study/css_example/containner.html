@@ -12,15 +12,36 @@
         width: 500px;
         height: 300px;
         overflow: hidden;
+        /* relative = 상대위치 */
         position: relative;
       }
-      #red {
+      .circle {
+        /* absolute = 절대위치 */
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        /* 반지름 50%의 원(중심에서 50%) */
+        border-radius: 50% 50%;
       }
-      #grren {
+      #red {
+        background-color: red;
+        left: 20px;
+        top: 20px;
+      }
+      #green {
+        background-color: green;
+        right: 20px;
+        top: 20px;
       }
       #blue {
+        background-color: blue;
+        left: 20px;
+        top: 200px;
       }
       #yellow {
+        background-color: yellow;
+        right: 20px;
+        top: 200px;
       }
     </style>
   </head>
