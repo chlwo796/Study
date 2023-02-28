@@ -8,5 +8,6 @@ public class Main {
 		int a = sc.nextInt();
 		
 		
+		
 	}
 }

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="com.sun.java_cup.internal.runtime.Scanner"/>
-    <fullyQualifiedTypeName name="com.sun.nio.sctp.SctpStandardSocketOptions.InitMaxStreams"/>
     <fullyQualifiedTypeName name="javaHigh02.example05.Student"/>
     <fullyQualifiedTypeName name="javaHigh04.example04.PropertiesEx01"/>
     <fullyQualifiedTypeName name="java.util.SortedSet"/>
@@ -28,7 +25,6 @@
     <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="java.util.Iterator"/>
     <fullyQualifiedTypeName name="jdk.tools.jaotc.collect.directory.DirectorySource"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="javaHigh06.example07.DecimalFormatEx"/>
     <fullyQualifiedTypeName name="javaHigh06.example10.AnnotationEx01"/>
     <fullyQualifiedTypeName name="java.lang.annotation.ElementType"/>
@@ -57,4 +53,11 @@
     <fullyQualifiedTypeName name="java.util.Locale"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
+    <fullyQualifiedTypeName name="javaHigh07.example01.Box1"/>
+    <fullyQualifiedTypeName name="java.lang.Byte"/>
+    <fullyQualifiedTypeName name="javaHigh07.example01.Applicant"/>
+    <fullyQualifiedTypeName name="java.lang.Character"/>
+    <fullyQualifiedTypeName name="java.lang.Short"/>
+    <fullyQualifiedTypeName name="java.lang.Runnable"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
 </qualifiedTypeNameHistroy>
