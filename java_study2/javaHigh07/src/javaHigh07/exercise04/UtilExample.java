@@ -3,11 +3,11 @@ package javaHigh07.exercise04;
 public class UtilExample {
 	public static void main(String[] args) {
 		Pair<String, Integer> pair = new Pair<String, Integer>("È«±æµ¿", 35);
-		Integer age = Util.getValue(pair, "È«±æµ¿");
+		Integer age = Util.getValue1(pair, "È«±æµ¿");
 		System.out.println(age);
 
 		ChildPair<String, Integer> childPair = new ChildPair<String, Integer>("±èÀÚ¹Ù", 30);
-		Integer childAge = Util.getValue(childPair, "±èÀÚ¹Ù");
+		Integer childAge = Util.getValue1(childPair, "±èÀÚ¹Ù1");
 		System.out.println(childAge);
 
 //		OtherPair<String, Integer> otherPair = new OtherPair<String, Integer>("È«±æµ¿", 35);
@@ -17,18 +17,21 @@ public class UtilExample {
 	}
 }
 
-class Util<T extends Pair<String, Integer>> {
-	
+class Util {
 	public static <P extends Pair<K, V>, K, V> V getValue1(P p, K k) {
+		if (p.getKey().equals(k)) {
+			return p.getValue();
+		}
+
 		return null;
 	}
 
-	public static Integer getValue(Pair<String, Integer> pair, String name) {
-		if (pair.getKey().equals(name)) {
-			return pair.getValue();
-		}
-		return 0;
-	}
+//	public static Integer getValue(Pair<String, Integer> pair, String name) {
+//		if (pair.getKey().equals(name)) {
+//			return pair.getValue();
+//		}
+//		return 0;
+//	}
 }
 
 class Pair<K, V> {

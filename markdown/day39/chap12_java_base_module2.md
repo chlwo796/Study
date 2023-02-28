@@ -551,3 +551,163 @@
     }
   }
   ```
+
+### 11. 리플렉션
+
+- 자바는 클래스와 인터페이스의 메타 정보를 Class 객체로 관리한다.
+- 메타정보 : 패키지 정보, 타입 정보, 멤버(생성자, 필드, 메소드) 정보 등
+- 리플렉션(reflection) : 메타 정보를 프로그램에서 읽고 수정하는 행위
+
+  ```java
+  Class clazz = String.class; // 클래스로부터 얻는 방법
+  Class clazz = Class.forName("java.lang.String");
+  String str = "김자바";
+  Class clazz = str.getClass();  // 객체로부터 얻는 방법
+  ```
+
+1. 패키지와 타입 정보 얻기
+
+- 패키지와 타입(클래스, 인터페이스) 이름 정보를 얻는 메소드
+
+  - `Package getPackage()` : 패키지 정보 읽기
+  - `String getSimpleName()` : 패키지를 제외한 타입 이름
+  - `String getName()` : 패키지를 포함한 전체 타입 이름
+
+- GetClassExample 예제
+
+  ```java
+  package javaChap12.example09;
+
+  public class GetClassExample {
+    public static void main(String[] args) throws ClassNotFoundException {
+      Class clazz1 = Car.class;
+      Class clazz2 = Class.forName("javaChap12.example09.Car");
+      Car car = new Car();
+      Class clazz3 = car.getClass();
+
+      System.out.println(clazz1.getPackageName());
+      System.out.println(clazz2.getSimpleName());
+      System.out.println(clazz3.getName());
+      System.out.println(clazz1);
+      System.out.println(clazz2);
+      System.out.println(clazz3);
+    }
+  }
+
+  class Car {
+
+  }
+  ```
+
+2. 멤버 정보 얻기
+
+- 타입(클래스, 인터페이스)가 가지고 있는 멤버 정보를 얻는 메소드
+
+  - `Constructor[] getDeclaredConstructors()` : 생성자 정보 읽기
+  - `Field[] getDeclaredFields()` : 필드 정보 읽기
+  - `Method[] getDeclaredMethods()` : 메소드 정보 읽기
+
+- Constructor, Field, Method 클래스는 전부 java.lang.reflect 패키지에 있는데, 각각 생성자, 필드, 메소드에 대한 선언부 정보를 제공한다.
+- ReflectionExample 예제
+
+  ```java
+  package javaChap12.example09;
+
+  import java.lang.reflect.Constructor;
+  import java.lang.reflect.Field;
+  import java.lang.reflect.Method;
+
+  public class ReflectionExample {
+    public static void main(String[] args) {
+      Class clazz = Car1.class;
+      Constructor[] constructors = clazz.getDeclaredConstructors();
+      for (Constructor constructor : constructors) {
+        System.out.print(constructor.getName() + "(");
+        Class[] parameters = constructor.getParameterTypes();
+        printParameters(parameters);
+        System.out.println(")");
+      }
+      System.out.println();
+      Field[] fields = clazz.getDeclaredFields();
+      for (Field field : fields) {
+        System.out.println(field.getType().getName() + " " + field.getName());
+      }
+      System.out.println();
+      Method[] methods = clazz.getDeclaredMethods();
+      for (Method method : methods) {
+        System.out.print(method.getName() + "(");
+        Class[] parameters = method.getParameterTypes();
+        printParameters(parameters);
+        System.out.println(")");
+      }
+      System.out.println();
+    }
+
+    private static void printParameters(Class[] parameters) {
+      for (int i = 0; i < parameters.length; i++) {
+        System.out.print(parameters[i].getName());
+        if (i < parameters.length - 1) {
+          System.out.print(",");
+        }
+      }
+    }
+  }
+
+  class Car1 {
+    private String model;
+    private String owner;
+
+    public Car1(String model) {
+      super();
+      this.model = model;
+    }
+
+    public Car1() {
+      // TODO Auto-generated constructor stub
+    }
+
+    public String getModel() {
+      return model;
+    }
+
+    public void setModel(String model) {
+      this.model = model;
+    }
+
+    public String getOwner() {
+      return owner;
+    }
+
+    public void setOwner(String owner) {
+      this.owner = owner;
+    }
+  }
+  ```
+
+3. 리소스 경로 얻기
+
+- Class 객체는 클래스 파일(`.class`)의 경로 정보를 가지고 있기 때문에, 이 경로를 기준으로 상대경로에 있는 다른 리소스 파일(이미지, XML, Property 파일)의 정보를 얻을 수 있다.
+  - `URL getResource(String name)` : 리소스 파일의 URL 리턴
+  - `InputStream getResourceAsStream(String name)` : 리소스 파일의 InputStream 리턴
+- getResource()는 경로 정보가 담긴 URL 객체를 리턴하고, getResourceAsStream()은 파일의 내용을 읽을 수 있도록 InputStream 객체를 리턴한다.
+- src 폴더에 클래스파일과 함께 저장되있는 상태에서, 컴파일 후 bin 폴더로 자동으로 복사가 된다.
+
+  ```java
+  package javaChap12.example09;
+
+  public class GetResourceExample {
+    public static void main(String[] args) {
+      Class clazz = Car2.class;
+
+      String photo1Path = clazz.getResource("1.jpg").getPath();
+      String photo2Path = clazz.getResource("images/2.jpg").getPath();
+
+      System.out.println(photo1Path);
+      System.out.println(photo2Path);
+    }
+  }
+
+  class Car2 {
+
+  }
+  ```

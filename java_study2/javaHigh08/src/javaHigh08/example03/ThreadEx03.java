@@ -11,7 +11,7 @@ public class ThreadEx03 {
 			}
 		};
 
-//		thread1.start();
+		thread1.start();
 
 		Runnable r1 = new Runnable() {
 			@Override
@@ -32,20 +32,9 @@ public class ThreadEx03 {
 		};
 		// Runnable 익명객체로 하나의 Thread에 주소 넣어준다.
 		Thread thread = new Thread(r1);
-		int count = 0;
+		thread = new Thread(r1);
+		thread.start();
 		thread = new Thread(r2);
-		while (thread instanceof Runnable) {
-			thread.start();
-			thread.wait();
-			thread.start();
-			count++;
-			if (count == 10) {
-				break;
-			}
-		}
-//		thread.start();
-//		thread = new Thread(r2);
-//		thread.start();
+		thread.start();
 	}
-
 }
