@@ -1,7 +1,7 @@
 package javaHigh08.example06;
 
 public class WorkObject {
-	public synchronized void methodA() throws InterruptedException {
+	public synchronized void  methodA() throws InterruptedException {
 		System.out.println("ThreadA methodA() 작업중");
 		notify(); // 실행
 		wait();

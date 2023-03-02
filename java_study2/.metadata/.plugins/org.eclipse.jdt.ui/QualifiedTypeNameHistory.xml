@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.Map"/>
-    <fullyQualifiedTypeName name="java.util.HashSet"/>
-    <fullyQualifiedTypeName name="java.util.Comparator"/>
     <fullyQualifiedTypeName name="java.lang.Comparable"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="student.Management.StudentManager"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="javaHigh09.example03.Person"/>
     <fullyQualifiedTypeName name="javaHigh09.example03.Computer"/>
     <fullyQualifiedTypeName name="javaHigh09.example03.InterfaceEx01"/>
+    <fullyQualifiedTypeName name="javaChap13.example05.HighSchool"/>
+    <fullyQualifiedTypeName name="javaChap13.example05.MiddleStudent"/>
+    <fullyQualifiedTypeName name="javaChap13.exercise03.Container"/>
 </qualifiedTypeNameHistroy>

@@ -362,3 +362,95 @@
       }
   }
   ```
+
+### 5. 와일드카드 타입 파라미터
+
+- 제네릭 타입을 매개값이나 리턴 타입으로 사용할 때 타입 파라미터로 `?`(와일드카드)를 사용할 수 있으며, `?`는 범위에 있는 모든 타입으로 대체할 수 있다는 표시이다.
+
+  ```java
+  returnType methodName(GenericType<? extends ParentClass> parameter){}
+  // 부모 포함 해당 부모의 자식클래스를 타입 파라미터의 대체 타입으로 한다.
+  returnType methodName(GenericType<? super ChildClass> parameter){}
+  // 자식 포함 해당 자식의 부모클래스를 타입 파라미터의 대체 타입으로 한다.
+  returnType methodName(GenericType<?> parameter){}
+  // 모든 타입을 파라미터의 대체 타입으로 한다.
+  ```
+
+- GenericExample 예제
+
+  ```java
+  package javaChap13.example05;
+
+  public class Person {
+
+  }
+
+  class Worker extends Person {
+
+  }
+
+  class Student extends Person {
+
+  }
+
+  class HighSchool extends Student {
+
+  }
+
+  class MiddleStudent extends Student {
+
+  }
+  ```
+
+  ```java
+  package javaChap13.example05;
+
+  public class Applicant<T> {
+      public T kind;
+
+      public Applicant(T kind) {
+          super();
+          this.kind = kind;
+      }
+  }
+  ```
+
+  ```java
+  package javaChap13.example05;
+
+  public class Course {
+      public static void registerCourse1(Applicant<?> applicant) {
+          System.out.println(applicant.kind.getClass().getSimpleName() + "이(가) Course1을 등록함");
+      }
+
+      public static void registerCourse2(Applicant<? extends Student> applicant) {
+          System.out.println(applicant.kind.getClass().getSimpleName() + "이(가) Course2를 등록함");
+      }
+
+      public static void registerCourse3(Applicant<? super Worker> applicant) {
+          System.out.println(applicant.kind.getClass().getSimpleName() + "이(가) Course3을 등록함");
+      }
+  }
+  ```
+
+  ```java
+  package javaChap13.example05;
+
+  public class GenericExample {
+      public static void main(String[] args) {
+
+          Course.registerCourse1(new Applicant<Person>(new Person()));
+          Course.registerCourse1(new Applicant<Student>(new Student()));
+          Course.registerCourse1(new Applicant<Worker>(new Worker()));
+          Course.registerCourse1(new Applicant<HighSchool>(new HighSchool()));
+          Course.registerCourse1(new Applicant<MiddleStudent>(new MiddleStudent()));
+
+          Course.registerCourse2(new Applicant<Student>(new Student()));
+          Course.registerCourse2(new Applicant<HighSchool>(new HighSchool()));
+          Course.registerCourse2(new Applicant<MiddleStudent>(new MiddleStudent()));
+
+          Course.registerCourse3(new Applicant<Person>(new Person()));
+          Course.registerCourse3(new Applicant<Worker>(new Worker()));
+      }
+  }
+  ```

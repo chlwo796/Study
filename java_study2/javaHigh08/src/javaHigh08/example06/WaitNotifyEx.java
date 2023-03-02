@@ -9,7 +9,7 @@ public class WaitNotifyEx {
 		threadA.start();
 		threadB.start();
 
-		threadB.setDaemon(true); // threadB를 데몬스레드로 인정
-		threadA.setDaemon(false); // threadA 데몬스레드 헤제
+//		threadB.setDaemon(true); // threadB를 데몬스레드로 인정
+//		threadA.setDaemon(false); // threadA 데몬스레드 헤제
 	}
 }
