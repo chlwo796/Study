@@ -1,0 +1,51 @@
+* {
+  list-style: none;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+body {
+  width: 100%;
+  height: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+#menu1 {
+  width: 100%;
+  height: 95px;
+  background-color: black;
+  /* 스크롤바를 내려도 고정 */
+  position: fixed;
+  /* 겹치는게 있어도 맨 앞 */
+  z-index: 10;
+}
+/* #menu1 - ul 은 직계자식 */
+#menu1 ul {
+  display: inline-block;
+  margin: 20px;
+}
+#menu1 ul li {
+  float: left;
+  height: 100%;
+  line-height: 60px;
+  text-align: center;
+  background-color: black;
+  position: relative;
+}
+#menu1 ul li a {
+  text-decoration: none;
+  color: white;
+  margin: 0px;
+  padding: 0px;
+}
+#left {
+  width: 90px;
+}
+#right {
+  font-size: 15px;
+  width: 75px;
+}
+#cartMenu {
+  margin-top: -18px;
+}
