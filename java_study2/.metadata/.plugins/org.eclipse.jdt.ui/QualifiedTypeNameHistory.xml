@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.util.SortedSet"/>
-    <fullyQualifiedTypeName name="javaHigh05.example05.BuisinessComparator"/>
-    <fullyQualifiedTypeName name="jdk.internal.org.jline.terminal.impl.jna.win.Kernel32.WINDOW_BUFFER_SIZE_RECORD"/>
-    <fullyQualifiedTypeName name="java.util.NavigableMap"/>
-    <fullyQualifiedTypeName name="javaHigh05.example06.TeamNameComparator"/>
-    <fullyQualifiedTypeName name="java.util.NavigableSet"/>
-    <fullyQualifiedTypeName name="student.Management.LectureManagement"/>
-    <fullyQualifiedTypeName name="java.util.TreeSet"/>
-    <fullyQualifiedTypeName name="javaHigh05.example04.FruitComparator"/>
-    <fullyQualifiedTypeName name="javaChap15.example06.FruitComparator"/>
-    <fullyQualifiedTypeName name="java.util.Collections"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.util.HashSet"/>
     <fullyQualifiedTypeName name="java.util.Comparator"/>
@@ -60,4 +49,15 @@
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
     <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
+    <fullyQualifiedTypeName name="javaHigh08.example05.Calculator"/>
+    <fullyQualifiedTypeName name="javaHigh08.example05.User2Thread"/>
+    <fullyQualifiedTypeName name="javaHigh08.example06.WorkObject"/>
+    <fullyQualifiedTypeName name="javaHigh09.example01.CalculImpl"/>
+    <fullyQualifiedTypeName name="javaHigh09.example01.Calculable"/>
+    <fullyQualifiedTypeName name="javaHigh09.example02.InterfaceEx01"/>
+    <fullyQualifiedTypeName name="javaHigh09.example02.InterfaceEx02"/>
+    <fullyQualifiedTypeName name="javaHigh09.example02.InterfaceEx03"/>
+    <fullyQualifiedTypeName name="javaHigh09.example03.Person"/>
+    <fullyQualifiedTypeName name="javaHigh09.example03.Computer"/>
+    <fullyQualifiedTypeName name="javaHigh09.example03.InterfaceEx01"/>
 </qualifiedTypeNameHistroy>

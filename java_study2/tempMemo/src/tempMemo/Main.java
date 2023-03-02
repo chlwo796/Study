@@ -19,5 +19,19 @@ public class Main {
 		System.out.println(g);
 
 		Scanner sc = new Scanner(System.in);
+		int number = sc.nextInt();
+		int value1 = 0;
+		int value2 = 1;
+		for (int i = 0; i < number; i++) {
+			if (number < 3) {
+				
+			}
+
+			else if (number >= 3) {
+
+			}
+		}
+
+		System.out.println(value1);
 	}
 }
