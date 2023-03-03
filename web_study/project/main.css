@@ -47,5 +47,59 @@ body {
   width: 75px;
 }
 #cartMenu {
-  margin-top: -18px;
+  margin-top: -9px;
+}
+#Menu {
+  margin-top: -9px;
+}
+#add1 {
+  position: relative;
+  top: 95px;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 1600px;
+  border: #f4f4f4;
+  height: 500px;
+}
+#add2 {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 1600px;
+  background-color: white;
+  height: 600px;
+}
+#add2 img {
+  position: relative;
+  float: left;
+  left: 460px;
+  top: 150px;
+  padding: 50px;
+}
+#add2 ul li {
+  position: relative;
+  float: left;
+  font-weight: bolder;
+  font-style: 고딕체;
+  top: 315px;
+  left: -280px;
+  padding: 50px 50px 10px 50px;
+}
+#add2Text2 li {
+  color: rgb(83, 83, 83);
+  position: relative;
+  text-align: center;
+  float: left;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 고딕체;
+  top: 150px;
+  padding: 20px;
+}
+#add3 {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 1600px;
+  border: #f4f4f4;
+  height: 500px;
+  text-align: center;
 }
