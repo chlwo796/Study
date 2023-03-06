@@ -97,6 +97,10 @@ body {
   left: -300px;
   padding: 40px;
 }
+#add2 ul {
+  position: relative;
+  float: left;
+}
 #add3 {
   margin: 0 auto;
   overflow: hidden;
@@ -104,4 +108,70 @@ body {
   border: #f4f4f4;
   height: 500px;
   text-align: center;
+}
+#add4 {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 1600px;
+  border: #f4f4f4;
+  height: 500px;
+  text-align: center;
+}
+#add4 table {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  /* 표 꼭지점 반지름 20px 만큼 둥글게 */
+  border-radius: 20px;
+  background-color: #f4f4f4;
+  padding-top: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+#add4 table tr {
+  height: 50px;
+  width: 200px;
+}
+#add4 table tr td {
+  width: 150px;
+}
+#add4TableLeft1 {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+}
+#add4TableLeft2 {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+}
+#add4TableLeft3 {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+}
+#add4TableLeft4 {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+}
+#add4TableRight1 {
+  font-size: 18px;
+  text-align: right;
+  color: rgb(95, 95, 95);
+}
+#add4TableRight2 {
+  font-size: 18px;
+  text-align: right;
+  color: rgb(95, 95, 95);
+}
+#add4TableRight3 {
+  font-size: 18px;
+  text-align: right;
+  color: rgb(95, 95, 95);
+}
+#add4TableRight4 {
+  font-size: 18px;
+  text-align: right;
+  color: rgb(95, 95, 95);
 }

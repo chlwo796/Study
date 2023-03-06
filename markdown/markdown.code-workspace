@@ -1,0 +1,16 @@
+{
+  "folders": [
+	{
+		"name": "markdown",
+		"path": "."
+	},
+	{
+		"name": "web_study",
+		"path": "../web_study"
+	},
+	{
+		"path": "../react_study"
+	}
+],
+  "settings": {}
+}

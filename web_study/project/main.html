@@ -60,18 +60,110 @@
       <ul id="add2Text1">
         <li style="left: -280px;">빠른 배송</li>
         <li>안전하고 신선한 포장</li>
-        <li>다양한 지역으로의 확장</li>
+        <li style="left: -300px;">다양한 지역으로의 확장</li>
       </ul>
       <ul id="add2Text2">
         <li>아침에 낳은 달걀을 저녁에<br>받아볼실수 있도록<br>최대한 빠르게 배송합니다.</li>
         <li style="left: -325px;">수차례 배송테스트를 거친<br>간소한 포장으로<br>신선도를 유지하면서도<br>안전하게 배송합니다.</li>
-        <li style="left: -350px;">초신선 상품을 더 많은 분들과<br>함께 하기 위해<br>당일배송, 새벽배송<br>지역을 계속 넓힙니다.</li>
+        <li style="left: -335px;">초신선 상품을 더 많은 분들과<br>함께 하기 위해<br>당일배송, 새벽배송<br>지역을 계속 넓힙니다.</li>
       </ul>
     </div>
     <div id="add3">
       <p style="top: 150px; left: 0px; position: relative; font-size: 35px; font-weight: bolder; text-align: center;">우리집에 어떤 초신성배송이 오는지<br>지금 확인하세요</p>
-      <a href="#"><img src="../image/img/search.png" alt="" style="position: relative;"> </a>
+      <a href="#"><img src="../image/img/search.png" alt="" style="position: relative; top: 180px;"> </a>
+    </div>
+    <div id="add4">
+      <button onclick="dayDeliver()" style="border: none; background-color: white; color: black; font-weight: bolder; font-size: 25px; padding: 10px; position: relative;">당일배송</button>
+      <button onclick="dwanDeliver()" style="border: none; background-color: white; color: rgb(109, 109, 109); font-weight: bolder; font-size: 25px; padding: 10px; position: relative;">새벽배송</button>
+      <button onclick="basicDeliver()" style="border: none; background-color: white; color: rgb(109, 109, 109); font-weight: bolder; font-size: 25px; padding: 10px; position: relative;">택배배송</button>
+      <hr width="400px" style="position: relative; font-size: 40px; font-weight: bold; font-family: 고딕체; margin: 0 auto;">
+      <p id="del" style="position: relative; font-size: 40px; font-weight: bold; font-family: 고딕체;">당일배송</p>
+      <p id="delSub" style="position: relative; font-size: 40px; font-weight: bold; font-family: 고딕체;">오후에 주문하면 저녁 전에 도착!</p>
+    <table>
+      <tr>
+        <td id="add4TableLeft1">ㅁ주문</td>
+        <td id="add4TableRight1">낮 12시까지</td>
+      </tr>
+      <tr>
+      <td id="add4TableLeft2">ㅁ배송</td>
+      <td id="add4TableRight2">당일 오후 7시 전</td>
+    </tr>
+    <tr>
+      <td id="add4TableLeft3">ㅁ배송일</td>
+      <td id="add4TableRight3">월-금</td>
+      </tr>
+      <tr>
+        <td id="add4TableLeft4">ㅁ배송비</td>
+        <td id="add4TableRight4">3,500원</td>
+      </tr>
+    </table>
+    <p style="position: relative; top: 225px; font-size: 14px; font-weight: bold; color: rgb(95, 95, 95);">교통 상황에 따라 배송이 지연될 수 있습니다<br>주소지 당일 배송 지역 해당 여부는 [배송 지역 검색]에서 확인하실 수 있습니다.</p>
     </div>
   </body>
-  <script></script>
+  <script>
+    function dayDeliver(){
+      //id가 "del" 태그를 선택해서 변수 del에 넣는다.
+     var del = document.getElementById("del");
+     var delSub = document.getElementById("delSub");
+
+     var add4TableLeft1 = document.getElementById("add4TableLeft1");
+     var add4TableLeft2 = document.getElementById("add4TableLeft2");
+     var add4TableLeft3 = document.getElementById("add4TableLeft3");
+     var add4TableLeft4 = document.getElementById("add4TableLeft4");
+
+     var add4TableRight1 = document.getElementById("add4TableRight1");
+     var add4TableRight2 = document.getElementById("add4TableRight2");
+     var add4TableRight3 = document.getElementById("add4TableRight3");
+     var add4TableRight4 = document.getElementById("add4TableRight4");
+
+     del.innerText = "당일배송";
+     delSub.innerText= "오전에 주문하면 저녁 전에 도착";
+     add4TableRight1.innerText = "오후 8시까지";
+     add4TableRight2.innerText = "다음 날 오전 7시 전";
+     add4TableRight3.innerText = "화 - 토";
+     add4TableRight4.innerText = "3,500원";
+    }
+    function dwanDeliver(){
+      var del = document.getElementById("del");
+     var delSub = document.getElementById("delSub");
+
+     var add4TableLeft1 = document.getElementById("add4TableLeft1");
+     var add4TableLeft2 = document.getElementById("add4TableLeft2");
+     var add4TableLeft3 = document.getElementById("add4TableLeft3");
+     var add4TableLeft4 = document.getElementById("add4TableLeft4");
+
+     var add4TableRight1 = document.getElementById("add4TableRight1");
+     var add4TableRight2 = document.getElementById("add4TableRight2");
+     var add4TableRight3 = document.getElementById("add4TableRight3");
+     var add4TableRight4 = document.getElementById("add4TableRight4");
+
+     del.innerText = "새벽배송";
+     delSub.innerText= "저녁에 주문하면 다음날 아침 전에 도착";
+     add4TableRight1.innerText = "낮 12시까지";
+     add4TableRight2.innerText = "당일 오후 7시 전";
+     add4TableRight3.innerText = "월 - 금";
+     add4TableRight4.innerText = "5,500";
+    }
+    function basicDeliver(){
+     var del = document.getElementById("del");
+     var delSub = document.getElementById("delSub");
+
+     var add4TableLeft1 = document.getElementById("add4TableLeft1");
+     var add4TableLeft2 = document.getElementById("add4TableLeft2");
+     var add4TableLeft3 = document.getElementById("add4TableLeft3");
+     var add4TableLeft4 = document.getElementById("add4TableLeft4");
+
+     var add4TableRight1 = document.getElementById("add4TableRight1");
+     var add4TableRight2 = document.getElementById("add4TableRight2");
+     var add4TableRight3 = document.getElementById("add4TableRight3");
+     var add4TableRight4 = document.getElementById("add4TableRight4");
+
+     del.innerText = "택배배송";
+     delSub.innerText= "오후에 주문하면 다음날 저녁 전에 도착";
+     add4TableRight1.innerText = "오후 8시까지";
+     add4TableRight2.innerText = "다음 날";
+     add4TableRight3.innerText = "화 - 토";
+     add4TableRight4.innerText = "2,500원";
+    }
+  </script>
 </html>
