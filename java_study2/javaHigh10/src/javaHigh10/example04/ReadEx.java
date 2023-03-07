@@ -29,7 +29,9 @@ public class ReadEx {
 		char[] data = new char[100];
 		while (true) {
 			int num = reader.read(data);
+			System.out.println(num);
 			if (num == -1) {
+				System.out.println(num);
 				break;
 			}
 			for (int i = 0; i < num; i++) {
