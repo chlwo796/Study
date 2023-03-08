@@ -3,22 +3,19 @@ INDEX VERSION 1.131+C:\JHC\web_studyB\study\java_study2\.metadata\.plugins\org.e
 3008915045.index
 3454606040.index
 1510293202.index
+2404869912.index
 711969373.index
+4014799026.index
 3401196355.index
-<<<<<<< HEAD
 1423985506.index
 1283680194.index
 3833546407.index
-=======
-3833546407.index
-1283680194.index
-1423985506.index
->>>>>>> dc1dbc3060de4d3a522289cffef274bf66a19c80
+2444353184.index
 613072877.index
 4022084266.index
 602373108.index
-3020644350.index
 1401786235.index
+3020644350.index
 3397705409.index
 755109444.index
 3294582515.index
