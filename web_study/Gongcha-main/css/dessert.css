@@ -1,0 +1,30 @@
+#dessert {
+    height: 1850px;
+    margin: 100px;
+}
+
+.dessert-box {
+    height: 100px;
+    background-color: #ede8e3;
+    color: #c20f2f;
+    text-align: center;
+}
+
+.dessert-box h3 {
+    padding-top: 12px;
+}
+
+.dessert-group {
+    margin: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.dessert-group-box img {
+    height: 300px;
+}
+
+.dessert-group h4 {
+    text-align: center;
+}
