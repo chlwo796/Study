@@ -1,0 +1,24 @@
+#brand {
+    height: 800px;
+    margin: 50px;
+}
+
+.brand-group {
+    height: 450px;
+    padding-top: 100px;
+    background-color: #e4dcd2;
+}
+
+.brand-font {       
+    justify-content: center;    
+    text-align: center;
+    padding-left: 30px  ;
+}
+
+.brand-font h2 {
+    color: #222222; 
+}
+
+.brand-font p {
+    color: #666;
+}

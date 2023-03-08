@@ -68,3 +68,6 @@
 ### 3. memo
 
 - [서버와 클라이언트](https://velog.io/@jennyfromdeblock/%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8%EC%99%80-%EC%84%9C%EB%B2%84-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EA%B0%9C%EB%85%90%EC%9E%A1%EA%B8%B0)
+- 공통 CSS, 대표디자인(마크), 글자폰트, 대표컬러, 깃 활용
+- 카페 : 3차프로젝트 조, 주제, 업무분장, 일정 업로드
+- 목 : chap.17 스트림, js

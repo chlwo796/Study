@@ -1,0 +1,30 @@
+#drink {
+    height: 1450px;
+    margin: 100px;
+}
+
+.drink-box {
+    height: 50px;
+    background-color: #ede8e3;
+    text-align: center;
+}
+
+.drink-box h3 {
+    padding-top: 12px;
+    color: #c20f2f;
+}
+
+.drink-group {
+    margin: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.drink-group-box img {
+    height: 250px;
+}
+
+.drink-group h4 {
+    text-align: center;
+}
