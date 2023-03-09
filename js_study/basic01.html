@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <h1 id="heading">자바스크립트</h1>
+    <p id="text">위 텍스트를 클릭해보세요</p>
+    <h3 id="text1">confirm 연습</h3>
+    <h3 id="text2">프롬프트 연습</h3>
+    <h3 id="gugudan">구구단 연습</h3>
+  </body>
+  <script>
+    var heading = document.getElementById("heading");
+    var heading1 = document.querySelector("#heading");
+    heading.onclick = function a() {
+      heading.style.color = "red";
+    };
+    heading1.onclick = function a() {
+      heading1.style.color = "blue";
+    };
+
+    // 자바스크립트를 html에 적용하는 방법
+    // 1. 내부에 쓴다.
+    // <script> html 안에 써준다.
+    // 2. 외부 파일로 쓴다.
+    // <script src = "xxx.js">
+  </script>
+  <script src="change-color.js"></script>
+</html>
