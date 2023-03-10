@@ -85,3 +85,33 @@ gugudan.onclick = function () {
     }
   }
 };
+
+let ageCalc = document.getElementById("ageCalc");
+ageCalc.onclick = function () {
+  let now = new Date();
+  let currentYear = now.getFullYear();
+  let birthYear = prompt("태어난 년도를 입력하세요");
+  console.log(now + now.getFullYear);
+  let age = currentYear - Number(birthYear) + 1;
+  confirm("나이는 : " + age + "입니다.");
+  document.write("당신의 나이는 : " + age + "입니다.");
+};
+
+let depart = document.getElementById("depart");
+
+depart.onclick = function () {
+  console.log("가고싶은 부서를 선택하세요");
+  let number = prompt();
+  console.log("1-프론트개발자 2-백앤드개발자 3-풀스택개발자");
+  switch (number) {
+    case 1:
+      console.log("305호 가세요");
+      break;
+    case 2:
+      console.log("307호 가세요");
+      break;
+    case 3:
+      console.log("309호 가세요");
+      break;
+  }
+};
