@@ -905,3 +905,466 @@ boolean result = rs.next();
     }
   }
   ```
+
+4. 게시물 정보 읽기
+
+- boards 테이블의 1개 행(게시물)을 저장할 Board 클래스를 작성한다.
+
+  ```java
+  package javaChap20.example06;
+
+  import java.sql.Blob;
+  import java.util.Date;
+
+  public class Board {
+    private int bno;
+    private String btitle;
+    private String bcontent;
+    private String bwriter;
+    private Date bdate;
+    private String bfilename;
+    private Blob bfiledata;
+
+    public int getBno() {
+      return bno;
+    }
+
+    public void setBno(int bno) {
+      this.bno = bno;
+    }
+
+    public String getBtitle() {
+      return btitle;
+    }
+
+    public void setBtitle(String btitle) {
+      this.btitle = btitle;
+    }
+
+    public String getBcontent() {
+      return bcontent;
+    }
+
+    public void setBcontent(String bcontent) {
+      this.bcontent = bcontent;
+    }
+
+    public String getBwriter() {
+      return bwriter;
+    }
+
+    public void setBwriter(String bwriter) {
+      this.bwriter = bwriter;
+    }
+
+    public Date getBdate() {
+      return bdate;
+    }
+
+    public void setBdate(Date bdate) {
+      this.bdate = bdate;
+    }
+
+    public String getBfilename() {
+      return bfilename;
+    }
+
+    public void setBfilename(String bfilename) {
+      this.bfilename = bfilename;
+    }
+
+    public Blob getBfiledata() {
+      return bfiledata;
+    }
+
+    public void setBfiledata(Blob bfiledata) {
+      this.bfiledata = bfiledata;
+    }
+
+    public Board() {
+      // TODO Auto-generated constructor stub
+    }
+
+    public Board(int bno, String btitle, String bcontent, String bwriter, Date bdate, String bfilename,
+        Blob bfiledata) {
+      super();
+      this.bno = bno;
+      this.btitle = btitle;
+      this.bcontent = bcontent;
+      this.bwriter = bwriter;
+      this.bdate = bdate;
+      this.bfilename = bfilename;
+      this.bfiledata = bfiledata;
+    }
+
+    @Override
+    public String toString() {
+      return "Board [bno=" + bno + ", btitle=" + btitle + ", bcontent=" + bcontent + ", bwriter=" + bwriter
+          + ", bdate=" + bdate + ", bfilename=" + bfilename + ", bfiledata=" + bfiledata + "]";
+    }
+
+  }
+  ```
+
+- bwriter가 bwinter인 게시물 정보를 가져오는 SELECT 문
+
+  ```sql
+  select bno, btitle, bcontent, bwriter, bdate, bfilename, bfiledata
+  from boards
+  where bwriter='winter';
+  ```
+
+- 조건절의 값을 ?로 대체한 매개변수화된 SELECT 문을 String 타입 변수 sql에 대입
+
+  ```java
+  String sql = "select bno, btitle, bcontent, bwriter, bdate, bfilename, bfiledata from boards where bwriter=?";
+  ```
+
+- 매개변수화된 SELECT 문을 실행하기 위해 다음과 같이 prepareStatement() 메소드로부터 PreparedStatement를 얻고 ?에 값을 저장
+
+  ```java
+  PreparedStatement pstmt = conn.prepareStatement(sql);
+
+  pstmt.setString(1, "winter");
+
+  ```
+
+- executeQuery() 메소드로 SELECT문을 실행한 후 ResultSet을 얻는다.
+- 조건에 맞는 행은 n개이므로 while 문을 이용해서 next() 메소드가 false를 리턴할때 까지 반복
+
+  ```java
+  while (rs.next()) {
+  Board board = new Board();
+  board.setBno(rs.getInt("bno"));
+  board.setBtitle(rs.getString("btitle"));
+  board.setBcontent(rs.getString("bcontent"));
+  board.setBwriter(rs.getString("bwriter"));
+  board.setBdate(rs.getDate("bdate"));
+  board.setBfilename(rs.getString("bfilename"));
+  board.setBfiledata(rs.getBlob("bfiledata"));
+
+  System.out.println(board);
+  }
+  ```
+
+- Boards의 bfiledate는 Blob 객체이므로 콘솔에 출력하면 의미 없는 타입 정보만 촐력된다.
+- Blob 객체에 저장된 바이너리 데이터를 얻기 위해서는 다음과 같이 입력스트림 또는 배열을 얻어내야한다.
+
+  ```java
+  Blob blob = board.getBfiledata();
+  InputStream is = blob.getBinaryStream();
+
+  // UI에 그릴 때 배열로 풀어준다.
+  byte[] bytes = blob.getBytes(0,blob.length());
+
+  // Blob 객체에서 InputStream을 얻고, 읽은 바이트를 파일로 저장하는 방법
+  InputStream is = blob.getBinaryStream();
+  OutputStream os = new FileOutputStream("c:/jhc/" + board.getBfilename());
+  is.transferTo(os);
+  os.flush();
+  os.close();
+  is.close();
+  ```
+
+- BoardSelectExample 예제
+
+  ```java
+  package javaChap20.example06;
+
+  import java.io.FileOutputStream;
+  import java.io.IOException;
+  import java.io.InputStream;
+  import java.io.OutputStream;
+  import java.sql.Blob;
+  import java.sql.Connection;
+  import java.sql.DriverManager;
+  import java.sql.PreparedStatement;
+  import java.sql.ResultSet;
+  import java.sql.SQLException;
+  import java.util.ArrayList;
+  import java.util.List;
+
+  public class BoardSelectExample {
+    public static void main(String[] args) throws IOException {
+      Connection conn = null;
+      try {
+        // JDBC Driver를 메모리로 로딩, DriverManager 등록
+        Class.forName("oracle.jdbc.OracleDriver");
+
+        // DB와 연결
+
+        conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "java", "oracle");
+        System.out.println("연결 성공");
+
+        // DB작업
+        String sql = "select bno, btitle, bcontent, bwriter, bdate, bfilename, bfiledata from boards where bwriter=?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+
+        pstmt.setString(1, "winter");
+        ResultSet rs = pstmt.executeQuery();
+        List<Board> boards = new ArrayList<>();
+        while (rs.next()) {
+          Board board = new Board();
+          board.setBno(rs.getInt("bno"));
+          board.setBtitle(rs.getString("btitle"));
+          board.setBcontent(rs.getString("bcontent"));
+          board.setBwriter(rs.getString("bwriter"));
+          board.setBdate(rs.getDate("bdate"));
+          board.setBfilename(rs.getString("bfilename"));
+          board.setBfiledata(rs.getBlob("bfiledata"));
+
+          Blob blob = board.getBfiledata();
+          if (blob != null) {
+            InputStream is = blob.getBinaryStream();
+            OutputStream os = new FileOutputStream("c:/jhc/" + board.getBfilename());
+            is.transferTo(os);
+            os.flush();
+            os.close();
+            is.close();
+          }
+          boards.add(board);
+        }
+        rs.close();
+
+        printBoards(boards);
+
+      } catch (ClassNotFoundException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } finally {
+        try {
+          if (conn != null) {
+            conn.close();
+          }
+        } catch (SQLException e) {
+        }
+        System.out.println("연결 끊기");
+      }
+    }
+
+    public static void printBoards(List<Board> boards) {
+      for (Board board : boards) {
+        System.out.println(board);
+      }
+      // 스트림으로 이용
+      boards.stream().forEach(b -> System.out.println(b));
+    }
+  }
+  ```
+
+---
+
+### 10. 프로시저와 함수 호출
+
+- 프로시저와 함수는 Oracle DB에 저장되는 PL/SQL 프로그램이며, 클라이언트 프로그램에서 매개값과 함께 프로시저 또는 함수를 호출하면 DB 내부에서 일련의 SQL 문을 실행하고, 실행 결과를 클라이언트 프로그램으로 돌려주는 역할을 한다.
+- JDBC에서 프로시저와 함수를 호출할 때는 CallableStatement를 사용하며, 프로시저와 함수의 매개변수화된 호출문을 작성하고 Connection의 prepareCall() 메소드로부터 CallableStatement 객체를 얻을 수 있다.
+
+  ```java
+  // user_create라는 이름의 프로시저 호출
+  String sql = "{call user_create(?, ?, ?, ?, ?, ?)}";
+  CallableStatement cstmt = conn.prepareCall(sql);
+  ```
+
+  ```java
+  // user_login이라는 이름의 함수 호출
+  String sql = "{? = call user_login(?, ?)}";
+  CallableStatement cstmt = conn.prepareCall(sql);
+  ```
+
+- 함수는 call 문의 실행 결과를 대입할 좌측 리턴값의 자리(?=)를 명시해야하며, 첫번째 ?가 무조건 리턴값이다.
+- 프로시저도 리턴값과 유사한 OUT타입의 매개변수를 가질 수 있고, 괄호 안의 ? 중 일부는 OUT값(리턴값)일 수 있다.
+- prepareCall() 메소드로 CallableStatement를 얻었다면 리턴값에 해당하는 ?는 registerOutParameter() 메소드로 지정하고, 그 이외의 ?는 호출 시 필요한 매개값으로 Setter 메소드를 사용해서 값을 지정해야한다.
+
+  ```java
+  String sql = "{call user_create(?, ?, ?, ?, ?, ?)}";
+  CallableStatement cstmt = conn.prepareCall(sql);
+
+  cstmt.setString(1, "summer"); // 프로시저의 첫 번째 매개값
+  cstmt.setString(2, "한여름");
+  cstmt.setString(3, "12345");
+  cstmt.setInt(4, 26);
+  cstmt.setString(5, "summer@mycompany.com");
+  cstmt.registerOutParameter(6, Types.INTEGER); // OUT값(리턴값) 지정
+  ```
+
+  ```java
+  String sql = "{? = call user_login(?, ?)}";
+  CallableStatement cstmt = conn.prepareCall(sql);
+
+  cstmt.registerOutParameter(1, Types.INTEGER); // 리턴값 지정
+  cstmt.setString(2, "winter"); // 함수의 첫번째 매개값
+  cstmt.setString(3, "12345");
+  ```
+
+- ?에 대한 설정이 끝나면 프로시저 또는 함수를 호출하기 위해 execute() 메소드를 다음과 같이 호출
+
+  ```java
+  cstmt.execute();
+  int rows = cstmt.getInt(6); // 프로시저의 리턴값 저장
+  int result = cstmt.getInt(1); // 함수의 리턴값 저장
+
+  cstmt.close();  // 종료
+  ```
+
+1. 프로시저 호출
+
+- user_create는 앞 5개의 IN 매개변수와 마지막 OUT 매개변수로 구성되어 있으며, IN 매개변수는 호출 시 필요한 매개값으로 사용되며, OUT 매개변수는 리턴값으로 사용된다.
+
+```sql
+create or replace PROCEDURE user_create (
+-- 외부에서 받는값 = IN
+    a_userid        IN  users.userid%TYPE,
+    a_username      IN  users.username%TYPE,
+    a_userpassword  IN  users.userpassword%TYPE,
+    a_userage       IN  users.userage%TYPE,
+    a_useremail     IN  users.useremail%TYPE,
+    a_rows          OUT PLS_INTEGER
+)
+```
+
+- ProcedureCallExample 예제
+
+  ```java
+  package javaChap20.example07;
+
+  import java.sql.CallableStatement;
+  import java.sql.Connection;
+  import java.sql.DriverManager;
+  import java.sql.SQLException;
+  import java.sql.Types;
+
+  public class ProcedureCallExample {
+    public static void main(String[] args) {
+      Connection conn = null;
+      try {
+        // JDBC Driver를 메모리로 로딩, DriverManager 등록
+        Class.forName("oracle.jdbc.OracleDriver");
+
+        // DB와 연결
+
+        conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "java", "oracle");
+        System.out.println("연결 성공");
+
+        String sql = "{call user_create(?, ?, ?, ?, ?, ?)}";
+        CallableStatement cstmt = conn.prepareCall(sql);
+
+        cstmt.setString(1, "summer");
+        cstmt.setString(2, "한여름");
+        cstmt.setString(3, "12345");
+        cstmt.setInt(4, 26);
+        cstmt.setString(5, "summer@mycompany.com");
+        cstmt.registerOutParameter(6, Types.INTEGER);
+
+        cstmt.execute();
+        int rows = cstmt.getInt(6);
+        System.out.println("저장된 행 수 :" + rows);
+        cstmt.close();
+      } catch (Exception e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } finally {
+        try {
+          if (conn != null) {
+            conn.close();
+          }
+        } catch (SQLException e) {
+        }
+        System.out.println("연결 끊기");
+      }
+    }
+  }
+  ```
+
+2. 함수 호출
+
+- user_login()은 2개의 매개변수와 PLS_INTEGER 리턴 타입으로 구성되어 있으며, 2개의 매개변수는 호출 시 값을 제공하고, 호출 후에는 정수 값을 리턴한다는 의미이다.
+
+  ```sql
+  create or replace FUNCTION user_login (
+      a_userid        users.userid%TYPE,
+      a_userpassword  users.userpassword%TYPE
+  ) RETURN PLS_INTEGER
+  IS
+  -- 변수선언하는곳
+      v_userpassword users.userpassword%TYPE;
+      v_result PLS_INTEGER;
+  BEGIN
+  -- (INTO)db 패스워드를 v 패스워드에 저장한다.
+      SELECT userpassword INTO v_userpassword
+      FROM users
+      WHERE userid = a_userid;
+  --  = 비교연산자
+      IF v_userpassword = a_userpassword THEN
+          RETURN 0;
+      ELSE
+          RETURN 1;
+      END IF;
+  --    패스워드데이터가 없을 때 예외처리
+  EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+          RETURN 2;
+  END;
+  ```
+
+- FunctionCallExample 예제
+
+  ```java
+  package javaChap20.example07;
+
+  import java.sql.CallableStatement;
+  import java.sql.Connection;
+  import java.sql.DriverManager;
+  import java.sql.SQLException;
+  import java.sql.Types;
+
+  public class FunctionCallExample {
+    public static void main(String[] args) {
+      Connection conn = null;
+      try {
+        // JDBC Driver를 메모리로 로딩, DriverManager 등록
+        Class.forName("oracle.jdbc.OracleDriver");
+
+        // DB와 연결
+
+        conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "java", "oracle");
+        System.out.println("연결 성공");
+
+        String sql = "{? = call user_login(?, ?)}";
+        CallableStatement cstmt = conn.prepareCall(sql);
+
+        cstmt.registerOutParameter(1, Types.INTEGER);
+        cstmt.setString(2, "winter");
+        cstmt.setString(3, "12345");
+
+        cstmt.execute();
+        int result = cstmt.getInt(1);
+        switch (result) {
+        case 0:
+          System.out.println("로그인성공");
+          break;
+        case 1:
+          System.out.println("비밀번호오류");
+          break;
+        case 2:
+          System.out.println("존재하지않는아이디");
+          break;
+        }
+        cstmt.close();
+      } catch (Exception e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } finally {
+        try {
+          if (conn != null) {
+            conn.close();
+          }
+        } catch (SQLException e) {
+        }
+        System.out.println("연결 끊기");
+      }
+    }
+  }
+  ```

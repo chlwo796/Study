@@ -25,9 +25,9 @@ public class BoardWithFileInsertExample {
 			String sql = "insert into boards (bno, btitle, bcontent, bwriter, bdate, bfilename, bfiledata) values (seq_bno.nextval, ?, ?, ?, sysdate, ?, ?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] { "bno", "btitle" });
 
-			pstmt.setString(1, "눈 오는 날1");
-			pstmt.setString(2, "함박눈이 내려요");
-			pstmt.setString(3, "winter");
+			pstmt.setString(1, "소나기");
+			pstmt.setString(2, "눈");
+			pstmt.setString(3, "falling");
 			pstmt.setString(4, "8.jpg");
 
 //			pstmt.setBlob(5, null);	// 컴파일오류, setBlob()메소드의 오버로딩과 관련. InputStream 타입인지, Blob타입인지 명시해주어야한다.

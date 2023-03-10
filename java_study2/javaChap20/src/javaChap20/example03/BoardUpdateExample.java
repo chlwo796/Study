@@ -22,15 +22,19 @@ public class BoardUpdateExample {
 			// DB작업
 			String sql = new StringBuilder()
 					// 각 문 끝에는 " "공백을 넣어주는 것이 좋다(실수방지)
-					.append("update boards set ").append("btitle=?, ").append("bcontent=?, ").append("bfilename=?, ")
-					.append("bfiledata=? ").append("where bno=?").toString();
+					.append("update boards set ")
+					//.append("btitle=?, ")
+					//.append("bcontent=?, ")
+					.append("bfilename=?, ")
+					.append("bfiledata=? ")
+					.append("where bno=?").toString();
 			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] { "bno", "btitle" });
 
-			pstmt.setString(1, "소나기가");
-			pstmt.setString(2, "소나기가 엄청내려여");
-			pstmt.setString(3, "rain");
-			pstmt.setBlob(4, new FileInputStream("src/javaChap20/example03/3.jpg"));
-			pstmt.setInt(5, 3);
+//			pstmt.setString(1, "소나기가");
+//			pstmt.setString(2, "소나기가 엄청내려여");
+			pstmt.setString(1, "rain");
+			pstmt.setBlob(2, new FileInputStream("src/javaChap20/example03/3.jpg"));
+			pstmt.setInt(3, 1);
 
 			int rows = pstmt.executeUpdate();
 			System.out.println("수정된 행 수 : " + rows);
