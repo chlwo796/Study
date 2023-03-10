@@ -20,10 +20,10 @@ text1.onclick = function () {
   let result = confirm(name + "자바");
   // 확인 = true, 취소 = false
   if (result) {
-    alter(name);
+    alert(name);
 
     for (let i = 0; i < 10; i++) {
-      console.log(name);
+      console.log(name + i);
     }
   } else {
     alert("다른사람입니다.");
@@ -78,8 +78,10 @@ let gugudan = document.getElementById("gugudan");
 gugudan.onclick = function () {
   let number = prompt("알고 싶은 구구단은?");
   let n = prompt("한번더");
-  for (let i = 1; i <= 9; i++) {
-    document.write(number + " * " + i + " = " + i * Number(number) + "<p></p>");
-    console.log(number + " * " + i + " = " + i * Number(number));
+  for (let j = number; j <= n; j++) {
+    document.write(j + "단<br>");
+    for (let i = 1; i <= 9; i++) {
+      document.write(j + " * " + i + " = " + i * Number(j) + "<br>");
+    }
   }
 };

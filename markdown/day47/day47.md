@@ -182,39 +182,128 @@
 
 ### 2. js
 
-- 자바스크립트를 html에 적용하는 방법
+1. 자바스크립트를 html에 적용하는 방법
+
 - 내부
   - <script> html 안에 사용
 - 외부
   - <script src = "xxx.js"></script>
-- 입출력 방법
-  - 알림창 출력 : alert("메세지");
-    - let number = 100;
-    - alert(number + "클릭을 하셨습니다");
-  - 확인창 출력 : confirm("메세지");
-    - let t1 = document.getElementByid("text1");
-    - t1.onclick = function(){
-      let name = "홍길동";
-      let result = confirm(name + "자바스크립트를 클릭하셨습니다");
-      // 확인 - true, 취소 - false
-      if(result){
-      name = "정현희";
+
+2. 입출력 방법
+
+- 알림창 출력 : alert("메세지");
+
+  ```js
+  let text = document.getElementById("text");
+  text.onclick = function () {
+    text.style.fontSize = "20px";
+    text.style.backgroundColor = "red";
+    // 변수 입력
+    let number = 100;
+    // 알림
+    alert(number + "클릭을 하셨습니다.~~");
+
+    console.log(number + "콘솔창에 출력하기");
+  };
+  ```
+
+- 확인창 출력 : confirm("메세지");
+
+  ```js
+  let text1 = document.getElementById("text1");
+
+  text1.onclick = function () {
+    let name = "홍길동";
+    // 확인 취소 선택
+    let result = confirm(name + "자바");
+    // 확인 = true, 취소 = false
+    if (result) {
       alert(name);
-      }else{
-      alert(name);
+
+      for (let i = 0; i < 10; i++) {
+        console.log(name + i);
       }
+    } else {
+      alert("다른사람입니다.");
+    }
+  };
+  ```
+
+4. 프롬프트 창으로 입력받기
+
+- prompt("메세지", [기본값]) []-선택
+
+5. 웹브라우저에 출력하기
+
+- document.write("<p> 내용 </p>"); <p>는 임의의 태그
+
+  ```js
+  let text2 = document.querySelector("#text2");
+  text2.onclick = function () {
+    let name = prompt("이름을 입력해 주세요", "홍길동");
+    // 국어점수
+    alert(name);
+
+    let score1 = prompt("국어점수 입력");
+    let score2 = prompt("수학점수 입력");
+    result1 = parseInt(score1, 10);
+    result2 = parseInt(score2, 10);
+    // let total = Number(score1) + Number(score2);
+    // let avg = total / 2;
+    sum = result1 + result2;
+    average = sum / 2;
+    alert(
+      "이름 : " +
+        name +
+        "국어 : " +
+        score1 +
+        "수학 : " +
+        score2 +
+        "합계 : " +
+        sum +
+        "평균 : " +
+        average
+    );
+    // 결과를 웹브라우저에 출력하기
+    // document.write("<p> 내용 </p>")
+    document.write(
+      "<p> 이름 : " +
+        name +
+        "국어 : " +
+        score1 +
+        "수학 : " +
+        score2 +
+        "합계 : " +
+        sum +
+        "평균 : " +
+        average +
+        "</p>"
+    );
+  };
+  ```
+
+6. 콘솔창에 출력하기
+
+- console.log("출력할 내용") : 중간중간 실행이 잘 되는지 확인(브라우저 -> F12,console창 확인)
+
+  ```js
+  let gugudan = document.getElementById("gugudan");
+
+  gugudan.onclick = function () {
+    let number = prompt("알고 싶은 구구단은?");
+    let n = prompt("한번더");
+    for (let j = number; j <= n; j++) {
+      document.write(j + "단<br>");
+      for (let i = 1; i <= 9; i++) {
+        document.write(j + " * " + i + " = " + i * Number(j) + "<br>");
       }
-- 프롬프트 창으로 입력받기
-  - prompt("메세지", [기본값]) []-선택
-- 웹브라우저에 출력하기
-  - document.write("<p> 내용 </p>"); <p>는 임의의 태그
-- 콘솔창에 출력하기
-  - console.log("출력할 내용") : 중간중간 실행이 잘 되는지 확인(브라우저 -> F12,console창 확인)
+    }
+  };
+  ```
 
 ---
 
-### 2. memo
+### 3. memo
 
 - [시나공핵심요약pdf](https://www.sinagong.co.kr/pds?sCase=L&lcd=001&idx=16&bookcd=BN003559&fg=pd03)
 - [자바스크립트 변수](https://paperblock.tistory.com/42)
--
