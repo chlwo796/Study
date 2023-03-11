@@ -18,9 +18,10 @@ public class UserInsertExample {
 			System.out.println("연결 성공");
 
 			// DB작업
+			// 자동커밋이 일어난다.(DB)
 			String sql = "insert into users (userid, username, userpassword, userage, useremail) values (?, ?, ?, ?, ?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-
+			
 			pstmt.setString(1, "fail2");
 			pstmt.setString(2, "최재환");
 			pstmt.setString(3, "123456");
