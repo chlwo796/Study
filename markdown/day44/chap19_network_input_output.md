@@ -881,3 +881,326 @@ try{
 ---
 
 ### 7. TCP 채팅 프로그램
+
+- ChatServer
+
+  - 채팅 서버 실행 클래스
+  - ServerSocket을 생성하고 50001에 바인딩
+  - ChatClient 연결 수락 후 SocketClient 생성
+
+- SocketClient
+
+  - ChatClient와 1:1로 통신
+
+- ChatClient
+  - 채팅 클라이언트 실행 클래스
+  - ChatServer에 연결 요청
+  - SocketClient와 1:1로 통신
+
+1. 채팅 서버
+
+- ChatServer는 채팅 서버 실행 클래스로 클라이언트의 연결 요청을 수락하고 통신용 SocketClient를 생성하는 역할을 한다.
+
+```java
+package javaChap19.example06;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import org.json.JSONObject;
+
+public class ChatServer {
+	ServerSocket serverSocket;
+	ExecutorService threadPool = Executors.newFixedThreadPool(100);
+	Map<String, SocketClient> chatRoom = Collections.synchronizedMap(new HashMap<String, SocketClient>());
+
+	public void start() throws IOException {
+		serverSocket = new ServerSocket(50001);
+		System.out.println("서버 시작됨");
+		Thread thread = new Thread(() -> {
+			try {
+				while (true) {
+					Socket socket = serverSocket.accept();
+					SocketClient sc = new SocketClient(this, socket);
+				}
+			} catch (IOException e) {
+			}
+
+		});
+		thread.start();
+	}
+
+	public static void main(String[] args) {
+
+		try {
+			ChatServer chatServer = new ChatServer();
+			chatServer.start();
+
+			System.out.println("----------------------------------------------");
+			System.out.println("서버를 종료하려면 q 또는 Q를 입력하고 Enter키를 입력하세요.");
+			System.out.println("----------------------------------------------");
+
+			Scanner sc = new Scanner(System.in);
+
+			while (true) {
+				String key = sc.nextLine();
+				if (key.equalsIgnoreCase("q")) {
+					break;
+				}
+			}
+			sc.close();
+			chatServer.stop();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("서버종료");
+
+	}
+
+	public void addSocketClient(SocketClient socketClient) {
+		String key = socketClient.chatName + "@" + socketClient.clientIp;
+		chatRoom.put(key, socketClient);
+		System.out.println("입장 : " + key);
+		System.out.println("현재 채팅자 수 : " + chatRoom.size() + "\n");
+	}
+
+	public void sendToAll(SocketClient sender, String message) {
+		JSONObject root = new JSONObject();
+		root.put("clientIp", sender.clientIp);
+		root.put("chatName", sender.chatName);
+		root.put("message", message);
+
+		String json = root.toString();
+		Collection<SocketClient> socketClients = chatRoom.values();
+		for (SocketClient sc : socketClients) {
+			if (sc == sender) {
+				continue;
+			}
+			sc.send(json);
+		}
+
+	}
+
+	public void stop() {
+		try {
+			serverSocket.close();
+			threadPool.shutdownNow();
+			chatRoom.values().stream().forEach(sc -> sc.close());
+			System.out.println("서버종료");
+		} catch (IOException e) {
+		}
+
+	}
+
+	public void removeSocketClient(SocketClient socketClient) {
+		String key = socketClient.chatName + "@" + socketClient.clientIp;
+		chatRoom.remove(key);
+		System.out.println("나감 : " + key);
+		System.out.println("현재 채팅자 수 : " + chatRoom.size() + "\n");
+	}
+}
+```
+
+- SocketClient는 클라이언트와 1:1로 통신하는 역할을 한다.
+
+```java
+package javaChap19.example06;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+
+import org.json.JSONObject;
+
+public class SocketClient {
+	ChatServer chatServer;
+	Socket socket;
+	String clientIp;
+	String chatName;
+	DataInputStream dis;
+	DataOutputStream dos;
+
+	public SocketClient(ChatServer chatServer, Socket socket) {
+		try {
+
+			this.chatServer = chatServer;
+			this.socket = socket;
+
+			this.dis = new DataInputStream(socket.getInputStream());
+			this.dos = new DataOutputStream(socket.getOutputStream());
+			InetSocketAddress isa = (InetSocketAddress) socket.getRemoteSocketAddress();
+			this.clientIp = isa.getHostName();
+			receive();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void receive() {
+		chatServer.threadPool.execute(() -> {
+			try {
+				while (true) {
+
+					String receiveJson = dis.readUTF();
+					JSONObject jsonObject = new JSONObject(receiveJson);
+					String command = jsonObject.getString("command");
+
+					switch (command) {
+					case "incoming": {
+						this.chatName = jsonObject.getString("data");
+						chatServer.sendToAll(this, "들어오셨습니다.");
+						chatServer.addSocketClient(this);
+						break;
+					}
+					case "message": {
+						String message = jsonObject.getString("data");
+						chatServer.sendToAll(this, message);
+						break;
+					}
+
+					}
+
+				}
+			} catch (IOException e) {
+				chatServer.sendToAll(this, "나가셨습니다.");
+				chatServer.removeSocketClient(this);
+			}
+
+		});
+
+	}
+
+	public void send(String json) {
+		try {
+			dos.writeUTF(json);
+			dos.flush();
+		} catch (IOException e) {
+		}
+
+	}
+
+	public void close() {
+		try {
+			socket.close();
+		} catch (IOException e) {
+		}
+	}
+}
+```
+
+2. 채팅 클라이언트
+
+- 채팅 클라이언트는 ChatClient 단일클래스이다.
+- 채팅 서버로 연결을 요청하고, 연결된 후에는 제일 먼저 대화명을 보낸다.
+- 그 후 서버와 메세지를 주고 받는다
+
+  ```java
+  package javaChap19.example06;
+
+  import java.io.DataInputStream;
+  import java.io.DataOutputStream;
+  import java.io.IOException;
+  import java.net.Socket;
+  import java.util.Scanner;
+
+  import org.json.JSONObject;
+
+  public class ChatClient {
+      Socket socket;
+      DataInputStream dis;
+      DataOutputStream dos;
+      String chatName;
+
+      public void connect() throws IOException {
+          socket = new Socket("localhost", 50001);
+          dis = new DataInputStream(socket.getInputStream());
+          dos = new DataOutputStream(socket.getOutputStream());
+          System.out.println("클라이언트 서버에 연결됨");
+      }
+
+      public void receive() {
+          Thread thread = new Thread(() -> {
+              while (true) {
+                  try {
+                      String json = dis.readUTF();
+                      JSONObject root = new JSONObject(json);
+                      String clientIp = root.getString("clientIp");
+                      String chatName = root.getString("chatName");
+                      String message = root.getString("message");
+                      System.out.println("<" + chatName + "@" + clientIp + ">" + message);
+                  } catch (IOException e) {
+                      System.out.println("클라이언트 서버 연결 끊김");
+                      System.exit(0);
+                  }
+              }
+          });
+          thread.start();
+      }
+
+      public void send(String json) throws IOException {
+          dos.writeUTF(json);
+          dos.flush();
+      }
+
+      public void unconnect() throws IOException {
+          socket.close();
+      }
+
+      public static void main(String[] args) {
+          try {
+              ChatClient chatClient = new ChatClient();
+              chatClient.connect();
+
+              Scanner scanner = new Scanner(System.in);
+              System.out.print("대화명 입력 : ");
+              chatClient.chatName = scanner.nextLine();
+
+              JSONObject jsonObject = new JSONObject();
+              jsonObject.put("command", "incoming");
+              jsonObject.put("data", chatClient.chatName);
+              String json = jsonObject.toString();
+              chatClient.send(json);
+
+              chatClient.receive();
+
+              System.out.println("----------------------------------------------");
+              System.out.println("보낼 메세지를 입력하고 Enter");
+              System.out.println("서버를 종료하려면 q 또는 Q를 입력하고 Enter");
+              System.out.println("----------------------------------------------");
+
+              while (true) {
+                  String message = scanner.nextLine();
+                  if (message.equalsIgnoreCase("q")) {
+                      break;
+                  } else {
+                      jsonObject = new JSONObject();
+                      jsonObject.put("command", "message");
+                      jsonObject.put("data", message);
+                      json = jsonObject.toString();
+                      chatClient.send(json);
+                  }
+              }
+
+              scanner.close();
+              chatClient.unconnect();
+          } catch (Exception e) {
+              System.out.println("클라이언트 서버 연결 안됨");
+          }
+          System.out.println("클라이언트 종료");
+      }
+  }
+  ```
