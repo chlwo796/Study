@@ -31,7 +31,7 @@ public class CollectEx02 {
 		System.out.println(map1);
 
 		Map<String, List<Student>> map2 = totalList1.stream().collect(Collectors.groupingBy(s -> s.getGrade()));
-		System.out.println(map2);
+//		System.out.println(map2);
 
 		Set<String> set = map2.keySet();
 		for (String key : set) {

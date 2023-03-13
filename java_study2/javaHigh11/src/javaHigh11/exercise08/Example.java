@@ -14,7 +14,7 @@ public class Example {
 				new Member("신용권", "개발자"));
 
 		Map<String, List<Member>> groupingMap = list.stream().collect(Collectors.groupingBy(m -> m.getJob()));
-
+		
 		Set<String> job = groupingMap.keySet();
 
 		List<Member> devList = groupingMap.get("개발자");
