@@ -261,8 +261,6 @@
 
 ### 3. memo
 
-https://lktprogrammer.tistory.com/88
-
 - [div vs span](https://lktprogrammer.tistory.com/88)
 - [js 이벤트 처리 참조](https://cafe.naver.com/thisiscoding)
 - [자바스크립트 기본문법정리](https://cafe.naver.com/thisiscoding)
