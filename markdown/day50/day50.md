@@ -17,8 +17,8 @@
 
 ---
 
-### 2. js
+### 2. memo
 
----
-
-### 3. memo
+- [git HEAD](https://kotlinworld.com/272)
+- [git add, commit, push 취소](https://gmlwjd9405.github.io/2018/05/25/git-add-cancle.html)
+- [.gitignore](https://adjh54.tistory.com/16)
