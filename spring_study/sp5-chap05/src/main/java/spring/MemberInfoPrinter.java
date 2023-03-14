@@ -2,9 +2,7 @@ package spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-@Component("infoPrinter")
-// 빈으로 등록할 때 사용할 이름 결정, 클래스이름 = MemberInfoPrinter, 빈이름 = infoPrinter
+
 public class MemberInfoPrinter {
 	// 해당 클래스에서 의존자동주입 어노테이션을 활용하면
 	// 스프링 설정 클래스에서의 @Bean 메소드에서 의존 주입을 위한 코드를 작성하지 않아도 된다.!

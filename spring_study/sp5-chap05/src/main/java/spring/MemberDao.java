@@ -4,9 +4,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.stereotype.Component;
-@Component
-// 해당 클래스를 스캔 대상으로 한다.
 public class MemberDao {
 	private static long nextId = 0;
 

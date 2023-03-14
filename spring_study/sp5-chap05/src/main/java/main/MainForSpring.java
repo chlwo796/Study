@@ -59,9 +59,7 @@ public class MainForSpring {
 			printHelp();
 			return;
 		}
-		MemberRegisterService regSvc = ctx.getBean(MemberRegisterService.class);
-		// @Component 어노테이션을 붙일 때 속성값을 주지 않았는데, 이 경우 클래스 이름의 첫 글자를 소문자로 바꾼 이름을 빈 이름으로 사용한다.
-		// 빈 이름없이 타입만으로 구하도록 변경하였다.
+		MemberRegisterService regSvc = ctx.getBean("memberRegSvc", MemberRegisterService.class);
 		RegisterRequest req = new RegisterRequest();
 		req.setEmail(arg[1]);
 		req.setName(arg[2]);
@@ -85,9 +83,7 @@ public class MainForSpring {
 			printHelp();
 			return;
 		}
-		ChangePasswordService changePwdSvc = ctx.getBean(ChangePasswordService.class);
-		// @Component 어노테이션을 붙일 때 속성값을 주지 않았는데, 이 경우 클래스 이름의 첫 글자를 소문자로 바꾼 이름을 빈 이름으로 사용한다.
-		// 빈 이름없이 타입만으로 구하도록 변경하였다.
+		ChangePasswordService changePwdSvc = ctx.getBean("changePwdSvc", ChangePasswordService.class);
 		try {
 			changePwdSvc.changePassword(arg[1], arg[2], arg[3]);
 			System.out.println("암호를 변경했습니다.\n");
@@ -109,7 +105,6 @@ public class MainForSpring {
 
 	private static void processListCommand() {
 		MemberListPrinter listPrinter = ctx.getBean("listPrinter", MemberListPrinter.class);
-		// @Component 어노테이션을 붙일 때 속성값을 같은 이름으로 부여하여 수정하지 않았다.
 		listPrinter.printAll();
 	}
 
@@ -119,7 +114,6 @@ public class MainForSpring {
 			return;
 		}
 		MemberInfoPrinter infoPrinter = ctx.getBean("infoPrinter", MemberInfoPrinter.class);
-		// @Component 어노테이션을 붙일 때 속성값을 같은 이름으로 부여하여 수정하지 않았다.
 		infoPrinter.printMemberInfo(arg[1]);
 	}
 

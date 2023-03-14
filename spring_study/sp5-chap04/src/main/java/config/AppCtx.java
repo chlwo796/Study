@@ -2,6 +2,7 @@ package config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import spring.ChangePasswordService;
@@ -14,16 +15,21 @@ import spring.MemberSummaryPrinter;
 import spring.VersionPrinter;
 
 @Configuration
+@ComponentScan(basePackages = { "spring" })
+// spring 패키지와 하위 패키지에 속한 클래스를 스캔 대상으로 한다.
 public class AppCtx {
-	@Bean
-	public MemberDao memberDao() {
-		return new MemberDao();
-	}
-
-	@Bean
-	public MemberRegisterService memberRegSvc() {
-		return new MemberRegisterService();
-	}
+//	@Bean
+//	public MemberDao memberDao() {
+	// 스캔등록했던 빈 이름과 수동 등록한 빈이름이 일치할 경우,
+	// 수동등록한 빈이 우선한다. 즉, 이 클래스에서 수동선언한 빈 한개만 존재한다.
+//		return new MemberDao();
+//	}
+//	@Bean
+//	public MemberDao memberDao2() {
+	// 같은 타입이지만 이름이 다른 수동등록한 빈의 경우, 컨테이너에서 각각 객체가 생성되므로
+	// @Qualifier 어노테이션을 사용하여 각 알맞은 빈을 선택해주어야한다.
+//		return new MemberDao();
+//	}
 
 	@Bean
 	public ChangePasswordService changePwdSvc() {
@@ -34,10 +40,6 @@ public class AppCtx {
 		return pwdSvc;
 	}
 
-//	@Bean
-//	public MemberPrinter memberPrinter() {
-//		return new MemberPrinter();
-//	}
 	@Bean
 	@Qualifier("printer")
 	public MemberPrinter memberPrinter1() {
@@ -51,33 +53,10 @@ public class AppCtx {
 	}
 
 	@Bean
-	public MemberListPrinter listPrinter() {
-		// 생성자 방식
-		// 빈 객체를 생성하는 시점에 모든 의존 객체가 주입된다.
-		// 파라미터 수가 많을 경우 각 인자가 어떤 의존 객체를 설정하는지 알아내려면 생성자의 코드를 확인해야 한다.
-		return new MemberListPrinter();
-	}
-
-	@Bean
-	public MemberInfoPrinter infoPrinter() {
-		// set 메소드 DI 방식
-		// 세터 메소드 이름을 통해 어떤 의존 객체가 주입되는지 알 수 있다.
-		// 필요한 의존 객체를 전달하지 않아도 빈 객체가 생성되기 때문에, 객체를 사용하는 시점에 NullpointerException이 발생할 수
-		// 있다.
-		MemberInfoPrinter infoPrinter = new MemberInfoPrinter();
-//		infoPrinter.setMemberDao(memberDao());
-//		infoPrinter.setPrinter(memberPrinter());
-
-		// MemberInfoPrinter클래스에 각 set메소드에 @Autowired 어노테이션
-		return infoPrinter;
-	}
-
-	@Bean
 	public VersionPrinter versionPrinter() {
 		VersionPrinter versionPrinter = new VersionPrinter();
 		versionPrinter.setMajorVersion(5);
 		versionPrinter.setMinorVersion(0);
 		return versionPrinter;
 	}
-
 }
