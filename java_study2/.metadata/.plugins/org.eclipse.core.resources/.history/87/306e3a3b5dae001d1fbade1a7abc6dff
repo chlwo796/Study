@@ -1,6 +1,0 @@
-package javaHigh05.example05;
-
-public class Bus {
-	private String destination;
-	private Integer stop;
-}

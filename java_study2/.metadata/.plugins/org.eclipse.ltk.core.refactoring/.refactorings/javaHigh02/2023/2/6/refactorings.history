@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename type &apos;javaHigh02.example03.BoardExample&apos; to &apos;BoardMain&apos;&#x0D;&#x0A;- Original project: &apos;javaHigh02&apos;&#x0D;&#x0A;- Original element: &apos;javaHigh02.example03.BoardExample&apos;&#x0D;&#x0A;- Renamed element: &apos;javaHigh02.example03.BoardMain&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;BoardExample&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;javaHigh02.example03{BoardExample.java[BoardExample" matchStrategy="1" name="BoardMain" qualified="false" references="true" similarDeclarations="false" stamp="1675989786212" textual="false" version="1.0"/>
-</session>

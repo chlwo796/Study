@@ -8,7 +8,7 @@ logs
 **/*.backup.*
 **/*.back.*
 
-node_modules
+/react_study/node_modules
 bower_components
 
 *.sublime*

@@ -1,7 +1,0 @@
-package javaHigh05.example04;
-
-import java.util.Comparator;
-
-public class FruitComparator implements Comparator<Fruit> {
-
-}

@@ -1,7 +1,0 @@
-package javaHigh05.example05;
-
-public class ComparatorEx01 {
-	public static void main(String[] args) {
-		TreeSet<Bus> treeSet1 = new TreeSet<Bus>();
-	}
-}

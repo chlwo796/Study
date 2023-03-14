@@ -1,8 +1,0 @@
-package javaHigh03.example05;
-
-public class Fee {
-	String number;
-	int familyNumber;
-	int electricity;
-	int fee;
-}

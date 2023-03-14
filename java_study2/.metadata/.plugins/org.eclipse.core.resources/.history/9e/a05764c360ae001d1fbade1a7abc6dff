@@ -1,7 +1,0 @@
-package javaHigh05.example05;
-
-public class BusinessSale {
-	private String teamName;
-	private String store;
-	private Integer sale;
-}
