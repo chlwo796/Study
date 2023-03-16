@@ -46,3 +46,16 @@ console.log(
 //   .filter((n) => mappingGender(findIndexFunc(n)))
 //   .filter((n) => mappingAge(findIndexFunc(n)) > 20);
 // console.log(findMember);
+
+const schoolName = ["서울대", "연세대", "고려대"];
+const level = [1, 2, 2];
+const student = {
+  name: "이순신",
+  grade: 2,
+  gra: true,
+};
+
+const schoolList = schoolName.filter(
+  (schoolName, index) => level[index] === student.grade
+);
+console.log(schoolList);
