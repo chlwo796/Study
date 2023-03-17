@@ -140,3 +140,95 @@
   background-color: green;
   margin: -253px 1350px auto;
 }
+.main_contents #container4 #title4 {
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 30px;
+  padding-top: 20px;
+  text-align: left;
+  line-height: 1.5;
+}
+.main_contents #container4 p {
+  position: relative;
+  padding-left: 30px;
+  padding-top: 20px;
+  text-align: left;
+  line-height: 1.7;
+  font-size: 15px;
+}
+.main_contents #container4 #option4 {
+  padding-top: 40px;
+  text-decoration-line: underline;
+}
+.main_contents #container5 {
+  background-color: yellow;
+  margin: -3px 750px auto;
+}
+.main_contents #container5 #title5 {
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 30px;
+  padding-top: 20px;
+  text-align: left;
+  line-height: 1.5;
+}
+.main_contents #container5 p {
+  position: relative;
+  padding-left: 30px;
+  padding-top: 20px;
+  text-align: left;
+  line-height: 1.7;
+  font-size: 15px;
+}
+.main_contents #container5 #option5 {
+  padding-top: 40px;
+  text-decoration-line: underline;
+}
+.main_contents #container6 {
+  background-color: brown;
+  margin: -253px 1050px auto;
+}
+.main_contents #container6 #title6 {
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 30px;
+  padding-top: 20px;
+  text-align: left;
+  line-height: 1.5;
+}
+.main_contents #container6 p {
+  position: relative;
+  padding-left: 30px;
+  padding-top: 20px;
+  text-align: left;
+  line-height: 1.7;
+  font-size: 15px;
+}
+.main_contents #container6 #option6 {
+  padding-top: 40px;
+  text-decoration-line: underline;
+}
+.main_contents #container7 {
+  background-color: blue;
+  margin: -253px 1350px auto;
+}
+.main_contents #container7 #title7 {
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 30px;
+  padding-top: 20px;
+  text-align: left;
+  line-height: 1.5;
+}
+.main_contents #container7 p {
+  position: relative;
+  padding-left: 30px;
+  padding-top: 20px;
+  text-align: left;
+  line-height: 1.7;
+  font-size: 15px;
+}
+.main_contents #container7 #option7 {
+  padding-top: 40px;
+  text-decoration-line: underline;
+}

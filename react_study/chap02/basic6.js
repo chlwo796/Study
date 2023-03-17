@@ -31,22 +31,6 @@ console.log(
   })
 );
 
-// const findIndexFunc = (n) => {
-//   //인덱스를 찾아줌
-//   let findIndex;
-//   for (i = 0; i < personName.length; i++) {
-//     if (n == personName[i]) findIndex = i;
-//   }
-//   return findIndex;
-// };
-
-// const mappingGender = (n) => gender[n]; //젠더배열에 받아온 인덱스를 넣은 값을 리턴함
-// const mappingAge = (n) => age[n]; //나이배열에 받아온 인덱스를 넣은 값을 리턴함
-// const findMember = personName
-//   .filter((n) => mappingGender(findIndexFunc(n)))
-//   .filter((n) => mappingAge(findIndexFunc(n)) > 20);
-// console.log(findMember);
-
 const schoolName = ["서울대", "연세대", "고려대"];
 const level = [1, 2, 2];
 const student = {
