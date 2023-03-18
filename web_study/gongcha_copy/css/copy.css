@@ -53,7 +53,7 @@
   padding-right: 20px;
 }
 #background_image {
-  z-index: -1;
+  z-index: 0;
 }
 .main_contents {
   font-family: "NanumGothic", "dotum", "Arial", "sans-serif";
