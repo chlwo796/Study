@@ -4,15 +4,23 @@
   font-family: "NanumGothic", "dotum", "Arial", "sans-serif";
   text-decoration: none;
 }
+body {
+  width: 100%;
+  min-width: 1200px;
+  min-height: 100%;
+  align-items: center;
+}
 .header {
   width: 100%;
   background-color: white;
-  overflow: hidden;
   top: 0;
   left: 0;
+  position: fixed;
+  z-index: 10;
+  height: 110px;
 }
 .header div {
-  font-size: 18px;
+  font-size: 16px;
   float: left;
   margin-top: 40px;
   margin-left: 120px;
@@ -23,7 +31,7 @@
 }
 .header ul {
   text-align: center;
-  font-weight: bold;
+  font-weight: 600;
 }
 .header #menu4 {
   position: absolute;
@@ -53,7 +61,10 @@
   padding-right: 20px;
 }
 #background_image {
+  max-width: 100%;
+  margin: 100px 0 0 0;
   z-index: 0;
+  overflow: hidden;
 }
 .main_contents {
   font-family: "NanumGothic", "dotum", "Arial", "sans-serif";
@@ -231,4 +242,83 @@
 .main_contents #container7 #option7 {
   padding-top: 40px;
   text-decoration-line: underline;
+}
+.footer {
+  width: 750px;
+  height: 165px;
+  float: left;
+  position: relative;
+  margin: 0 auto;
+  background: #575757;
+}
+.footer #footer_logo {
+  position: absolute;
+  top: 39px;
+  left: 400px;
+}
+#copyright {
+  font-size: 12px;
+  line-height: 16px;
+  position: relative;
+  top: -30px;
+  left: 100px;
+}
+.footer_main {
+  width: 1153px;
+  height: 165px;
+  float: left;
+  position: relative;
+  margin: 0 auto;
+  background: #f1f2f2;
+  overflow: hidden;
+}
+.footer_main #footer_menu li {
+  font-size: 15px;
+  font-weight: 600;
+  float: left;
+  overflow: hidden;
+  margin: 40px 0 0 40px;
+}
+.footer_main #footer_menu p {
+  overflow: hidden;
+  float: left;
+  margin: 40px -20px 0 20px;
+}
+.footer_main #go_login {
+  width: 130px;
+  height: 30px;
+  position: absolute;
+  top: 30px;
+  right: 250px;
+  border: 1px solid #983b43;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 28px;
+  color: #983b43;
+  text-align: center;
+}
+.footer_main #center {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 80px 0 -18px 40px;
+}
+.footer_main #tell {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 -18px 120px;
+  line-height: 22px;
+  float: left;
+}
+.footer_main #time {
+  font-size: 12px;
+  font-weight: 300;
+  margin: 0px 0 0 10px;
+  line-height: 22px;
+  display: inline-block;
+}
+.footer_main #adress {
+  font-size: 12px;
+  font-weight: 300;
+  margin-left: 40px;
+  line-height: 22px;
 }
