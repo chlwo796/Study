@@ -5,6 +5,8 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import spring.MemberDao;
+
 @Configuration
 public class DbConfig {
 	@Bean(destroyMethod = "close")  // 커넥션 풀에 보관된 Connection을 얻는다.
@@ -13,14 +15,20 @@ public class DbConfig {
 	public DataSource dataSource() {
 		DataSource ds = new DataSource();	// DataSource 객체생성
 		ds.setDriverClassName("com.mysql.jdbc.Driver");	// JDBC 드라이버 클래스 지정, MYSQL 드라이버 클래스 사용
-		ds.setUrl("jdbc:mysql://localhost/spring5fs?characterEncoding=utf8");	// JDBC URL 지정
+		ds.setUrl("jdbc:mysql://localhost/spring5fs?autoReconnect=true");	// JDBC URL 지정
 		ds.setUsername("spring5");	// 사용자 계정, 암호 지정
 		ds.setPassword("spring5");
 		ds.setInitialSize(2);	// 커넥션 풀을 초기화할 때 최소 수준의 커넥션을 미리 생성하는 것이 좋다.
+		ds.setMaxIdle(10);
 		ds.setMaxActive(10);	// 활성 상태가 가능한 최대 커넥션 수 지정
 		ds.setTestWhileIdle(true); // 유휴 커넥션 검사, 유휴 시간이 지나면 커넥션이 끊어진 채로 커넥션 풀 속에 남아있다.->추후 익셉션발생, 주기적으로 확인 필요
 		ds.setMinEvictableIdleTimeMillis(1000*60*3);	// 최소 유휴 시간 3분
 		ds.setTimeBetweenEvictionRunsMillis(1000*10);	// 10초 주기로 검사
+		
 		return ds;
+	}
+	@Bean
+	public MemberDao memberDao() {
+		return new MemberDao(dataSource());
 	}
 }
