@@ -11,7 +11,9 @@
       media="screen"
       href="./css/copy.css"
     />
-    <script src="main.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/jquery-1.11.1.min.js"></script>
   </head>
   <body>
     <header class="header">
@@ -44,11 +46,10 @@
           <img src="./images/franchise_main_visual1.jpg" />
         </div>
       </div>
-      <div class="main_contents">
-        <div id="container1">
+      <div class="main_contents" id="main_contents">
+        <div id="container1" class="container1_left">
           <p id="title1">공들여 맛있는 차,<br>공차</p>
           <p>프리미엄 잎 차를 고르고<br>공차만의 까다로운 노하우로 우리고<br>다양하고 새로운 맛을 더해<br>한 잔의 완벽한 공차를 바칩니다.</p>
-
         </div>
         <div id="container2">
           <p id="title2">공차 개설 비용</p>
@@ -81,6 +82,12 @@
           <p id="option7">가맹점 FAQ > </p>
         </div>
         </div>
+        <script>
+					$(document).ready(function(){
+						Newriver.Slider.FranchiseMainVisual();
+						Newriver.Slider.FranchiseVictoryStory();
+					});
+				</script>
         <div class="footer">
           <div id ="footer_logo">
             <img src="../gongcha_copy/images/logo.png" alt="">

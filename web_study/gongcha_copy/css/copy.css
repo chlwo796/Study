@@ -82,6 +82,12 @@ body {
   height: 500px;
   background-color: rgba(232, 164, 167, 0.9);
   margin: -250px 0 0 400px;
+  transform: translateX(-50px);
+}
+.main_contents #container1:hover {
+  transform: translateX(0);
+  transition: all;
+  transition-duration: 0.3s;
 }
 .main_contents #container1 #title1 {
   font-size: 30px;
