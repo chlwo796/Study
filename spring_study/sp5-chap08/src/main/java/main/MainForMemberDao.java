@@ -40,6 +40,7 @@ public class MainForMemberDao {
 		Member member = memberDao.selectByEmail("madvirus@madvirus.net");
 		String oldPw = member.getPassword();
 		String newPw = Double.toHexString(Math.random());
+//		String newPw = "1234";
 		member.changePassword(oldPw, newPw);
 		
 		memberDao.update(member);

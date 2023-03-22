@@ -204,3 +204,4 @@
 - [라우터교안](https://cafe.naver.com/thisiscoding)
 - [라우터](https://reactrouter.com/en/main/router-components/hash-router)
 - [JSON으로 작업하기](https://developer.mozilla.org/ko/docs/Learn/JavaScript/Objects/JSON)
+- [MySQL Error Code: 1046, set as default schema](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=skybrend&logNo=90155188520)
