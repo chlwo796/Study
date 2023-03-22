@@ -1,16 +1,33 @@
-import { UseStateEx01 } from "./components2/UseStateEx01";
-import { UseEffectEx01 } from "./components2/UseEffectEx01";
-import { CssModules } from "./components2/CssModules";
-const App = () => {
-  // const [ 변수명, 변수를 바꿀 함수명 ] = useState(초기값); //배열분할대입
+import React, { Component } from "react";
+import { BrowserRouter, Routes, HashRouter, Route } from "react-router-dom";
+import { Header } from "./component6/Header";
+import { Main } from "./component6/Main";
+import { Product } from "./component6/Product";
+import { ProductDtl } from "./component6/ProductDtl";
+
+export const App = () => {
   return (
-    <>
-      <div>
-        <UseStateEx01></UseStateEx01>
-        <UseEffectEx01></UseEffectEx01>
-        <CssModules></CssModules>
-      </div>
-    </>
+    <div className="App">
+      <BrowserRouter>
+        {/* BrowserRouter = 서버로 주소를 보냄 */}
+        <Header></Header>
+        <Routes>
+          <Route path="/" element={<Main></Main>}></Route>{" "}
+          <Route path="/product" element={<Product></Product>}></Route>
+          <Route path="/product3" element={<ProductDtl></ProductDtl>}></Route>
+        </Routes>
+      </BrowserRouter>
+      <h3>해시라우팅</h3>
+      <HashRouter>
+        {/* HashRouter = 웹브라우저가 감지*/}
+        <Header></Header>
+        <Routes>
+          <Route path="/" element={<Main></Main>}></Route>{" "}
+          <Route path="/product" element={<Product></Product>}></Route>
+          <Route path="/product3" element={<ProductDtl></ProductDtl>}></Route>
+        </Routes>
+      </HashRouter>
+    </div>
   );
 };
 export default App;
