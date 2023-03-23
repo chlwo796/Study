@@ -118,6 +118,47 @@
 - BrowserRouter : HTML5를 지원하는 브라우저의 주소 감지
 - HashRouter : 해시 주소(http://goddaehee.tistory.com/#test)를 감지 한다
 - `npm install react-router-dom`, `yarn add react-router-do`
+
+  ```jsx
+  import React, { Component } from "react";
+  import { BrowserRouter, Routes, HashRouter, Route } from "react-router-dom";
+  import { Header } from "./component6/Header";
+  import { Main } from "./component6/Main";
+  import { Product } from "./component6/Product";
+  import { ProductDtl } from "./component6/ProductDtl";
+
+  export const App = () => {
+    return (
+      <div className="App">
+        <BrowserRouter>
+          {/* BrowserRouter = 서버로 주소를 보냄 */}
+          <Header></Header>
+          <Routes>
+            <Route path="/" element={<Main></Main>}></Route> <Route
+              path="/product"
+              element={<Product></Product>}
+            ></Route>
+            <Route path="/product3" element={<ProductDtl></ProductDtl>}></Route>
+          </Routes>
+        </BrowserRouter>
+        <h3>해시라우팅</h3>
+        <HashRouter>
+          {/* HashRouter = 웹브라우저가 감지*/}
+          <Header></Header>
+          <Routes>
+            <Route path="/" element={<Main></Main>}></Route> <Route
+              path="/product"
+              element={<Product></Product>}
+            ></Route>
+            <Route path="/product3" element={<ProductDtl></ProductDtl>}></Route>
+          </Routes>
+        </HashRouter>
+      </div>
+    );
+  };
+  export default App;
+  ```
+
 - 타입스크립트 : 문자열 String, 숫자 number, <제네릭>
 - `npx create-react-app [프로젝트명] --template typescript`
 - `.tsx` : 마이크로소프트사의 open 스크립트
@@ -140,7 +181,7 @@
       n = null;
       // n은 null만 할당가능
       // n = 10;
-      let u: undefined = undefined;
+      let u: undefined = undefined; // 나중에 넣을 예정
       u = undefined;
       // u는 undefined만 할당가능
       // u = null;
