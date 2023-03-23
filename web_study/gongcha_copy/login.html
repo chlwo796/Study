@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>로그인페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div id="wrap" style="background: #f0edeb">
+      <div id="login">
+        <div class="login_inner">
+          <div class="master_login_wrap">
+            <div class="hgroup">
+              <h1 class="logo">
+                <img
+                  src="/view/gongcha/images/common/master_login_logo.png"
+                  alt=""
+                />
+              </h1>
+              <h2 class="tit">공차 가맹점주 로그인</h2>
+              <p class="txt">
+                가맹점의 아이디와 비밀번호로 로그인 후 이용 가능합니다.
+              </p>
+            </div>
+            <form
+              id="loginform"
+              name="loginform"
+              method="post"
+              action="/franchise/store/proc.login.php"
+            >
+              <div class="master_login_area">
+                <input
+                  type="text"
+                  name="id"
+                  id="id"
+                  placeholder="가맹점주 아이디"
+                />
+                <input
+                  type="password"
+                  name="pwd"
+                  id="pwd"
+                  placeholder="가맹점주 비밀번호"
+                />
+                <input type="submit" value="로그인" class="submit" />
+              </div>
+
+              <div class="login_btn_wrap">
+                <div class="fl_c">
+                  <label class="chk"
+                    ><input
+                      type="checkbox"
+                      name="saveid"
+                      id="saveid"
+                      value="Y"
+                    />아이디 저장</label
+                  >
+                  <label class="chk"
+                    ><input
+                      type="checkbox"
+                      name="autoflag"
+                      id="autoflag"
+                      value="Y"
+                    />자동 로그인</label
+                  >
+                </div>
+              </div>
+            </form>
+            <p class="txt_red">
+              ※아이디 또는 비밀번호를 잊어버린 경우 담당 SV에게 문의 주시기
+              바랍니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
