@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.header {
+  margin: 100px auto;
+  text-align: center;
+  font-size: 40px;
+}
+.input {
+  overflow: hidden;
+  text-align: center;
+}
+.input input {
+  font-size: 15px;
+  width: 300px;
+  height: 40px;
+  border-color: 1px solid black;
+  margin: 20px 0 30px 0;
+}
+.bottom {
+  float: left;
+  overflow: hidden;
+}
+.bottom .register {
+  text-align: center;
+  float: left;
+}
+.bottom .submitButton {
+  text-align: center;
+  float: left;
+}
+.bottom .submitButton input {
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.bottom .register button {
+  position: relative;
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  font-weight: 600;
+}
