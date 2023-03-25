@@ -5,6 +5,18 @@ const bottom1 = document.querySelector(".bottom1");
 const bottom2 = document.querySelector(".bottom2");
 const bottom3 = document.querySelector(".bottom3");
 const bottom4 = document.querySelector(".bottom4");
+const top1 = document.querySelector(".top1");
+
+top1.animate(
+  {
+    transform: ["translateY(-50px)", "translateY(0px)"],
+  },
+  {
+    duration: 300,
+    fill: "forwards",
+    easing: "ease",
+  }
+);
 left1.animate(
   {
     transform: ["translateX(-50px)", "translateX(0px)"],
