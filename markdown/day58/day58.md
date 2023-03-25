@@ -98,3 +98,5 @@
 ---
 
 ### 3. memo
+
+- [How to exit a git merge asking for commit message?](https://unix.stackexchange.com/questions/181280/how-to-exit-a-git-merge-asking-for-commit-message)
