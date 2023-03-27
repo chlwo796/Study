@@ -145,10 +145,11 @@ desc dept01;
   - 집 주소와 전화번호를 입력했더니, 퀵으로 배송이 왔다.
   - 결제는 카드와 현금입금이 있었는데 카드로 했다.
 
--
+---
 
 ### 2. memo
 
 - [오라클 재설치하는 경우](https://blog.naver.com/byjs0529/222834900812)
 - [varchar vs varchar2](https://jookipedia.tistory.com/21)
 - [nchar, nvarchar](https://oggwa.tistory.com/60)
+- [spring | properties error](https://vivalasiesta.tistory.com/155)
