@@ -43,7 +43,7 @@ public class MvcConfig implements WebMvcConfigurer {
 		ms.setDefaultEncoding("UTF-8"); // label.properties 파일이 UTF-8 인코딩이므로 디폴트설정 = UTF-8
 		return ms;
 	}
-
+	// bean validation 어노테이션설정 후 해당 글로벌 범위 Validator 설정삭제
 	@Override
 	public Validator getValidator() {
 		// 글로벌 범위 Validator 적용
