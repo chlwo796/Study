@@ -4,6 +4,7 @@ patient_name varchar2(30),
 disease_code nvarchar2(3),
 patient_age number(3),
 primary key (patient_no),
+--외래키설정
 FOREIGN key (disease_code) REFERENCES disease(disease_code)
 );
 
@@ -38,10 +39,8 @@ create table schedule(
     schedule_date TIMESTAMP not null,
     schedule_hour number(2),
     to_do varchar2(300),
+--기본키 없이 외래키 설정    
     FOREIGN key(schedule_date) REFERENCES diary(diary_date)
-);
-alter table schedule modify(
-    schedule_date TIMESTAMP
 );
 insert into schedule values ('2023-3-27', 11, '영어스터디');
 
@@ -51,7 +50,9 @@ insert into diary values('2023-3-29', '오늘 복권 당첨', '비');
 
 insert into schedule values('2023-03-27', 11, '영어스터디');
 insert into schedule values('2023-03-29', 12, '자바스터디');
+--테이블조회
 select * from diary;
 select * from schedule;
+--테이블삭제
 drop table schedule;
 drop table diary;
