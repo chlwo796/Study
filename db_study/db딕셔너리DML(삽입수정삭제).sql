@@ -408,3 +408,40 @@ alter table specialty add constraint specialty_pk primary key(specialty);
 alter table assign add constraint assign_pk primary key (emp_no, pro_no);
 
 select * from user_constraints where table_name in ('EMPLOYEE', 'PRJOECT', 'SPECIALTY','ASSIGN');
+
+-- cascade 종속
+-- 부모테이블의 자료를 변경하면 자식도 같이 변경이 될 수 있게 제약조건을 만들어 주는 것.
+drop table emp03;
+drop table dept03;
+
+create table emp03(
+empno number(4),
+ename varchar2(10)
+constraint emp03_ename_nn not null,
+job varchar2(10),
+deptno number(2),
+constraint emp03_empno_pk primary key(deptno),
+constraint emp03_job_uk unique(job),
+constraint emp03_deptno_fk foreign key(deptno) references dept03(deptno)
+);
+create table dept03(
+deptno number(2),
+dname varchar2(10),
+loc varchar2(10),
+constraint dept03_deptno primary key(deptno)
+);
+
+select * from user_constraints where table_name in('EMP03', 'DEPT03');
+insert into emp03 values (1000, '홍길동', '사원', 50);
+-- 부모자료 넣고 자식 자료 넣는다. or 제약조건을 임시로 비활성화(disable constraint)
+alter table emp03 disable constraint emp03_deptno_fk; --비권장사항
+-- 비활성화한 제약조건을 다시 활성화
+alter table emp03 enable constraint emp03_deptno_fk;
+delete from emp03;
+-- cascade 옵션
+alter table dept03 disable primary key cascade;
+alter table dept03 enable primary key;
+alter table emp03 enable constraint emp03_deptno_fk;
+insert into emp03 values (1000, '홍길동', '사원', 50);
+
+
