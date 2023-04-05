@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <p>나라의 수도를 알려줍니다.</p>
+    <p id="1">1. Korea</p>
+    <p id="2">2. USA</p>
+    <p id="3">3. Japan</p>
+    <p id="4">4. China</p>
+    <p>번호 입력 후 엔터키를 입력하세요</p>
+    <input type="text" id="input" placeholder="알고싶은나라의 번호는?" onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkFunc();}"></input>
+    <p id="text"></p>
+    <script src="test2.js"></script>
+  </body>
+</html>
