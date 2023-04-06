@@ -184,10 +184,17 @@ select * from student;
 select * from department;
 select * from professor;
 select * from emp;
-
+-- 사원테이블을 기본테이블로, 부서별 최대급여와 최소급여를 출력하는 뷰를 SAL_VIEW란 이름으로 작성
 create or replace view sal_view as select d.dname, max(sal) max_sal, min(sal) min_sal from emp e, dept d where e.deptno = d.deptno group by d.dname;
 select * from sal_view;
+-- 인라인 뷰를 사용하여 급여를 많이 받는 순서대로 3명만 출력하시오
 select rownum ranking, empno, ename, sal from (select rownum, empno, ename, sal from emp order by sal desc) where rownum<=3;
-
+-- professor테이블과 department테이블을 조인하여 교수번호와 교수이름, 소속 학과이름을 조회하는 view를 생성하시오. view 이름은 v_prof_dept2로
 create or replace view v_prof_dept2 as select profno, name, dname from professor, department;
 select * from v_prof_dept2;
+-- inline view를 사용하여 student테이블과 departmant테이블을 사용하여 학과별로 학생들의 최대키와 최대 몸무게, 학과 이름을 출력하세요.
+select * from (select d.dname, max(s.height), max(s.weight) from student s, department d where s.deptno1 = d.deptno group by d.dname);
+-- student테이블과 departmemt테이블을 사용하여 학과 이름, 학과별 최대키, 학과별로 가장 키가 큰 학생들의 이름과 키를 inline view를 사용하여 출력하세요.
+select * from (select d.dname, s.name, max(s.height) from student s, department d where s.deptno1 = d.deptno group by d.dname, s.name);
+-- student테이블에서 학생의 키가 동일 학년의 평균 키보다 큰 학생들의 학년과 이름 키, 해당 학년의 평균키를 출력하되 inline view를 사용해서 출력하세요.(학년 컬럼으로 오름차순 정렬해서 출력하세요)
+select s.grade, s.name, s.height, g.avg_height from student s, (select grade, avg(height) avg_height from student group by grade) g where s.grade = g.grade and s.height>=g.avg_height order by s.grade asc;
