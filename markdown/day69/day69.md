@@ -282,7 +282,7 @@ end;
   - 단점 : 보안에 취약
 - post방식 : body 태그로 데이터 전달, 클라이언트화면에 전달하는 데이터 안보임
   - 장점 : 보안 유리
-- mySQL workbrench 도구
+- mySQL workbrench 도구 : mySQL 데이터베이스를 사용할 수 있도록 sql문을 작업할 수 있는 도구, `오라클 = sqldeveloper`
 
 ---
 
