@@ -6,5 +6,7 @@
        insert into book ( title, category, price) values(#{title}, #{category}, #{price}); 
     ]]>
   </insert> 
-  
+  <select id="select_detail" parameterType = "hashMap" resultType = "hashMap">
+  	<![CDATA[select book_id, title, category, price, insert_date from book where book_id = #{bookId}]]>
+  </select>
 </mapper>

@@ -12,22 +12,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class BookController {
 
-	static {
-		System.out.println("요기에 왓나요?");
-	}
-
 	@Autowired
 	BookService bookService;
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
-		System.out.println("중간");
 		return new ModelAndView("book/create");
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView createPost(@RequestParam Map<String, Object> map) {
-		System.out.println("중간1");
 		ModelAndView mav = new ModelAndView();
 
 		String bookId = this.bookService.create(map);
@@ -37,5 +31,31 @@ public class BookController {
 			mav.setViewName("redirect:/detail?bookId=" + bookId);
 		}
 		return mav;
+	}
+
+	@RequestMapping(value="/detail", method=RequestMethod.GET )
+	public ModelAndView  detail( @RequestParam  Map<String, Object>  map ) {
+		
+		Map<String, Object> detailMap = this.bookService.detail(map);
+		ModelAndView mav = new ModelAndView();
+		if(detailMap == null ) {
+			mav.setViewName("/book/error");
+		}	
+		else {
+		mav.addObject("data", detailMap); //뷰로 detailMap의 값(데이터베이스에서 받은 ResultSet)을 data 속성에 담아서 보내라
+	    String bookId = map.get("bookId").toString();
+	    mav.addObject("bookId", bookId);
+	    //http://localhost:8085/yse/detail?bookId=5&bookQr=50&bookPublisher=한빛
+//	    String bookQr = map.get("bookQr").toString();
+//	    mav.addObject( "bookQrName" , bookQr );//  bookQr값을 받아서 뷰의 bookQrAName 속성값으로 보내라
+//	    String bookPub=map.get("bookPublisher").toString();
+//	    mav.addObject("bookPubName", bookPub);
+//	    String a = map.get("a").toString();
+//	    String b = map.get("b").toString();
+//	    mav.addObject("a", a);
+//	    mav.addObject("b", b);
+	    mav.setViewName("/book/detail"); // src/main/webapp/web-inf/views/book/detail.jsp파일로 응답해라
+		}
+	    return mav;
 	}
 }
