@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  </head>
+
+  <body>
+    <h3>회원가입</h3>
+    <form method="post" name="form" action="">
+      <p>성:</p>
+      <input type="text" name="lastName" id="lastName" />
+      <p>이름:</p>
+      <input type="text" name="firstName" id="firstName" />
+      <p>이메일:</p>
+      <input type="text" name="email" id="email" /><br />
+      <span>성별:</span><input type="radio" name="gender" id="male" />남성<input
+        type="radio"
+        name="gender"
+        id="female"
+      />여성<br />
+      <span>특기:</span><input type="checkbox" name="specialty" />HTML<input
+        type="checkbox"
+        name="specialty"
+      />CSS<input type="checkbox" name="specialty" />JAVA<input
+        type="checkbox"
+        name="specialty"
+      />MySQL<br />
+      <span>전공:</span
+      ><select name="majors" id="lang">
+        <option value="Computer">Computer</option>
+        <option value="AI">AI</option>
+        <option value="Design">Design</option>
+        <option value="Art">Art</option></select
+      ><br />
+      <span>생일:</span><input type="date" /><br />
+      <p><textarea cols="30" rows="8" name="introduceMyself"></textarea></p>
+      <input
+        type="submit"
+        name="join"
+        value="가입하기"
+        onclick="return checkAll()"
+      />
+      <input type="reset" name="cancle" value="취소하기" />
+    </form>
+  </body>
+  <script src="test.js"></script>
+</html>

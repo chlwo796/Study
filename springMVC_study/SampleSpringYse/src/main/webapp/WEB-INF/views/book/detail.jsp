@@ -19,24 +19,15 @@
 		<fmt:formatDate value="${data.insert_date}"
 			pattern="yyyy.MM.dd HH:mm:ss" />
 	</p>
-
 	<p>
-		<a href="/update?bookId=${bookId}">수정</a>
+		<a href="/yse/update?bookId=${bookId}">수정</a>
 	</p>
-	<form method="POST" action="/delete">
+	<form method="POST" action="/yse/delete">
 		<input type="hidden" name="bookId" value="${bookId}" /> <input
 			type="submit" value="삭제" />
 	</form>
 	<p>
-		<a href="/list">목록으로</a>
+		<a href="/yse/list">목록으로</a>
 	</p>
-	 <%--
-	<p>bookId값 : ${bookId}</p>
-	
-	<p>책의 큐알은? : ${bookQrName}</p>
-	<p>출판사는? : ${bookPubName}</p>
-	
-	<p>a? : ${a}</p>
-	<p>b? : ${b}</p>--%>
 </body>
 </html>
