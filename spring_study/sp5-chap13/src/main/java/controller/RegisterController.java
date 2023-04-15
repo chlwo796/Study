@@ -1,7 +1,5 @@
 package controller;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -46,7 +44,8 @@ public class RegisterController {
 	}
 
 	@PostMapping("/register/step3")
-	public String handleStep3(@Valid RegisterRequest regReq, Errors errors) {
+	public String handleStep3(RegisterRequest regReq, Errors errors) {
+		new RegisterRequestValidator().validate(regReq, errors);
 		if (errors.hasErrors())
 			return "register/step2";
 

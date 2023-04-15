@@ -1,7 +1,12 @@
 package controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,30 +18,51 @@ import spring.WrongIdPasswordException;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-	// 로그인 요청을 처리하는 클래스
-	private AuthService authService;
+    private AuthService authService;
 
-	public void setAuthService(AuthService authService) {
-		this.authService = authService;
-	}
+    public void setAuthService(AuthService authService) {
+        this.authService = authService;
+    }
 
-	@GetMapping
-	public String form(LoginCommand loginCommand) {
-		return "login/loginForm";	// 로그인 폼을 보여주기 위해 "login/loginForm" 뷰 사용
-	}
-	@PostMapping
-	public String submit(LoginCommand loginCommand, Errors errors) {
-		new LoginCommandValidator().validate(loginCommand, errors);
-		if (errors.hasErrors()) {
-			return "login/loginForm";
+    @GetMapping
+    public String form(LoginCommand loginCommand,
+    		@CookieValue(value = "REMEMBER", required = false) Cookie rCookie) {
+		if (rCookie != null) {
+			loginCommand.setEmail(rCookie.getValue());
+			loginCommand.setRememberEmail(true);
 		}
-		try {
-			AuthInfo authInfo = authService.authenticate(loginCommand.getEmail(), loginCommand.getPassword());
-			// todo 세션에 authInfo 저장해야함
-			return "login/loginSuccess";	// 로그인 성공시 "loginSuccess" 뷰 사용
-		} catch (WrongIdPasswordException e) {
-			errors.reject("idPasswordNotMatching");
-			return "login/loginForm";
-		}
-	}
+    	return "login/loginForm";
+    }
+
+    @PostMapping
+    public String submit(
+    		LoginCommand loginCommand, Errors errors, HttpSession session,
+    		HttpServletResponse response) {
+        new LoginCommandValidator().validate(loginCommand, errors);
+        if (errors.hasErrors()) {
+            return "login/loginForm";
+        }
+        try {
+            AuthInfo authInfo = authService.authenticate(
+                    loginCommand.getEmail(),
+                    loginCommand.getPassword());
+            
+            session.setAttribute("authInfo", authInfo);
+
+			Cookie rememberCookie = 
+					new Cookie("REMEMBER", loginCommand.getEmail());
+			rememberCookie.setPath("/");
+			if (loginCommand.isRememberEmail()) {
+				rememberCookie.setMaxAge(60 * 60 * 24 * 30);
+			} else {
+				rememberCookie.setMaxAge(0);
+			}
+			response.addCookie(rememberCookie);
+
+            return "login/loginSuccess";
+        } catch (WrongIdPasswordException e) {
+            errors.reject("idPasswordNotMatching");
+            return "login/loginForm";
+        }
+    }
 }
