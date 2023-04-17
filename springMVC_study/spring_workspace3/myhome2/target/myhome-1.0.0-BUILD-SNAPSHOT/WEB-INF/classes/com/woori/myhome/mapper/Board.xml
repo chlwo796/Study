@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="Board">
+	
+	<!-- parameterType:매개변수로 받아올때  resultType="반환값" -->
+	<select id="Board_getList"	parameterType="BoardDto"  resultType="BoardDto">
+		select * from
+		(
+			select
+				A.seq
+				,A.userid
+				,A.title
+				,A.contents --내용
+				,A.group_id
+				,A.depth
+				,A.g_level
+				,to_char(A.regdate, 'yyyy-mm-dd') regdate
+				,row_number() over (order by A.group_id desc, A.g_level asc) as num
+				,ceil(row_number () over (order by A.group_id desc, A.g_level asc)/10-1) as pg
+			from board A
+			where delyn='N'
+			<if test="sel!=null and key!=null">
+				<if test='sel=="1"'>
+					and (title like '%'||#{key}||'%'
+					or
+					contents like '%'||#{key}||'%')
+				</if>
+				<if test='sel=="2"'>
+					and title like '%'||#{key}||'%'
+				</if>
+				<if test='sel=="3"'>
+					and contents like '%'||#{key}||'%'
+				</if>
+			</if>
+		)AA where pg=#{pg}
+	</select>
+	
+	<select id="Board_getTotalCount" parameterType="BoardDto"
+		resultType="Integer">
+		select count(*)
+		from board
+		where delyn='N'
+		<if test="sel!=null and key!=null">
+			<if test="sel.equals('1')">
+				and (title like '%'||#{key}||'%'
+				or
+				contents like '%'||#{key}||'%')
+			</if>
+			<if test="sel.equals('2')">
+				and title like '%'||#{key}||'%'
+			</if>
+			<if test="sel.equals('3')">
+				and contents like '%'||#{key}||'%'
+			</if>
+		</if>
+	</select>
+	
+	
+	<select id="Board_getView" parameterType="Integer" resultType="BoardDto">
+	select * from board 
+	where seq = #{seq} 
+	</select>
+	
+	<insert id="Board_insert" parameterType="BoardDto">
+	  	<selectKey resultType="String" keyProperty="seq" order="BEFORE">
+			select nvl(max(seq),0)+1 as seq
+			from board
+	 	</selectKey>
+		insert into board
+		(
+			seq
+			,userid
+			,title
+			,contents
+			,regdate
+			,hit
+			,delyn
+			,filename1
+			,filename2
+			,filename3
+		)
+		values
+		(
+			#{seq}
+			,#{userid}
+			,#{title}
+			,#{contents}
+			,sysdate
+			,0
+			,'N'
+			,#{filename1}
+			,#{filename2}
+			,#{filename3}
+		)
+	</insert>
+	
+	<update id="Board_update" parameterType="BoardDto">
+		update board 
+				set title=#{title}
+				,contents = #{contents}
+				,userid=#{userid}
+		where seq=#{seq}	
+	</update>
+	
+	<delete id="Board_delete" parameterType="Integer">
+	delete from board where seq=#{seq}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

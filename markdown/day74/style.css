@@ -1,0 +1,121 @@
+/* 전체 페이지 스타일 */
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  color: #222;
+  background-color: #f5f5f5;
+  margin: 0;
+}
+
+/* 상단 메뉴 스타일 */
+#gnb {
+  height: 63px;
+  background-color: #00396b;
+  color: #fff;
+  position: relative;
+  z-index: 10;
+}
+#gnb .logo {
+  float: left;
+  padding: 14px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#gnb .menu {
+  float: right;
+  padding: 0;
+  margin: 0;
+}
+#gnb .menu > li {
+  float: left;
+  position: relative;
+  height: 100%;
+  margin-right: 25px;
+}
+#gnb .menu > li > a {
+  display: block;
+  height: 100%;
+  line-height: 63px;
+  padding: 0 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+#gnb .menu > li > a:hover {
+  background-color: #006cb7;
+}
+
+/* 메인 비주얼 슬라이드 스타일 */
+#main_visual {
+  height: 485px;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+#main_visual .slider {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+}
+#main_visual .slider > li {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+}
+#main_visual .slider > li.active {
+  opacity: 1;
+  z-index: 2;
+}
+#main_visual .slider > li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 비주얼 슬라이드 인디케이터 스타일 */
+#main_visual .indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+}
+#main_visual .indicator > li {
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+}
+#main_visual .indicator > li.active {
+  background-color: #00396b;
+}
+
+/* 섹션 제목 스타일 */
+.section_title {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 40px 0;
+  text-align: center;
+}
+
+/* 서비스 안내 섹션 스타일 */
+.service_info {
+  padding: 60px 0;
+  background-color: #f5f5f5;
+}
+.service_info .card {
+  width: 360px;
+  height: 500px;
+  background-color: #fff;
+  margin: 0 auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0);
+}

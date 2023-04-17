@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="Member">
+	
+	
+	<select id="Member_isDuplicate" parameterType="MemberDto" resultType="Integer">
+	select count(*) from member 
+	where userid=#{userid}
+	</select>
+	
+	<insert id="Member_insert" parameterType="MemberDto">
+	  	<selectKey resultType="String" keyProperty="id" order="BEFORE">
+			select nvl(max(id),0)+1 as id
+			from member
+	 	</selectKey>
+		insert into member
+		(
+			id
+			,userid
+			,email
+			,username
+			,passwd
+		)
+		values
+		(
+			#{id}
+			,#{userid}
+			,#{email}
+			,#{username}
+			,#{passwd}
+		)
+	</insert>
+
+	<select id="Member_logon" parameterType="MemberDto" resultType="MemberDto">
+		select * from member 
+		where userid=#{userid}
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
