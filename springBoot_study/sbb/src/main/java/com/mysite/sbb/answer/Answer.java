@@ -1,4 +1,4 @@
-package com.mysite.sbb;
+package com.mysite.sbb.answer;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.CreatedDate;
+
+import com.mysite.sbb.question.Question;
 
 import lombok.Getter;
 import lombok.Setter;
