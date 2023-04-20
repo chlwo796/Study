@@ -1,15 +1,35 @@
-<h2>Hello Template</h2>
-<table>
-	<thead>
-		<tr>
-			<th>제목</th>
-			<th>작성일시</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="question, index : ${questionList}">
-			<td><a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a></td>
-			<td th:text="${question.createDate}"></td>
-		</tr>
-	</tbody>
-</table>
+<!-- layout.html 템플릿을 사용하기 위해 
+  <html layout:decorate="~{layout}"> 사용 
+
+  타임리프의 layout:decorate 속성은 템플릿의 레이아웃(부모 템플릿)
+  으로 사용할 템플릿을 설정
+-->
+
+<html layout:decorate="~{layout}">
+
+<!-- 부모템플릿 layout.html템플릿에서 이미 부트스트랩 스타일 링크
+  <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}" />
+-->
+<div layout:fragment="content" class="container my-3">
+	<table class="table">
+		<thead class="table-dark">
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성일시</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="question, loop : ${questionList}">
+				<td th:text="${loop.count}"></td>
+				<td>
+					<a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+				</td>
+				<td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
+</div>
+
+</html>
