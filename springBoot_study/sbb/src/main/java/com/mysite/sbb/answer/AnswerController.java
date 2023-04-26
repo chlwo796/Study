@@ -44,8 +44,9 @@ public class AnswerController {
 			model.addAttribute("question", question);
 			return "question_detail";
 		}
-		this.answerService.create(question, answerForm.getContent(), siteUser); // 답변 저장
-		return String.format("redirect:/question/detail/%s", id);
+		Answer answer = this.answerService.create(question, answerForm.getContent(), siteUser); // 답변 저장
+		// 답변 등록 수정 시 지정한 앵커태그로 이동하도록 redirect 수정
+		return String.format("redirect:/question/detail/%s#answer_%s", answer.getQuestion().getId(), answer.getId());
 	}
 
 	@PreAuthorize("isAuthenticated()")
@@ -61,11 +62,39 @@ public class AnswerController {
 	}
 
 	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/modify/{id}")	// get방식 요청
+	public String answerModify(AnswerForm answerForm, @PathVariable("id") Integer id, Principal principal) {
+		Answer answer = this.answerService.getAnswer(id);
+		if (!answer.getAuthor().getUsername().equals(principal.getName())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+		}
+		answerForm.setContent(answer.getContent());
+		return "answer_form";
+	}
+
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/modify/{id}")
+	public String answerModify(@Valid AnswerForm answerForm, @PathVariable("id") Integer id,
+			BindingResult bindingResult, Principal principal) {
+		if (bindingResult.hasErrors()) {
+			return "answer_form";
+		}
+		Answer answer = this.answerService.getAnswer(id);
+		if (!answer.getAuthor().getUsername().equals(principal.getName())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
+		}
+		this.answerService.modify(answer, answerForm.getContent());
+		// 앵커기능 추가
+		return String.format("redirect:/question/detail/%s#answer_%s", answer.getQuestion().getId(), answer.getId());
+	}
+
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/vote/{id}")
 	public String answerVote(Principal principal, @PathVariable("id") Integer id) {
 		Answer answer = this.answerService.getAnswer(id);
 		SiteUser siteUser = this.userService.getUser(principal.getName());
 		this.answerService.vote(answer, siteUser);
-		return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
+		// 앵커 기능 추가
+		return String.format("redirect:/question/detail/%s#answer_%s", answer.getQuestion().getId(), answer.getId());
 	}
 }
