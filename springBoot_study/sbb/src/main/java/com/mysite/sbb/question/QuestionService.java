@@ -29,8 +29,19 @@ import lombok.RequiredArgsConstructor;
 public class QuestionService {
 	private final QuestionRepository questionRepository;
 
-	public List<Question> getList() {
-		return this.questionRepository.findAll();
+//  검색기능 추가(기존메소드 수정)
+//	public List<Question> getList() {
+//		return this.questionRepository.findAll();
+//	}
+	public Page<Question> getList(int page, String kw) {
+		// 페이징 기능 추가
+		// 검색어를 의미하는 매개변수 kw를 getList에 추가
+		List<Sort.Order> sorts = new ArrayList<>();
+		sorts.add(Sort.Order.desc("createDate"));
+		PageRequest pageable = PageRequest.of(page, 10, Sort.by(sorts));
+		// kw값으로 Specification 객체를 생성하여 findAll 메소드 호출시 전달
+		Specification<Question> spec = search(kw);
+		return this.questionRepository.findAll(spec, pageable);
 	}
 
 	public Question getQuestion(Integer id) {
@@ -54,17 +65,6 @@ public class QuestionService {
 		this.questionRepository.save(q);
 	}
 
-	public Page<Question> getList(int page, String kw) {
-		// 페이징 기능 추가
-		// 검색어를 의미하는 매개변수 kw를 getList에 추가
-		List<Sort.Order> sorts = new ArrayList<>();
-		sorts.add(Sort.Order.desc("createDate"));
-		PageRequest pageable = PageRequest.of(page, 10, Sort.by(sorts));
-		// kw값으로 Specification 객체를 생성하여 findAll 메소드 호출시 전달
-		Specification<Question> spec = search(kw);
-		return this.questionRepository.findAll(spec, pageable);
-	}
-
 	public void modify(Question question, String subject, String content) {
 		// 수정 기능 추가
 		question.setSubject(subject);
@@ -85,7 +85,7 @@ public class QuestionService {
 	}
 
 	private Specification<Question> search(String kw) {
-		return new Specification<Question>() {
+		return new Specification<>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
