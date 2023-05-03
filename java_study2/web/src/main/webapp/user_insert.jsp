@@ -15,6 +15,5 @@
 		<input type="text" name="uiName" placeholder="이름을 입력해주세요."><br>
 		<button>유저등록</button>
 	</form>
-
 </body>
 </html>
