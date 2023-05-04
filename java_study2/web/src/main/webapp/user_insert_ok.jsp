@@ -24,13 +24,7 @@ if (rows == 1) {
 	out.println("<p>");
 	out.println("저장성공");
 	out.println("</p>");
-} else {
-	out.println("<p>");
-	out.println("다시입력해주세요.");
-	out.println("</p>");
-	out.println("<a href = " + "\"user_insert.jsp\"" + ">메인으로 이동</a>");
 }
-
 pstmt.close();
 %>
 <!DOCTYPE html>
@@ -40,6 +34,6 @@ pstmt.close();
 <title>Insert title here</title>
 </head>
 <body>
-
+<a href = "/user_info.jsp">메인으로이동</a>
 </body>
 </html>
