@@ -19,7 +19,7 @@ ResultSet rs = pstmt.executeQuery();
 <body>
 	<p align="center" style = "font-weight: bolder;">JH컴퍼니 고용현황</p>
 	<table border="1">
-		<tr>
+		<tr bgcolor="orange">
 			<th>번호</th>
 			<th>아이디</th>
 			<th>이름</th>
@@ -44,9 +44,9 @@ ResultSet rs = pstmt.executeQuery();
 			String uiPwd = rs.getString("UI_PWD");
 			String uiBirth = rs.getString("UI_BIRTH");
 			String uiTrans = rs.getString("UI_TRANS");
-			String Credat = rs.getString("CREDAT");
-			String Cretim = rs.getString("CRETIM");
-			String Active = rs.getString("ACTIVE");
+			String credat = rs.getString("CREDAT");
+			String cretim = rs.getString("CRETIM");
+			String active = rs.getString("ACTIVE");
 			String uiLvl = rs.getString("UI_LVL");
 			String uiDuties = rs.getString("UI_DUTIES");
 			out.println("<tr>");
@@ -58,16 +58,17 @@ ResultSet rs = pstmt.executeQuery();
 			out.println("<td>" + uiPwd + "</td>");
 			out.println("<td>" + uiBirth + "</td>");
 			out.println("<td>" + uiTrans + "</td>");
-			out.println("<td>" + Credat + "</td>");
-			out.println("<td>" + Cretim + "</td>");
-			out.println("<td>" + Active + "</td>");
+			out.println("<td>" + credat + "</td>");
+			out.println("<td>" + cretim + "</td>");
+			out.println("<td>" + active + "</td>");
 			out.println("<td>" + uiLvl + "</td>");
 			out.println("<td>" + uiDuties + "</td>");
 			out.println("</tr>");
 		}
-
 		pstmt.close();
 		%>
 	</table>
+	<br>
+	<button type="button" onclick="location.href = '/user_insert1.jsp'">신규등록</button>
 </body>
 </html>
