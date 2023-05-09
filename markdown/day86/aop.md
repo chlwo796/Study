@@ -18,17 +18,32 @@
   - 재사용성, 생산성 증가(유지보수용이), 자연스러운 모델링의 장점이 있다.
 
 - 객체지향언어의 단점
+
   - 느린 개발 속도 : 모든 객체의 역할과 기능을 이해해야 하기 때문에, 프로그래밍에 많은 시간이 소요
   - 느린 실행 속도 : 객체지향언어의 처리속도는 절차지향언어보다 느리다.
 
-처음 프로그래밍 언어가 생겨나고 프로그램이 생기기 시작
+- AOP의 목적은 바로 이러한 횡단관심사를 모듈화 하는 방법을 제시하는 것이며, 이를 통해 코드의 중복을 제거하여 이해하기 쉽고, 프로그램의 작성을 쉽게하고 유지보수를 편리하게 할 수 있다.
+  ![](https://3827551924-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2F-M26jG1r8fNWiAQrZyfg%2F-M2DA--ru1CUadr7eufR%2F-M2DA-nqrs6Dmqqd-_HV%2Ffile.png?generation=1584006960073378&alt=media)
 
+## AOP의 구성요소
+
+- Spring AOP는 Proxy 기반이다.
+
+  ![](https://docs.spring.io/spring-framework/docs/2.5.5/reference/images/aop-proxy-call.png)
+
+  - It means that self-invocation is not going to result in the advice associated with a method invocation getting a chance to execute.
+  - Target을 감싸 Target의 요청을 대신 받아주는 Wrapping Object이다. 호출자에서 타겟을 호출하게되면 타겟이 아닌 프록시가 호출되어, 타겟 메소드 실행전 선처리→타겟 메소드→후처리를 실행한다.
+
+- Proxy를 사용하는 이유는 접근 제어 및 부가기능을 추가하기 위해서이다.
 - OOP의 모듈성의 단위는 class, AOP의 모듈성의 단위는 aspect
 - Aspect는 여러 유형과 개체를 가로지르는 트랜잭션 관리와 같은 문제의 모듈화를 가능하게 한다.
 
   - 어플리케이션 내 여러 군데에 흩어져 있는 코드/기능이며, 실제 비지니스 로직과는 다르다(ex. 트랜잭션 관리)
   - 각 Aspect는 고유한 Cross-Cutting 기능에 초점을 맞추고 있으며, 여러 객체에 공통적으로 적용되는 관심 사항이다.
 
+## AOP 주요 용어
+
+- Target : Aspect(부가기능)을 부여할 대상으로 핵심 기능을 담당
 - JoinPoint : 프로그램이 실행중일 때 발생하는 메소드실행, 생성자 호출, 필드값 변경 등과 같은 특수한 지점을 의미한다.(AOP에서 말하는 Aspect는 어디에서(PointCut) 무엇을 할 것인지(Advice)를 합쳐놓은 개념)
 - Advice : 특정 Joinpoint의 Aspect에 의한 동작을 의미
 - PointCut : JoinPoint의 정규표현식, JoinPoint가 PointCut에 일치할 때마다 해당 PointCut에 관련된 Advice가 실행된다.
@@ -54,3 +69,4 @@
 - [AOP](https://www.linkedin.com/pulse/aspect-oriented-programming-spring-aop-ahmed-marey)
 - [Understanding AOP Proxies](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aop-proxying)
 - [AOP Guide](https://www.springframework.net/doc/reference/html/aop-quickstart.html)
+- [AOP란?](https://dahye-jeong.gitbook.io/spring/spring/2020-04-09-aop)
