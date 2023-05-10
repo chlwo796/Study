@@ -23,9 +23,11 @@
 
 - view(화면)과 비지니스로직(Model)을 mapping 해주는 곳이 Controller
 - Http요청방식에는 POST와 GET이 있는데, URL 요청방식은 무조건 GET이며 매핑방식은 따라서 GETMAPPING이 이루어진다.
-- REST pool
+- [REST pool](https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html)
+  ![](./SpringMVC.png)
 
 ### AOP
 
 - Aspect
 - Connection pool(dbcp2, hikaricp)
+- cp : connection pool
