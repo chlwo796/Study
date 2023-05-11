@@ -40,6 +40,6 @@
 - page : 제일 작은 범위
 - request : 요청시에만 응답, 응답시 요청과 함께 소멸
 - session : 서버와 브라우저의 연결, 로그아웃시에 소멸
-- application : 제일 큰 범위
+- application : 제일 큰 범위.
 
 - el태그 : `${}`, expression language
