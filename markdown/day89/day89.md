@@ -30,3 +30,4 @@
 - var는 window 영역까지 사용 가능
 - [var, let, const 차이점](https://velog.io/@bathingape/JavaScript-var-let-const-%EC%B0%A8%EC%9D%B4%EC%A0%90)
 - [jstl](https://daesuni.github.io/jstl/)
+- [uri vs url의 차이](https://www.charlezz.com/?p=44767)
