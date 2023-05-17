@@ -139,4 +139,9 @@ SELECT * FROM BOARD_INFO;
 INSERT INTO BOARD_INFO (BI_TITLE, BI_CONTENT, BI_FILE_PATH, BI_CREDAT, BI_CRETIM, UI_NUM)
 VALUES ('제목', '내용', NULL, DATE_FORMAT(NOW(), '%Y%m%s'), date_format(NOW(), '%H%i%s'), 1);
 
-SELECT * FROM USER_INFO;ss
+SELECT * FROM USER_INFO;
+-- ezen아이디 test1234 비번 생성 @'%'= 모든계정
+CREATE USER 'ezen'@'%' IDENTIFIED BY 'test1234';
+
+-- 권한부여 exam
+GRANT ALL privileges ON exam.* to 'ezen'@'%';
