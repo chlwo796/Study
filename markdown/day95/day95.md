@@ -67,5 +67,60 @@
 ### java 정리
 
 - 객체지향프로그래밍(OOP)의 특징
+
   - 정보은닉(캡슐화)
   - 오버라이딩
+
+- 메모리영역
+  - 데이터영역(메소드,스태틱영역)
+  - 스택영역
+  - 힙영역(객체, JVM)
+
+```java
+package exam;
+
+import java.util.Scanner;
+
+public class FirstExam01 {
+	// 필드 = 속성, 객체에 담기는 변수(힙)
+//	int age;  // 필드, 멤버변수, 인스턴스변수
+//	String name;
+
+	// 자료형
+	// 기본자료형 = byte, short, int, long, float, double, char
+	// 참조자료형 = 배열, 열거, 클래스, String => 힙(JVM), 스택에는 위치(주소)를 저장
+	public static void main(String[] args) {
+		// 메인메소드 = 기능, 스택
+		// int num = 10; // 지역변수
+
+		Scanner scanner = new Scanner(System.in); // 시스템인풋스트림을 매개변수로 스캐너 생성
+		// 생성자 = 객체 초기화 역할
+		// 변수 선언
+		int koreanScore = 0, englishScore = 0, mathScore = 0, sum = 0;
+		double avg = 0.0;
+		String koreanMessage = "국어점수를 입력해주세요.";
+		String englishMessage = "영어점수를 입력해주세요.";
+		String mathMessage = "수학점수를 입력해주세요.";
+		String message = "국어, 영어, 수학 점수 입력"; // 클린코드 과정
+		System.out.println(message);
+		koreanScore = Integer.parseInt(scanner.next()); // next() String->int로 변환하여 저장
+		englishScore = Integer.parseInt(scanner.next());
+		mathScore = Integer.parseInt(scanner.next()); // 엔터키를 구분자로한다.
+//		System.out.println(koreanMessage);
+//		koreanScore = scanner.nextInt();
+//		System.out.println(englishMessage);
+//		englishScore = scanner.nextInt();
+//		System.out.println(mathMessage);
+//		mathScore = scanner.nextInt();
+		sum = koreanScore + englishScore + mathScore;
+		avg = (double) sum /3; // sum에 대한 형변환을 먼저 하여 double sum 을 3으로 나누어 소수점을 살림
+		// avg = (double) (sum/3); 형변환을 나중에 하여 소수점이 없다.
+
+		System.out.println("============================================");
+		System.out.println("이름\t국어\t영어\t수학\t합계\t평균");
+		System.out.printf("%s\t%d\t%d\t%d\t%d\t%.2f\n", "홍길동", koreanScore, englishScore, mathScore, sum, avg);
+		System.out.println("============================================");
+
+	}
+}
+```
