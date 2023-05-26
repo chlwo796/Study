@@ -1,0 +1,229 @@
+SELECT * FROM CUS_TABLE;
+SELECT * FROM PRO_TABLE;
+SELECT * FROM ORDER_INFO;
+
+-- DDL(데이터 정의어) : CREATE(생성), ALTER(변경), DROP(삭제)-완전히 없애기, 
+-- TRUNCATE(삭제) : 테이블 구조는 남기기
+
+-- DML(데이터 조작어) : SELECT(검색), INSERT(삽입), DELETE(삭제), UPDATE(수정, 갱신)
+-- SELECT 컬럼명 .. FROM 테이블명 WHERE 조건;
+-- INSERT INTO 테이블명(컬럼명..) VALUES(값1...);
+-- DELETE FROM 테이블명 WHERE 조건;
+-- UPDATE 테이블명 SET 변경할_컬럼명 = 변경할 값 .. WHERE 조건;
+
+-- DCL(데이터 제어어) : GRANT(권한부여), REVOKE(권한회수)
+--             TCL -  COMMIT(완료), ROLLBACK(되돌리기, 작업취소), CHECKPOINT(되돌아갈 위치)
+
+-- CREATE 객체 만드려는 객체의 이름
+-- 컬럼 = COLUMN = 속성 = ATTRIBUTE = ITEM = 항목 = 필드
+-- 행 = ROW = 레코드 = 튜플
+-- 테이블 = 릴레이션
+-- CREATE TABLE 테이블명(컬럼명 타입 제약조건 ..);
+-- CREATE VIEW 뷰명(컬럼영 .. ) AS ( SELECT 문);
+-- ALTER USER 사용자명 IDENTIFIED BY 비밀번호; -- 사용자의 비밀번호 변경
+-- ALTER TABLE 테이블명 ADD 컬럼명 데이터타입; -- 열 추가
+-- ALTER TABLE 테이블명 MODIFY 컬럼명 자료형(길이); -- 열의 자료형이나 길이를 변경
+-- ALTER TABLE 테이블명 DROP COLUMN 컬럼명; -- 열 삭제
+-- ALTER TABLE 테이블명 ADD CONSTRAINT 제약조건명 PRIMARY KEY(컬럼명);
+-- ALTER TABLE 테이블명 ADD CONSTRAINT 외래키제약조건명 FOREIGN KEY(컬럼명) REFERENCES 참조되는테이블명(컬럼명);
+
+-- DML 문
+-- 테이블복사, 복사시 PK 등 제약조건은 복사되지 않는다.
+CREATE TABLE ORDER_INFO_COPY AS SELECT * FROM ORDER_INFO;
+
+SELECT * FROM ORDER_INFO_COPY;
+
+-- 문제1) ORDER_INFO_COPY 테이블에서 OI_AMOUNT가 55이상인 자료들의 OI_DATE, C_ID(고객아이디), OI_AMOUNT 검색
+SELECT OI_DATE AS 주문일자, C_ID AS "고객 아이디", OI_AMOUNT "주문수량" FROM ORDER_INFO_COPY WHERE OI_AMOUNT>=55;
+
+-- 문제2) ORDER_INFO_COPY P_CODE ba123 또는 or321 이면서 C_ID c1 또는 c3인것을 검색
+-- 주문테이블에서 c1,c3인 아이디를 가진 사람이 바나나와 오렌지를 주문한 수량을 검색
+
+SELECT OI_ID, OI_DATE, P_CODE, C_ID, OI_AMOUNT FROM ORDER_INFO_COPY WHERE (P_CODE = 'ba123' or P_CODE='or321') and
+(C_ID = 'c1' or C_ID = 'c3');
+
+-- 문제3) CUS_TABLE에서 전화번호가 없는 고객의 C_ID, C_NAME 검색
+-- IS NULL = 널값인 것, IS NOT NULL = NULL이 아닌 것
+SELECT C_ID AS 고객아이디, C_NAME AS 고객이름 FROM CUS_TABLE WHERE C_PHONE IS NULL;
+
+-- 문제4) ORDER_INFO_COPY 테이블에서 주문수량이 50 이상인 고객들의 P_CODE, C_ID 검색하되
+-- C_ID 중복인 경우 하나만 표시
+SELECT P_CODE AS 제품코드, C_ID AS 고객명 FROM ORDER_INFO_COPY WHERE OI_AMOUNT<=50;
+
+-- 문제5) ORDER_INFO_COPY 테이블에서 주문수량이 50이상 70이하인 자료 검색
+SELECT OI_ID, OI_DATE, P_CODE, C_ID, OI_AMOUNT FROM ORDER_INFO_COPY WHERE OI_AMOUNT>=50 AND OI_AMOUNT<=70;
+-- 이상 이하의 자료들일 경우 BETWEEN과 동일한 결과
+SELECT OI_ID, OI_DATE, P_CODE, C_ID, OI_AMOUNT FROM ORDER_INFO_COPY WHERE OI_AMOUNT BETWEEN 50 AND 70;
+
+-- 문제6) CUS_TABLE 테이블에서 '김'씨 성을 가진 사람들의 C_NAME과 C_PHONE 검색
+-- 대치문자(와일드카드) = %(모든문자), _(한글자만)
+-- LIKE '가전%' = 가전으로 시작하는 모든 문자
+-- LIKE '%점' = 마지막 글자가 점으로 끝
+-- LIKE '%화%' = 글자 중에 화가 들어간 것
+-- LIKE '_점' = 첫글자 아무거나, 총 2글자중 뒤글자가 점인것
+SELECT C_NAME, C_PHONE FROM CUS_TABLE WHERE C_NAME LIKE '김%';
+
+DESC PRO_TABLE;
+-- 문제7) PRO_TABLE P_CODE = 'wa567', P_NAME = '수박', P_PRICE = 3000, P_REGION = '경기'
+INSERT INTO PRO_TABLE (P_CODE, P_NAME, P_PRICE, P_REGION) VALUES ('wa567', '수박', 3000, '경기');
+
+SELECT P_CODE, P_NAME, P_PRICE, P_REGION FROM PRO_TABLE;
+
+-- 문제8) ORDER_INFO_COPY OI_AMOUNT >= 70, 모두 5더하기
+UPDATE ORDER_INFO_COPY SET OI_AMOUNT = OI_AMOUNT+5  WHERE OI_AMOUNT>=70;
+
+-- 문제9) ORDER_INFO_COPY C_ID = 'c1' 인 자료들의 OI_AMOUNT 3개씩 감소
+UPDATE ORDER_INFO_COPY SET OI_AMOUNT = OI_AMOUNT-5 WHERE C_ID = 'c1';
+
+-- 문제10) ORDER_INFO_COPY OI_AMOUNT 70 이상 자료 모두 삭제
+DELETE FROM ORDER_INFO_COPY WHERE OI_AMOUNT >= 70;
+
+-- 문제11) ORDER_INFO_COPY 테이블에서 C_ID별로 OI_AMOUNT 합계, 평균, 최대, 최소, 개수검색
+-- 집계함수(=그룹함수) = WHERE절에는 그룹함수 사용불가
+-- SUM(컬럼명) = 합계
+-- AVG(컬럼명) = 평균
+-- MAX(컬럼명) = 최대값
+-- MIN(컬럼명) = 최소값
+-- COUNT(*) = NULL을 포함한 개수
+-- COUNT(컬럼명) = NULL을 제외한 개수
+-- ~~별 = GROUP
+-- GROUP BY = 그룹지을 컬럼명
+-- HAVING = 그룹지을 조건
+-- ORDER BY 정렬할 걸럼명 ASC 또는 DESC
+-- ASC = 오름차순, DESC = 내림차순
+SELECT SUM(OI_AMOUNT), AVG(OI_AMOUNT), MAX(OI_AMOUNT), MIN(OI_AMOUNT), COUNT(OI_AMOUNT)
+FROM ORDER_INFO_COPY GROUP BY C_ID;
+
+-- 문제 12) ORDER_INFO_COPY 테이블에서 OI_AMOUNT가 30 이상인 자료들을 찾아서 그 자료에서
+-- C_ID가 'c1', 'c3', 'c4'인 고객들의 고객별 OI_AMOUNT의 합계 검색
+
+SELECT C_ID AS 고객명, SUM(OI_AMOUNT) AS 합계
+FROM ORDER_INFO_COPY 
+WHERE OI_AMOUNT>=30 -- 전체적인 조건
+GROUP BY C_ID HAVING C_ID IN('c1', 'c3', 'c4');
+
+SELECT * FROM PRO_TABLE;
+SELECT * FROM ORDER_INFO_COPY;
+
+DESC CUS_TABLE;
+DESC PRO_TABLE;
+DESC ORDER_INFO_COPY;
+-- 문제 13) ORDER_INFO_COPY 테이블에 PAYMENT라는 컬럼 추가, 타입은 숫자형
+ALTER TABLE ORDER_INFO_COPY ADD PAYMENT NUMBER(38);
+
+-- 문제 14) ORDER_INFO_COPY 테이블에 OI_ID에 PRIMARY KEY 제약조건설정, 'PK_OI_ID'
+ALTER TABLE ORDER_INFO_COPY ADD CONSTRAINT PK_OI_ID PRIMARY KEY (OI_ID);
+
+-- 문제 15) ORDER_INFO_COPY 테이블의 P_CODE 열 삭제
+ALTER TABLE ORDER_INFO_COPY DROP COLUMN P_CODE;
+
+-- 문제 16) ORDER_INFO_COPY 테이블의 C_ID 외래키 제약조건 설정
+-- 제약조건명 'FK_CUSID'
+-- 참조테이블과 참조키 = CUS_TABLE의 C_ID
+
+ALTER TABLE ORDER_INFO_COPY ADD CONSTRAINT FK_C_ID FOREIGN KEY (C_ID)
+REFERENCES CUS_TABLE(C_ID);
+
+-- 문제 17) ORDER_INFO_COPY 테이블 삭제
+DROP TABLE ORDER_INFO_COPY;
+
+-- 문제 18) CUS_TABLE 테이블 복사 CUS_TABLE_COPY
+
+CREATE TABLE CUS_TABLE_COPY AS SELECT * FROM CUS_TABLE;
+
+-- 문제 19) CUS_TABLE_COPY 테이블의 구조는 남겨 놓고 내용 삭제(TRUNCATE)
+TRUNCATE TABLE CUS_TABLE_COPY;
+
+SELECT * FROM CUS_TABLE_COPY;
+
+DROP TABLE CUS_TABLE_COPY;
+
+-- 문제 20) MEMBER 테이블 생성
+CREATE TABLE MEMBER(
+    M_ID NUMBER PRIMARY KEY,
+    M_NAME VARCHAR(10) NOT NULL,
+    M_AGE DATE NULL,
+    M_GENDER VARCHAR(4) NOT NULL,
+    M_EMAIL VARCHAR(50) UNIQUE,
+    M_JOINDATE DATE,
+    M_SUB_COUNT NUMBER
+);
+-- 문제 21) M_ID_SEQ 시퀀스 생성
+CREATE SEQUENCE M_ID_SEQ
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 5000
+MINVALUE 1;
+-- 문제 22) MEMBER 테이블에 데이터 삽입
+-- 회원명 = 홍길동, 김디비
+-- 회원의 생년월일 = 1995-05-30, 2000-03-06
+-- 회원의 성별 = 남, 여
+-- 회원이메일 = hong@hong.com, null
+-- 회원가입일 = 2023-5-23(오늘날짜)
+-- 수강과목 수 = 1
+
+INSERT INTO MEMBER (M_ID, M_NAME, M_AGE, M_GENDER,
+M_EMAIL, M_JOINDATE, M_SUB_COUNT) VALUES
+(M_ID_SEQ.NEXTVAL, '홍길동', '1995-05-30', '남', 'hong@hong.com',
+sysdate, 1);
+
+INSERT INTO MEMBER (M_ID, M_NAME, M_AGE, M_GENDER,
+M_EMAIL, M_JOINDATE, M_SUB_COUNT) VALUES 
+(M_ID_SEQ.NEXTVAL,'김디비', '2000-03-06', '여', null,
+'2023-05-23', 1);
+
+-- 문제 23) COURSES 테이블 생성
+CREATE TABLE COURSES(
+C_ID NUMBER PRIMARY KEY,
+C_SUBJECT VARCHAR(50) NOT NULL,
+M_ID NUMBER,
+C_COURSE_DATE DATE NOT NULL,
+FOREIGN KEY (M_ID) REFERENCES MEMBER(M_ID)
+);
+
+SELECT * FROM CUS_TABLE;
+SELECT * FROM PRO_TABLE;
+SELECT * FROM ORDER_INFO;
+-- 문제 24) PRO_TABLE과 ORDER_INFO 테이블을 이용하여 다음 조건에 알맞게 검색
+-- OI_AMOUNT가 OI_AMOUNT 전체 평균 이상인 자료만 검색
+SELECT * FROM ORDER_INFO WHERE OI_AMOUNT>=(SELECT AVG(OI_AMOUNT) FROM ORDER_INFO);
+-- 문제 25) PRO_TABLE과 ORDER_INFO 테이블을 이용하여 다음을 검색
+-- OI_DATE, P_NAME, C_ID, 금액(OI_AMOUNT * P_PRICE)
+-- C_ID가 c1, c3, c4 고객자료만 검색
+SELECT O.OI_DATE 생성일, P.P_NAME 제품명, O.C_ID 고객아이디, (O.OI_AMOUNT * P.P_PRICE) 금액
+FROM ORDER_INFO O, PRO_TABLE P WHERE O.P_CODE = P.P_CODE AND O.C_ID IN ('c1', 'c3', 'c4');
+
+-- 문제 25) JOIN활용
+
+SELECT O.OI_DATE 주문일, P.P_NAME 제품명, O.C_ID 고객아이디, (O.OI_AMOUNT * P.P_PRICE) 금액
+FROM PRO_TABLE P INNER JOIN ORDER_INFO O ON P.P_CODE = O.P_CODE
+WHERE C_ID IN('c1', 'c3', 'c4');
+
+-- 문제 26) PRO_TABLE과 ORDER_INFO, CUS_TABLE 검색
+-- 주문수량(OI_AMOUNT)가 40 이상인 자료를 대상으로
+-- OI_DATE, P_NAME, C_NAME, OI_AMOUNT 검색
+SELECT O.OI_DATE, P.P_NAME, C.C_NAME, O.OI_AMOUNT FROM ORDER_INFO O, PRO_TABLE P,
+CUS_TABLE C WHERE O.OI_AMOUNT>=40 AND P.P_CODE = O.P_CODE AND C.C_ID = O.C_ID;
+
+-- 문제 26) JOIN활용
+SELECT O.OI_DATE, P.P_NAME, C.C_NAME, O.OI_AMOUNT FROM PRO_TABLE P
+INNER JOIN ORDER_INFO O
+ON P.P_CODE = O.P_CODE
+INNER JOIN CUS_TABLE C
+ON O.C_ID = C.C_ID
+WHERE O.OI_AMOUNT>=40;
+-- 문제 27) CUS_TABLE ORDER_INFO
+-- 한 번도 주문을 하지 않은 고객의 C_ID, C_NAME
+-- 차집합!!!MINUS
+SELECT C_ID, C_NAME FROM CUS_TABLE MINUS
+SELECT C_ID, C_NAME FROM CUS_TABLE WHERE C_ID
+IN (SELECT C_ID FROM ORDER_INFO);
+-- NOT EXISTS 활용(서브쿼리)
+select c_id, c_name
+from cus_table
+where not exists (select * from order_info where cus_table.c_id = order_info.c_id);
+
+ALTER TABLE MEMBER ADD M_SUB_COUNT NUMBER;
+ALTER TABLE MEMBER MODIFY M_AGE DATE;
+ALTER TABLE MEMBER ADD CONSTRAINT M_SUB_COUNT_CHK CHECK(M_SUB_COUNT<=3);
+SELECT * FROM MEMBER;
