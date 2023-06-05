@@ -105,5 +105,3 @@ public class CarExam {
 	}
 }
 ```
-
-### sql활용
