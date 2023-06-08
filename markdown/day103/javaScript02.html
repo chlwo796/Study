@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/basic.css" />
+
+    <!-- 
+        var 변수명 = 값;
+        let 변수명 = 값;
+        const 변수명 = 값;   //상수
+
+        연산자는 자바와 같음
+        비교연산자
+            === : 양쪽이 같음( 값과 자료형이 같은지 비교)
+            == : 양쪽이 같음(값이 같은지 비교)
+
+            !== : 양쪽도 같지 않음(양쪽의 값과 자료형이 같지 않음)
+            != : 양쪽이 같지 않음(양쪽의 값이 같지 않은지 비교)
+
+        자료형 검사 : typeof(자료)
+            typeof("가나다") ;  => 'string'
+            typeof(10) : 'number'
+            typeof(true) : 'boolean'
+
+        키보드로 부터 입력 받기 : prompt(), confirm()
+            1) prompt(메시지 문자열, 기본 입력 문자열)
+                prompt로 입력 받은 값은 모두 문자열
+                숫자는 형변환이 필요
+            2) Number("39")  => 39 , 숫자형식의 문자열을 숫자로 변환
+                parseInt()
+                parseFloat()
+                숫자형식의 문자열을 숫자로 변환 : 연산자 -, *, /를 사용
+                    "39" - 0 => 39
+                    "39" * 1 => 39
+                    "39" / 1 => 39
+
+            3) 숫자나 boolean 타입을 문자열로 변환 : String()
+                    String(253) => "253"
+                    String(true) => "true"
+                    253 + ""  => "253"
+            4) 불 자료형으로 변환 : Boolean()
+                - 대부분의 자료형은 불로 변환했을 때 true로 변환
+                    Boolean("홍길동")  => true
+                    Boolean(50)  => true
+                - 불로 변환했을 때 false로 변환 : 0, NaN, ""(빈자문자열), null, undefined
+                    NaN : Not a Number 숫자이지만 숫자로 나타낼 수 없는 숫자
+                        Number("$39")  => NaN
+                    Boolean(0) => false
+                    Boolean(NaN) => false
+    -->
+    <script>
+      window.onload = function () {
+        //document.addEventListener('DOMContentLoaded', function(){ });
+        //예제) 2023년 6월 8일 여행을 계획하고 있습니다. 여행에 찬성 또는 반대를 이름과 함께
+        // 알려주세요.(찬성:'확인', 반대:'취소'를 눌러 주세요.)
+
+        //#1. 변수 선언
+        /*     let name = prompt("투표자 이름을 입력해주세요...");
+        let check = confirm("여행 여부를 선택하세요.\n ( 찬성:확인, 반대:취소 )");
+            // 확인 - true,   취소 : false
+        let votingResult="" ;
+        let output=""; 
+
+ //#2. 조건 설정
+         votingResult = check ? "찬성" : "반대" ;  */
+
+        //#3. 출력
+        // alert("이름 : " + name + "\n여행여부 : " + votingResult);
+        // document.write("이름 : " + name +"<br/>여행여부 : " + votingResult );
+        /*      output += "<h1> 이름 : ";
+        output += name ;
+        output += "</h1>";
+        output += "<hr/>";
+        output += "<h1> 여행여부 : ";
+        output += votingResult ;
+        output += "</h1>";
+        document.write(output); */
+
+        const date = new Date(); // let date = new Date(); var date = new Date();
+        let year = date.getFullYear(); //4자리 연도
+        /* date.getMonth() + 1 // 월, 0월부터 시작
+      date.getDate()  //: 일
+      date.getHours() // 시간
+      date.getMinutes() // 분
+      date.getSeconds() // 초 */
+
+        // 오늘은 2023년 6월 7일 오후 3시 15분
+        // 반복문(for, while, do ~ while)과 조건문(if, switch)은 자바와 사용법이 같음
+
+        //자바의 향상된 for문  for(타입 변수 : 객체또는 배열){ }
+        //자바스크립트  : for(타입 변수 of 배열 또는 객체){ 배열 요소 만큼 반복할 문장}
+
+        /*  배열 : 자바는 한가지 자료형만 저장할 수 있지만, 자바스크립트는 배열에
+              문자열, 숫자, 객체, 배열,.... 여러 자료를 묶어서 처리하는 특수한 자료형
+                [ 25, "딸기", true,  function(){}, [10,30], {}]
+       1) 배열의 길이(요소의 개수) : 배열.length
+       2)배열 요소의 뒷부분에 요소 추가 : 배열.push(추가할 요소)
+            let fruit = ['수박','참외','키위']
+            fruit.push('바나나');
+
+       3) 배열 요소 제거
+            .인덱스로 요소 제거하기
+                splice() 함수 : 요소를 제거하는 것과 중간에 삽입하는 것이 모두 가능
+                배열.splice(인덱스, 제거할 요소의 개수);
+                let fruit = ['수박','참외','키위', '바나나']
+                fruit.splice(1, 2);  // 참외와 키위 제거
+            .값으로 요소 제거하기
+                indexOf(요소)함수를 이용해서 위치를 알아낸 후  splice()함수로 제거
+                indexOf(요소) : 배열 내부에 찾는 요소가 있을 경우에는 요소의 인덱스를 리턴
+                        배열 내부에 찾는 요소가 없을 경우 -1을 리턴
+                let fruit = ['수박','참외','키위', '바나나']
+                let index = fruit.indexOf('키위');  //2
+                fruit.splice(index,1);
+
+            . 배열의 특정 위치에 값을 추가
+                 배열.splice(인덱스, 0, 요소)
+    */
+        let fruit = ["사과", "딸기", "복숭아", "키위"];
+
+        let loc01 = document.getElementById("location01");
+        let loc02 = document.querySelector("#location02");
+        let loc03 = document.querySelector("#location03");
+        let loc04 = document.querySelector("#location04");
+
+        let outp = "<span>" + fruit[1] + "<br/>";
+
+        loc01.innerHTML = outp; // innerHTML은 태그를 적용시킴, 보안에 취약
+        loc02.textContent = outp; // textContent는 태그를 문자열로 처리, 보안상 좋음
+        loc03.innerHTML = fruit[2];
+        loc04.innerHTML = fruit[3];
+
+        //   loc1.innerHTML => 내용을 읽어 들이기
+        //   loc1.textContent => 내용을 읽어 들이기
+
+        //   loc1.innerHTML="abc";  //글자를 쓴다
+        //   loc1.textContent = "abc"; // 글자를 쓴다
+
+        // document.getElementById('location01').textContent="abc";
+        let hTexts = document.querySelectorAll("h2");
+
+        for (let i = 0; i < hTexts.length; i++) {
+          hTexts[i].textContent = i + 10;
+          // hTexts[i].innerHTML = i + 10;
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <h1 id="location01"></h1>
+    <h1 id="location02"></h1>
+    <h1 id="location03"></h1>
+    <h1 id="location04"></h1>
+
+    <h2>dfdfdfdf</h2>
+    <h2></h2>
+    <h2></h2>
+    <h2></h2>
+  </body>
+</html>

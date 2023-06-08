@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<link>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 연습</title>
+<!-- 웹폰트, 구글 폰트, 외부 폰트, 외부스타일 시트 -->
+<link href="" rel="stylesheet" />
+
+<!-- 외부 자바스크립트 -->
+<!-- <script src="" /> -->
+
+<!-- 스타일 시트 -->
+<style>
+
+</style>
+
+<!-- 자바스크립트: ECMAScript -->
+<script>
+    // window.onload = function(){
+  document.addEventListener('DOMContentLoaded', function(){
+        // 한줄 주석
+        /* 여러 줄 주석 */
+    //    alert("javascipt \n start"); // ;은 생략 가능
+    //    console.log("hello javascript"); //브라우저의 콘솔 창에 출력
+    //    document.write("javascript is fun<br/>"); //body안에 출력
+
+    // var, let, const
+    // var 변수명 = 값; 담기는 값이 변경될 가능성이 있는 변수 선언,  재선언(중복해서 선언)이 가능, 
+    // let 변수명 = 값; 담기는 값이 변경될 가능성이 있는 변수 선언,  재선언 불가능, 사용범위가 명확({})
+    // var h1 = document.querySelector('.htest').innerHTML;  // html 태그 - 태그명, 클래스 : .클래스명, id : #아이디명
+    let hh1 = document.querySelector('.htest').innerHTML;  // html 태그 - 태그명, 클래스 : .클래스명, id : #아이디명
+    // const hh2 = document.querySelector('.htest').innerHTML;  // html 태그 - 태그명, 클래스 : .클래스명, id : #아이디명
+    let hh3 = document.querySelector('h3').innerHTML;
+    // let hh2 = document.querySelector('#htest2');
+    let hh2 = document.getElementById('htest2');
+        // h2.innerHTML = h1;
+        hh2.innerHTML = "즐거운 자바스크립트";
+    const hhh = document.querySelector('h3').innerHTML;
+    alert(hh3);
+    alert(hhh);
+    });
+</script>
+
+</head>
+<body>
+    <h1 class="htest">자바스크립트 연습</h1>  
+    <h2 id="htest2"></h2>
+    <h3>테스트</h3>
+
+textContent
+innerHTML
+
+    <script>
+        let h1 = document.querySelector('.htest').innerHTML;
+        alert(h1);
+
+    </script>
+</body>
+</html>

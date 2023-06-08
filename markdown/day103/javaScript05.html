@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>시간 표시 및 멈추기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      window.onload = function () {
+        let date = "";
+        let btn = document.querySelector("#btn");
+        let setInter = "";
+
+        btn.onclick = stopTime;
+      };
+      // 시간표시
+      function timer() {
+        let h1 = document.querySelector("#time");
+        setInter = setInterval(function () {
+          date = new Date();
+          h1.textContent = date.toLocaleTimeString();
+        }, 1000); // 1초마다
+      }
+      function stopTime() {
+        clearInterval(setInter);
+      }
+    </script>
+  </head>
+  <body>
+    <div class="timeTest">
+      <h1 id="time" onclick="timer();">시간표시</h1>
+      <button id="btn">stop</button>
+    </div>
+  </body>
+</html>
