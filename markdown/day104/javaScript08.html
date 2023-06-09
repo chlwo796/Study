@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Document</title>
+    <script>
+      /*
+        setTimeout(함수, 시간) : 시간 후에 앞의 함수를 실행, 한 번만 실행
+        setInterval(함수, 시간) : 시간 후에 함수를 호출, 계속적으로 호출
+
+        clearTimeout(타이머I_D) : setTimeout()함수로 설정한 타이머를 제거
+        clearInterval(타이머I_D) : setInterval()함수로 설정한 타이머를 제거
+        DOMContentLoaded : 이벤트, 웹 브라우저가 문서 객체를 모두 읽고 나서 실행
+        getAttribute(속성) : 속성을 읽기
+        setAttribute(속성, 값) : 속성을 설정(추가)
+        addEventListener() : 이벤트(클릭, 더블클릭, 키보드 글자 입력, ...)가 발생했을 때 처리하는 함수
+
+        이벤트 처리 : 문서객체.addEventListener(이벤트, 이벤트리스너(=이벤트핸들러=콜백함수));
+        이벤트 제거 : 문서객체.removeEventListener(이벤트, 이벤트 리스너);
+
+        글자를 추가/읽기, html 태그도 글자로 처리 :
+                읽기 : 문서객체.textContent
+                쓰기 : 문서객체.textContent = 값
+        글자를 추가/읽기, html태그를 실행(적용)
+                읽기 : 문서객체.innerHTML
+                쓰기 : 문서객체.innerHTML = 값
+        요소(html태그)를 만들기 : 부모객체.createElement()
+        요소 추가 : 부모객체.appendChild(자식으로 추가할 요소)
+
+        이벤트 막기 : 문서객체.preventDefault() => 기본적으로 제공하는 이벤트 막기
+        키보드로부터 입력 받을 때 이벤트 : keyup - 키보드에서 키가 떨어질 때 실행
+                                        keydown : 키가 눌릴 때 실행, 키보드를 꾹 누르고 있을 때도,
+                                                  입력될 때도 실행
+                                        keypress : 키가 입력되었을 때 실행, 아시아권의 문자를 제대로 처리하지 못함
+
+        checkbox, radio 버튼의 이벤트 : change
+        input, textarea 태그의 입력된 글자 수 : 문서객체.value.length
+                        입력된 글자 : 문서객체.value
+        마우스 오른쪽 버튼을 사용할 수 없게 : contextmenu : 마우스 오른쪽 버튼 이벤트
+            header.addEventListener('contextmenu', function(event){
+                event.preventDefault();
+            });
+             header.addEventListener('contextmenu', (event)=>{
+                event.preventDefault();
+            });
+        */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // 이벤트핸들러, 콜백함수
+        let moveText = document.createElement("h3"); // 요소(태그) 만들기 <h3>
+        moveText.textContent = "이동하는 글자"; //<h3>이동하는 글자</h3>
+        // css = background-color, javaScript : backgroundColor
+        moveText.style.backgroundColor = "blue";
+        moveText.style.color = "while";
+
+        let moveImg = document.createElement("img"); // <img>
+        let src = "2023-06-09-14-45-38.png";
+        moveImg.setAttribute("src", src); // <img src = '2023-06-09-14-45-38.png'>
+        let firstDiv = document.querySelector("#first"); // 태그 : 태그명, 클래스 : .클래스명, id : #id
+        let secondDiv = document.querySelector("#second");
+
+        // 한번만 이동하고 끝
+        // firstDiv.appendChild(moveText); // 텍스트 추가
+        // firstDiv.appendChild(moveImg); // 부모요소객체.appendChild(자식으로 들어갈 객체)
+
+        // secondDiv.appendChild(moveText);
+        // setTimeout(function () {
+        //   // 2초뒤 한번만 함수동작
+        //   secondDiv.appendChild(moveImg);
+        // }, 2000);
+        arguments;
+        // 지속적으로 2초마다 이동
+        let toFirst = function () {
+          firstDiv.appendChild(moveText);
+          // firstDiv.appendChild(moveImg);
+          setTimeout(toSecond, 2000);
+        };
+        let toSecond = function () {
+          secondDiv.appendChild(moveText);
+          // secondDiv.appendChild(moveImg);
+          setTimeout(toFirst, 2000);
+        };
+
+        // 처음 시작을 위해 첫번째 함수를 호출
+        toFirst();
+      });
+    </script>
+  </head>
+  <body>
+    <div id="first">
+      <h1>글자 1번 위치</h1>
+    </div>
+    <div id="second">
+      <h1>글자 2번 위치</h1>
+    </div>
+  </body>
+</html>
