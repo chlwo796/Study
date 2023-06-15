@@ -25,3 +25,47 @@
     private final String absolutePath = System.getProperty("user.dir"); // 시스템속성으로 프로젝트경로불러옴
     private final String uploadFilePath = absolutePath + "\\src\\main\\webapp\\resources\\upload";
   ```
+
+### 2023.0615
+
+- 카카오 DB 분리 후 로그인 시 유저정보를 제대로 불러오지 않아 화면에 프로필 사진 등 연동이 되지 않는 현상.
+
+- UserInfoMapper.xml : KUI_ID 로 찾아온 UI_NUM을 가지고 온 후 해당 UI_NUM 으로 UserInfoVO를 SELECT하는 쿼리문이 없어서 정보가 담기지 않았으며, 해당 쿼리문 추가
+
+  ```xml
+    <select id="selectUserInfoByKakao"
+      resultType="com.ezen.mannamatna.vo.UserInfoVO">
+      select * from user_info where ui_Num = #{uiNum}
+    </select>
+  ```
+
+- UserInfoMapper.java : 해당 메소드 추가
+
+  ```java
+  UserInfoVO selectUserInfoByKakao(UserInfoVO userInfoVO);
+  ```
+
+- UserInfoService.java : kakaoLogin()에 selectKakaoUserInfo()를 실행한 후 얻어온 uiNum을 가진 UserInfoVO 객체를 다시 selectUserInfoByKakao(userInfoVO) 하여 해당하는 유저정보를 모두 가져오게 했다.
+
+  ```java
+    public boolean kakaoLogin(KakaoUserInfoVO kakaoUserInfoVO, HttpSession session) { //여기서 문제가 생기는듯 ㅇㅅ ㅇ?
+
+      log.info("확인하려는 유저 =>{}",kakaoUserInfoVO);
+      kakaoUserInfoVO = uiMapper.selectKakaoUserInfo(kakaoUserInfoVO);
+      log.info("돌려받은 유저 =>{}",kakaoUserInfoVO); //카db에 제대로 안올라갔으니까 여기서 못찾아온거같음ㅇㅇ
+      if (kakaoUserInfoVO != null) {
+        UserInfoVO userInfoVO = new UserInfoVO();
+        userInfoVO.setUiNum(kakaoUserInfoVO.getUiNum()); // 카카오 로그인 유저의 유저번호를 userInfoVO에 담기
+        UserInfoVO newUserInfoVO = uiMapper.selectUserInfoByKakao(userInfoVO);
+        // uiNum 정보만 가지고 있는 VO를 넣고 리턴은 다시 셀렉트문으로 찾은 모든 정보를 가지고 있는 uiVO 객체를 다시 돌려받는다.
+        // uiVO와 kakaoVO가 연결되는것은 uiNum 인데 찾은 uiNum으로 uiVO를 셀렉트해서 찾는 쿼리문이 없었음
+        // 매퍼에 해당 메소드 및 쿼리문 추가하여 kakaoLogin()에 추가함
+        // 객체를 두개 생성하는게 비효율적이면 같은 userInfoVO에 계속 담아도 됨. 정상작동확인함
+        log.info("카카오 로그인 서비스 =>{}",newUserInfoVO);
+        session.setAttribute("user", newUserInfoVO);
+        log.info("서비스에서 카카오 세션값확인={}", session.getAttribute("user"));
+        return true;
+      }
+      return false;
+    }
+  ```
