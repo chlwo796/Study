@@ -79,3 +79,9 @@ WHERE m.P_CODE = p.P_CODE;
 SELECT m.M_NO, m.M_NAME, COUNT(CASE WHEN v.V_CONFIRM = 'Y' THEN 1 END) V_COUNT FROM TBL_VOTE_202005 v, TBL_MEMBER_202005 m
 WHERE v.M_NO = m.M_NO AND v.V_CONFIRM = 'Y' GROUP BY m.M_NO, m.M_NAME ORDER BY V_COUNT DESC;
 
+select v.m_no, m.m_name, count(v.m_no) count
+from  tbl_vote_202005 v, tbl_member_202005 m
+where v.m_no=m.m_no and v.v_confirm = 'Y'
+group by v.m_no,  m.m_name
+order by count desc;
+
