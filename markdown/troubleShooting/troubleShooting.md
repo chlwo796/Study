@@ -26,7 +26,7 @@
     private final String uploadFilePath = absolutePath + "\\src\\main\\webapp\\resources\\upload";
   ```
 
-### 2023.0615
+### 2023.06.15
 
 - 카카오 DB 분리 후 로그인 시 유저정보를 제대로 불러오지 않아 화면에 프로필 사진 등 연동이 되지 않는 현상.
 
@@ -69,3 +69,20 @@
       return false;
     }
   ```
+
+### 2023. 06. 20
+
+- CommentInfoMapper.xml : 댓글작성한 시간(timestamp)로 저장된 mySQL의 CI_CREDAT, CI_CRETIM 데이터를 timestamp date_format(CI_CREDAT, '%Y. %m. %d'), date_format(CI_CRETIM, '%H시 %i분') 으로 가공하던 중 각 DATE_FORMAT()함수에 별칭으로 CI_CREDAT, CI_CRETIM 을 작성해주지 않아 계속 NULL값으로 출력되는 현상 해결하였다.
+
+```xml
+	<select id="selectCommentInfo" parameterType="int" resultType="com.ezen.mannamatna.vo.CommentInfoVO">
+	SELECT CI_NUM, CI_CONTENT, date_format(CI_CREDAT, '%Y. %m. %d') CI_CREDAT,
+	date_format(CI_CRETIM, '%H시 %i분') CI_CRETIM, UI_NUM, BI_NUM FROM COMMENT_INFO WHERE CI_NUM = #{ciNum}
+	</select>
+	<select id="selectCommentInfos" parameterType="int"
+		resultType="com.ezen.mannamatna.vo.CommentInfoVO">
+		SELECT u.UI_FILEPATH, u.UI_NICKNAME, c.CI_NUM, c.CI_CONTENT, date_format(c.CI_CREDAT, '%Y. %m. %d') CI_CREDAT,
+		date_format(c.CI_CRETIM, '%H시 %i분') CI_CRETIM, c.BI_NUM, c.UI_NUM FROM COMMENT_INFO c
+		JOIN USER_INFO u ON c.UI_NUM = u.UI_NUM WHERE c.BI_NUM = #{biNum}
+	</select>
+```
