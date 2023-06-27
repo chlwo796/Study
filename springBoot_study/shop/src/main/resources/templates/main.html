@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+<script>
+$(document).ready(function(){
+   $('#register_form > a').click(function(){
+      var c = confirm('입력 하시겠습니까 ?');
+      if(c == true){
+         $('#register_form').attr({
+            'method':'post',
+            'action':'[[@{/register}]]'
+         });
+         $('#register_form').submit();
+      };
+   });
+   
+});
+</script>
+<h1>CH2</h1>
+<form id="register_form">
+   ID<input type="text" name="userID"><br>
+   PWD<input type="text" name="userPassword"><br>
+   NAME<input type="text" name="userName"><br>
+   <a href="#">REGISTER</a>
+</form>
+</body>
+</html>
